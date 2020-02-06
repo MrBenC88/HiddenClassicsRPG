@@ -8,6 +8,7 @@ public class UserCharacter {
     private String name;
     private double balance;
     private HashMap<String, Integer> characterAttributes;
+    private String characterChoice;
 
     private ArrayList<InventoryItem> inventoryItems;
 
@@ -22,6 +23,19 @@ public class UserCharacter {
         characterAttributes.put("Attack", 0);
         characterAttributes.put("Defense", 0);
         characterAttributes.put("Speed", 0);
+    }
+
+    public String setCharacter(int num) {
+        if (num == 1) {
+            characterChoice = "Knight";
+        } else if (num == 2) {
+            characterChoice = "Mage";
+        } else if (num == 3) {
+            characterChoice = "Assassin";
+        } else if (num == 4) {
+            characterChoice = "Wanderer";
+        }
+        return  characterChoice;
     }
 
 
@@ -132,6 +146,10 @@ public class UserCharacter {
     public void removeBalance(double amount) {
         this.balance -= amount;
 
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
 
