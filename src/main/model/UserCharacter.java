@@ -10,14 +10,12 @@ public class UserCharacter {
     private HashMap<String, Integer> characterAttributes;
     private String characterChoice;
 
-    private ArrayList<InventoryItem> inventoryItems;
-
 
     //EFFECTS: constructs the user's character with no name, 0 balance, 0 stats, and 0 inventory items
     public UserCharacter() {
         name = "";
         balance = 0.00;
-        inventoryItems = new ArrayList<>();
+
         characterAttributes = new HashMap<>();
         characterAttributes.put("Health", 0);
         characterAttributes.put("Attack", 0);

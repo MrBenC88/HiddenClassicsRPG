@@ -28,4 +28,12 @@ public class InventoryItem {
     public void addQuantity(int quantity) {
         this.quantity += quantity;
     }
+
+    // REQUIRES: quantity > 0
+    // MODIFIES: this
+    // EFFECTS: adds the additional quantity of item specified to quantity.
+    public void removeQuantity(int quantity) {
+        this.quantity -= quantity;
+    }
+
 }

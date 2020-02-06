@@ -7,15 +7,22 @@ import java.util.ArrayList;
 public class GameItem {
     private String description;
     private double marketPrice;
-    private ArrayList<Integer> stats; //    Consists of hp, atk, def, spd
+    private int hp;
+    private int atk;
+    private int def;
+    private  int spd; //    Consists of hp, atk, def, spd
 
 
     //EFFECTS: constructs the game item with description , market price,
     // and the stats
-    public GameItem(String description, double marketPrice, ArrayList<Integer> stats) {
+    public GameItem(String description, double marketPrice, int hp, int atk, int def, int spd) {
         this.description = description;
         this.marketPrice = marketPrice;
-        this.stats = stats;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.spd = spd;
+
     }
 
     //EFFECTS: returns the game item description
@@ -28,8 +35,13 @@ public class GameItem {
         return marketPrice;
     }
 
-    //EFFECTS: returns the game item stats
+    //EFFECTS: returns the game item stats in the form of an ArrayList
     public ArrayList<Integer> getStats() {
+        ArrayList<Integer> stats = new ArrayList<>(4);
+        stats.add(hp);
+        stats.add(atk);
+        stats.add(def);
+        stats.add(spd);
         return stats;
     }
 }

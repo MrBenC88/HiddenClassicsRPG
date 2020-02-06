@@ -1,7 +1,10 @@
 package ui;
 
+import model.GameItem;
+import model.Inventory;
 import model.UserCharacter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -9,6 +12,9 @@ import java.util.Scanner;
 public class HiddenClassicsGame {
     private Scanner input;
     private UserCharacter character;
+    private Inventory inventory;
+    //private TextCollection textCollection;
+    //private Store store;
 
 
     // EFFECTS: runs the game application
@@ -22,11 +28,8 @@ public class HiddenClassicsGame {
         boolean gameRunning = true;
         String command = null;
 
-        //initializes classes.
         init();
         displayMainMenu();
-
-
 
         while (gameRunning) {
             System.out.println("game running");
@@ -45,6 +48,9 @@ public class HiddenClassicsGame {
     // EFFECTS: initializes player
     private void init() {
         character = new UserCharacter();
+        inventory = new Inventory();
+        //textCollection = new TextCollection();
+        //store = new Store();
         System.out.println("Initialized");
         input = new Scanner(System.in);
     }
@@ -53,7 +59,7 @@ public class HiddenClassicsGame {
         System.out.println("Main Menu\n Welcome to the Hidden Classics Pavilion RPG");
         System.out.println("Select an option below.\n 1. Start Game\n 2. Info\n 3. Quit");
         int optionSelect;
-        optionSelect = input.nextInt();
+        optionSelect = input.nextInt(); // can probably put a try catch here / exception handling
 
         if (optionSelect == 1) {
             init();
@@ -92,7 +98,7 @@ public class HiddenClassicsGame {
         System.out.println("\n4. Wanderer \n HP: 99 ATK: 99 DEF: 99 SPD: 99");
 
         int charChoice;
-        charChoice = input.nextInt();
+        charChoice = input.nextInt(); // can probably put a try catch here / exception handling
         character.setCharacter(charChoice);
         System.out.println(character.setCharacter(charChoice));
         adjustAttributes(character.setCharacter(charChoice));
@@ -146,5 +152,22 @@ public class HiddenClassicsGame {
         character.setSpeed(99);
         character.addBalance(999);
         return character.getCharacterAttributes();
+    }
+
+    private void useGameItem(GameItem item) {
+        int hp;
+        int atk;
+        int def;
+        int spd;
+        hp = item.getStats().indexOf(0);
+        atk = item.getStats().indexOf(1);
+        def = item.getStats().indexOf(2);
+        spd = item.getStats().indexOf(3);
+
+        character.addHealth(hp);
+        character.addAttack(atk);
+        character.addDef(def);
+        character.addSpd(spd);
+
     }
 }
