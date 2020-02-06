@@ -22,7 +22,7 @@ Obstacles are in the way blocking the user's end goal as the user will have to d
 **Why this project:**
 This project was chosen because of the interest in creating a functional RPG using object oriented programming. The goal is to surpass a simple text-based project with more interesting and involved mechanics for the end user.
 
-##User Stories
+## User Stories
 
 **Phase 1**:*End-user*
 - As the user, I want to be able to create a character with specific statistics.
