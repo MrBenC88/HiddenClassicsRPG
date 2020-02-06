@@ -2,6 +2,7 @@ package ui;
 
 import model.UserCharacter;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 // RPG Game Application
@@ -22,9 +23,10 @@ public class HiddenClassicsGame {
 
         //initializes classes.
         init();
+        displayMenu();
 
         while (gameRunning) {
-            displayMenu();
+
             command = input.next();
             command = command.toLowerCase();
 
@@ -42,6 +44,7 @@ public class HiddenClassicsGame {
         character = new UserCharacter();
         System.out.println("Initialized");
         input = new Scanner(System.in);
+        createCharacter();
     }
 
     private void processCommand(String command) {
@@ -50,5 +53,18 @@ public class HiddenClassicsGame {
 
     private void displayMenu() {
         System.out.println("Main Menu");
+    }
+
+    private void createCharacter() {
+        String name;
+        System.out.println("Please enter your name: ");
+        name = input.next();
+        character.setName(name);
+        System.out.println("Your character name has been set to: " + character.getName());
+    }
+
+    private void allocateInitialStat() {
+        HashMap<String, Integer> stats =  character.getCharacterAttributes();
+
     }
 }
