@@ -23,7 +23,7 @@ public class UserCharacter {
         characterAttributes.put("Speed", 0);
     }
 
-    public String setCharacter(int num) {
+    public String setCharacterClass(int num) {
         if (num == 1) {
             characterChoice = "Knight";
         } else if (num == 2) {
@@ -34,6 +34,10 @@ public class UserCharacter {
             characterChoice = "Wanderer";
         }
         return  characterChoice;
+    }
+
+    public String getCharacterClass() {
+        return characterChoice;
     }
 
 
@@ -149,6 +153,7 @@ public class UserCharacter {
     public double getBalance() {
         return balance;
     }
+
 
 
 }

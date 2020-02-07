@@ -25,16 +25,13 @@ This project was chosen because of the interest in creating a functional RPG usi
 ## User Stories
 
 **Phase 1**:*End-user*
-- As the user, I want to be able to create a character with a specific name.
-- As the user, I want to be able to choose a character class.
-
-- As the user, I want to be able to view my item inventory.
-- As the user, I want to be be able to add items to my inventory.
-- As the user, I want to be be able to remove items to my inventory.
+- As the user, I want to be able to create a character with a specific name and choose a character class. [completed]
+- As the user, I want to be able to view, add to, and remove from my item inventory.
 - As the user, I want to be be able to use items in my inventory.
 
-- As the user, I want to be able to view my stats.
 
+
+- As the user, I want to be able to view my stats.
 - As the user, I want to be able to view the in game shop and my balance.
 - As the user, I want to be able to make purchases.
 
