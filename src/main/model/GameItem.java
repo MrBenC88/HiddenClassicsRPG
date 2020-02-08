@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 //Represents a game item having a description, market price, and stats
 public class GameItem {
+    private String name;
     private String description;
     private double marketPrice;
     private int hp;
@@ -15,7 +16,8 @@ public class GameItem {
 
     //EFFECTS: constructs the game item with description , market price,
     // and the stats
-    public GameItem(String description, double marketPrice, int hp, int atk, int def, int spd) {
+    public GameItem(String name,String description, double marketPrice, int hp, int atk, int def, int spd) {
+        this.name = name;
         this.description = description;
         this.marketPrice = marketPrice;
         this.hp = hp;
@@ -28,6 +30,11 @@ public class GameItem {
     //EFFECTS: returns the game item description
     public String getDescription() {
         return description;
+    }
+
+    //EFFECTS: returns the game item name
+    public String getGameItemName() {
+        return name;
     }
 
     //EFFECTS: returns the game item market price in dollars
@@ -44,4 +51,5 @@ public class GameItem {
         stats.add(spd);
         return stats;
     }
+
 }

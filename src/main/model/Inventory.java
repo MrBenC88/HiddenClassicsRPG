@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Inventory {
-    //In the ArrayList,
+
     private ArrayList<InventoryItem> inventoryItems;
     private int totalItems;
     private boolean fullInventorySlot;
@@ -89,6 +89,10 @@ public class Inventory {
 
     public void setMaxItemsPerInventorySlot(int maxItemsPerInventorySlot) {
         this.maxItemsPerInventorySlot = maxItemsPerInventorySlot;
+    }
+
+    public String getGameItemName(GameItem item) {
+        return item.getGameItemName();
     }
 
 

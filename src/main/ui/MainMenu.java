@@ -1,7 +1,9 @@
 package ui;
 
+import model.GameItem;
 import model.GamePanel;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // Class for the RPG Game Application, Runs the Game Menus , Set Up for Character Customization and Selection
@@ -53,12 +55,13 @@ public class MainMenu {
         optionSelect = input.nextInt(); // can probably put a try catch here / exception handling
 
         if (optionSelect == 1) {
-            createCharacter();
-            chooseClass();
-            //call to playGame
+            initialCharacterSetUp(); //method for setting up the character
+            selectItem();
+            inGameMenu();
+
         } else if (optionSelect == 2) {
             currentScreen = "info";
-            System.out.println("Info and Instructions go here! \n TextTextTextTextTextTextTextTextText");
+            System.out.println("Info and Instructions go here! \n\t\t\t Text Text Text Text Text Text Text\n\n");
             displayMainMenu();
         } else if (optionSelect == 3) {
             quit();
@@ -76,6 +79,12 @@ public class MainMenu {
         name = input.next();
         game.createCharacter(name);
         System.out.println("Your character name has been set to: " + game.getCharacterName());
+    }
+
+    private void initialCharacterSetUp() {
+        createCharacter();
+        chooseClass();
+        //call to method for show character attribute
     }
 
     //EFFECTS: Terminates the Java Program with Status Code 0
@@ -98,6 +107,57 @@ public class MainMenu {
         game.adjustAttributes(game.getCharacter().setCharacterClass(charChoice));
         System.out.println(game.adjustAttributes(game.getCharacter().setCharacterClass(charChoice)));
     }
+
+    private void inGameMenu() {
+        currentScreen = "inGameMenu";
+        System.out.println("\n\t\t\t\tIn Game Menu--\n");
+        System.out.println("Select an option:\n\t\t\t 1. Inventory\n\t\t\t\t\tManage your assets!");
+        System.out.println("\t\t\t 2. Store\n\t\t\t\t\tBuy and sell your assets!");
+        System.out.println("\t\t\t 3. Collection\n\t\t\t\t\tView your collection of texts!");
+        System.out.println("\t\t\t 4. Exit\n\t\t\t\t\tExit this in game menu!");
+        System.out.println("\nInput value [1,4]: ");
+        int optionSelect;
+        optionSelect = input.nextInt();
+        inGameMenuSelector(optionSelect);
+    }
+
+    private void inGameMenuSelector(int num) {
+        if (num == 1) {
+            currentScreen = "inventory";
+            //call to ui method for inventory related
+        } else if (num == 2) {
+            currentScreen = "store";
+            //call to ui method for store related
+        } else if (num == 3) {
+            currentScreen = "collection";
+            //call to ui method for collection related
+        } else if (num == 4) {
+            System.out.println("Exited InGame Menu.");
+
+        }
+    }
+
+    private void selectItem() {
+        currentScreen = "item_select";
+        game.gameObjects.addUnclaimedItems();
+        ArrayList<GameItem> itemSelection = new ArrayList<>();
+        System.out.println("\n\t\t\t\tItem Selection--\n");
+        System.out.println("Select an item:\n\t\t\t 1.\n\t\t\t\t\t"
+                + game.gameObjects.getUnClaimedGameItem(0).getGameItemName()
+                + game.gameObjects.getUnClaimedGameItem(0).getDescription());
+        System.out.println("\t\t\t 2. \n\t\t\t\t\t"
+                + game.gameObjects.getUnClaimedGameItem(1).getGameItemName()
+                + game.gameObjects.getUnClaimedGameItem(1).getDescription());
+        System.out.println("\t\t\t 3. Item3\n\t\t\t\t\tAnother cool description"
+                + game.gameObjects.getUnClaimedGameItem(2).getGameItemName()
+                + game.gameObjects.getUnClaimedGameItem(2).getDescription());
+        int optionSelect = input.nextInt();
+        game.addGameObjectToInventory(game.gameObjects.getUnClaimedGameItem(optionSelect), 1);
+        System.out.println(game.showInventoryItemDetails());
+
+    }
+
+
 
 
 }

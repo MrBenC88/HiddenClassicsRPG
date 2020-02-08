@@ -1,11 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // Class for the RPG Game Application, Runs the Game Menus , Set Up for Character Customization and Selection
 public class GamePanel {
     public UserCharacter character;
     public Inventory inventory;
+    public GameObject gameObjects;
     //private TextCollection textCollection;
     //private Store store;
 
@@ -14,11 +16,11 @@ public class GamePanel {
     public GamePanel() {
         character = new UserCharacter();
         inventory = new Inventory();
+        gameObjects = new GameObject();
         //textCollection = new TextCollection();
         //store = new Store();
         System.out.println("Initialized");
     }
-
 
 
     public HashMap<String, Integer> adjustAttributes(String characterChoice) {
@@ -104,6 +106,49 @@ public class GamePanel {
 
     public String getCharacterChoice() {
         return character.getCharacterClass();
+    }
+
+    public ArrayList<InventoryItem> showInventoryItems() {
+        return inventory.showInventoryItems();
+    }
+
+    public GameItem itemSelection(int indexPosition) {
+        GameItem gameItemForSelection = gameObjects.getUnClaimedGameItem(indexPosition);
+        return gameItemForSelection;
+    }
+
+    public void removeGameObject(GameItem gameItem) {
+        gameObjects.removeUnClaimedGameItem(gameItem);
+    }
+
+    public void addGameObjectToInventory(GameItem gameItem, int quantity) {
+        inventory.addInventoryItem(gameItem, quantity);
+    }
+
+    public void removeGameObjectToInventory(GameItem gameItem, int quantity) {
+        inventory.removeInventoryItem(gameItem, quantity);
+    }
+
+    public ArrayList<InventoryItem> showInventory() {
+        return inventory.showInventoryItems();
+    }
+
+    public String showInventoryItemDetails() {
+        String strOutput = "";
+        String itemName;
+        int itemQuantity;
+        double itemPrice;
+        String itemDescription;
+        for (InventoryItem i : inventory.showInventoryItems()) {
+            itemName = inventory.getGameItemName(i.getGameItem());
+            itemQuantity = inventory.getTotalNumberOfSpecificGameItem(i.getGameItem());
+            itemPrice = inventory.getGameItemPrice(i.getGameItem());
+            itemDescription = inventory.getGameItemDescription(i.getGameItem());
+            strOutput += itemName + "\nQuantity: " + itemQuantity + "\nDescription:"
+                    + itemDescription + " @ $" + itemPrice + "\n";
+
+        }
+        return strOutput;
     }
 
 

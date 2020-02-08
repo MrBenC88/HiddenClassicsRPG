@@ -26,19 +26,19 @@ This project was chosen because of the interest in creating a functional RPG usi
 
 **Phase 1**:*End-user*
 - As the user, I want to be able to create a character with a specific name and choose a character class. [completed]
+- As the user, I want to be able to obtain a starter item and have it automatically added into my inventory.
+
 - As the user, I want to be able to view, add to, and remove from my item inventory.
 - As the user, I want to be be able to use items in my inventory.
 
+For Phase 2: Add initial text selection and starter text, abilities, etc. Refactor character stats, starter item and inventory to read and write from txt file
 
-
+Extra:
 - As the user, I want to be able to view my stats.
 - As the user, I want to be able to view the in game shop and my balance.
 - As the user, I want to be able to make purchases.
-
 - As the user, I want to be able to select a text in my collection and read its contents.
-
 - As the user, I want to be able to make purchases.
 - As the user. I want to be able to select options to progress the story.
-
 - As the user, I want to be able to collect texts and add it to my collection of texts.
 
