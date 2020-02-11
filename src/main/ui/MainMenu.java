@@ -107,7 +107,7 @@ public class MainMenu {
         game.setCharacterClass(charChoice);
         System.out.println(game.getCharacterChoice());
         game.adjustAttributes(game.getCharacter().setCharacterClass(charChoice));
-        System.out.println(game.adjustAttributes(game.getCharacter().setCharacterClass(charChoice)));
+        System.out.println(game.getCharacterStats());
     }
 
     private void inGameMenu() {
@@ -184,16 +184,22 @@ public class MainMenu {
         System.out.println("What would like to do with the item?");
         System.out.println("Select an option:\t\n1. Use Item\n2. Discard Item\n3. View Different Item\n4. Quit Menu");
         int optionSelect = input.nextInt();
+        viewItemInInventoryOptions(optionSelect, item);
+
+    }
+
+    private void viewItemInInventoryOptions(int optionSelect, GameItem item) {
         if (optionSelect == 1) {
             game.useGameItem(item);
-
-            System.out.println("You have used: 1 x\t" + game.getGameItemName(item));
-
-            System.out.println("\nNew Stats:" + game.getCharacterStats());
+            System.out.println("You have used: 1 x\t" + game.getGameItemName(item)
+                    + "\nNew Stats:" + game.getCharacterStats());
             openInventory();
         } else if (optionSelect == 2) {
             game.removeGameObjectInInventory(item, 1);
-            System.out.println("You have discarded: 1 x\t" + game.getGameItemName(item));
+            System.out.println("You have discarded: 1 x\t" + game.getGameItemName(item)
+                    + "\nYou have collected 25 gold which has been added to your balance.");
+            game.character.addBalance(25);
+            System.out.println(game.character.getBalance());
             openInventory();
         } else if (optionSelect == 3) {
             System.out.println("View a Different Item!");
@@ -204,6 +210,7 @@ public class MainMenu {
         } else {
             System.out.println("Please input a valid number.");
         }
+
     }
 
 }

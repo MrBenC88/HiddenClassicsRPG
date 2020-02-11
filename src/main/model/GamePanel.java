@@ -77,10 +77,10 @@ public class GamePanel {
         int atk;
         int def;
         int spd;
-        hp = item.getStats().indexOf(0);
-        atk = item.getStats().indexOf(1);
-        def = item.getStats().indexOf(2);
-        spd = item.getStats().indexOf(3);
+        hp = item.getStats().get(0);
+        atk = item.getStats().get(1);
+        def = item.getStats().get(2);
+        spd = item.getStats().get(3);
 
         character.addHealth(hp);
         character.addAttack(atk);
@@ -189,5 +189,7 @@ public class GamePanel {
     public String getGameItemName(GameItem item) {
         return inventory.getGameItemName(item);
     }
+
+
 
 }
