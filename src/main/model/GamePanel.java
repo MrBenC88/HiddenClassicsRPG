@@ -50,7 +50,7 @@ public class GamePanel {
         character.setAttack(20);
         character.setDef(12);
         character.setSpeed(6);
-        character.addBalance(60);
+        character.addBalance(50);
         return character.getCharacterAttributes();
     }
 
@@ -59,7 +59,7 @@ public class GamePanel {
         character.setAttack(50);
         character.setDef(9);
         character.setSpeed(8);
-        character.addBalance(45);
+        character.addBalance(50);
         return character.getCharacterAttributes();
     }
 
@@ -68,7 +68,7 @@ public class GamePanel {
         character.setAttack(99);
         character.setDef(99);
         character.setSpeed(99);
-        character.addBalance(999);
+        character.addBalance(50);
         return character.getCharacterAttributes();
     }
 

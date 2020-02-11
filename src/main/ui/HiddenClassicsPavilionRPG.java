@@ -7,7 +7,7 @@ import model.InventoryItem;
 import java.util.Scanner;
 
 // Class for the RPG Game Application, Runs the Game Menus , Set Up for Character Customization and Selection
-public class MainMenu {
+public class HiddenClassicsPavilionRPG {
     private Scanner input;
     protected GamePanel game;
     public String currentScreen;
@@ -16,7 +16,7 @@ public class MainMenu {
 
 
     // EFFECTS: runs the game application
-    public MainMenu() {
+    public HiddenClassicsPavilionRPG() {
         currentScreen = "main_menu";
         game = new GamePanel();
         game.addUnclaimedItems();
@@ -116,8 +116,9 @@ public class MainMenu {
         System.out.println("Select an option:\n\t\t\t 1. Inventory\n\t\t\t\t\tManage your assets!");
         System.out.println("\t\t\t 2. Store\n\t\t\t\t\tBuy and sell your assets!");
         System.out.println("\t\t\t 3. Collection\n\t\t\t\t\tView your collection of texts!");
-        System.out.println("\t\t\t 4. Exit\n\t\t\t\t\tExit this in game menu!");
-        System.out.println("\nInput value [1,4]: ");
+        System.out.println("\t\t\t 4. Character Stats\n\t\t\t\t\tView your current stats!");
+        System.out.println("\t\t\t 5. Exit\n\t\t\t\t\tExit this in game menu!");
+        System.out.println("\nInput value [1,5]: ");
         int optionSelect;
         optionSelect = input.nextInt();
         inGameMenuSelector(optionSelect);
@@ -136,6 +137,16 @@ public class MainMenu {
             System.out.println("function call to collection method");
             //call to ui method for collection related
         } else if (num == 4) {
+            currentScreen = "stats";
+            System.out.println("Name:\t" + game.character.getName());
+            System.out.println("Balance:\t" + game.character.getBalance());
+            System.out.println("Stats:\t" + game.character.getCharacterAttributes());
+            System.out.println("Starting Class:\t" + game.character.getCharacterClass());
+            System.out.println("\nInventory:\nTotal Inventory Items:\t" + game.inventory.getInventoryTotalItems()
+                    + "\nInventory Item Objects (DEVELOPER USE):\t" + game.inventory.getAllInventoryItems()
+                    + "\nInventory Item List:\t" + game.inventory.getAllInventoryItemGameItemNames());
+            inGameMenu();
+        } else if (num == 5) {
             System.out.println("Exited InGame Menu.");
             // all call to resume game method
 
@@ -144,8 +155,6 @@ public class MainMenu {
 
     private void selectItem() {
         currentScreen = "item_select";
-
-
         // in future iterations, this item selection will be RANDOMIZED and used whenever a user
         // encounters an item or wins / defeats opponent
         System.out.println("\n\t\t\t\tItem Selection--\n");
@@ -168,16 +177,22 @@ public class MainMenu {
     }
 
     private void openInventory() {
-        currentScreen = "inventory";
-        System.out.println("\n\t\t\t\tWelcome to your Inventory--\n");
-        System.out.println(game.showInventoryItemDetails());
-        System.out.println("Select an item by inputting the item number\t\t");
-        int itemSelect = input.nextInt();
+        if (game.inventory.getInventoryTotalItems() != 0) {
+            currentScreen = "inventory";
+            System.out.println("\n\t\t\t\tWelcome to your Inventory--\n");
+            System.out.println(game.showInventoryItemDetails());
+            System.out.println("Select an item by inputting the item number\t\t");
+            int itemSelect = input.nextInt();
 
-        InventoryItem selectedItem = game.getInventoryItemObject(itemSelect);
-        System.out.println(selectedItem);
-        System.out.println(game.getGameItemNameAndDescription(selectedItem.getGameItem()));
-        viewItemInInventory(selectedItem.getGameItem());
+            InventoryItem selectedItem = game.getInventoryItemObject(itemSelect);
+            System.out.println(selectedItem);
+            System.out.println(game.getGameItemNameAndDescription(selectedItem.getGameItem()));
+            viewItemInInventory(selectedItem.getGameItem());
+        } else {
+            System.out.println("You have no items in your inventory!\n\nExiting Inventory.");
+            inGameMenu();
+        }
+
     }
 
     private void viewItemInInventory(GameItem item) {

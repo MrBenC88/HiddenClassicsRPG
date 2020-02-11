@@ -72,6 +72,14 @@ public class Inventory {
         return inventoryItems;
     }
 
+    public ArrayList<String> getAllInventoryItemGameItemNames() {
+        ArrayList<String> listOfString = new ArrayList<>();
+        for (InventoryItem i : inventoryItems) {
+            listOfString.add(i.getGameItem().getGameItemName());
+        }
+        return listOfString;
+    }
+
     public int getTotalNumberOfSpecificGameItem(GameItem item) {
         int totalQuantityItem = 0;
         for (InventoryItem i : inventoryItems) {
