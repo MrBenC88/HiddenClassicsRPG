@@ -24,13 +24,13 @@ public class GamePanel {
 
 
     public HashMap<String, Integer> adjustAttributes(String characterChoice) {
-        if (characterChoice == "Knight") {
+        if (characterChoice.equals("Knight")) {
             setKnight();
-        } else if (characterChoice == "Mage") {
+        } else if (characterChoice.equals("Mage")) {
             setMage();
-        } else if (characterChoice == "Assassin") {
+        } else if (characterChoice.equals("Assassin")) {
             setAssassin();
-        } else if (characterChoice == "Wanderer") {
+        } else if (characterChoice.equals("Wanderer")) {
             setWanderer();
         }
         return character.getCharacterAttributes();
