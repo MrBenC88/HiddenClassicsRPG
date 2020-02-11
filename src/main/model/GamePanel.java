@@ -86,6 +86,7 @@ public class GamePanel {
         character.addAttack(atk);
         character.addDef(def);
         character.addSpd(spd);
+        removeGameObjectInInventory(item, 1);
     }
 
     public void createCharacter(String name) {
@@ -108,14 +109,16 @@ public class GamePanel {
         return character.getCharacterClass();
     }
 
-    public ArrayList<InventoryItem> showInventoryItems() {
-        return inventory.showInventoryItems();
+    public String getCharacterStats() {
+        String output = "";
+        output += character.getCharacterAttributes();
+        return output;
     }
 
-    public GameItem itemSelection(int indexPosition) {
-        GameItem gameItemForSelection = gameObjects.getUnClaimedGameItem(indexPosition);
-        return gameItemForSelection;
+    public ArrayList<InventoryItem> showInventoryItems() {
+        return inventory.getAllInventoryItems();
     }
+
 
     public void removeGameObject(GameItem gameItem) {
         gameObjects.removeUnClaimedGameItem(gameItem);
@@ -125,12 +128,13 @@ public class GamePanel {
         inventory.addInventoryItem(gameItem, quantity);
     }
 
-    public void removeGameObjectToInventory(GameItem gameItem, int quantity) {
+    public void removeGameObjectInInventory(GameItem gameItem, int quantity) {
         inventory.removeInventoryItem(gameItem, quantity);
+
     }
 
     public ArrayList<InventoryItem> showInventory() {
-        return inventory.showInventoryItems();
+        return inventory.getAllInventoryItems();
     }
 
     public String showInventoryItemDetails() {
@@ -138,18 +142,52 @@ public class GamePanel {
         String itemName;
         int itemQuantity;
         double itemPrice;
+        int count = 0;
         String itemDescription;
-        for (InventoryItem i : inventory.showInventoryItems()) {
+        for (InventoryItem i : inventory.getAllInventoryItems()) {
+
             itemName = inventory.getGameItemName(i.getGameItem());
             itemQuantity = inventory.getTotalNumberOfSpecificGameItem(i.getGameItem());
             itemPrice = inventory.getGameItemPrice(i.getGameItem());
             itemDescription = inventory.getGameItemDescription(i.getGameItem());
-            strOutput += itemName + "\nQuantity: " + itemQuantity + "\nDescription:"
-                    + itemDescription + " @ $" + itemPrice + "\n";
+            strOutput += "Item Number: " + count + "|\t\t\t " + itemName + "\t\tQuantity: " + itemQuantity
+                    + "\t\tDescription:\t" + itemDescription + "\t @ $" + itemPrice + "\n";
+            count++;
 
         }
         return strOutput;
     }
 
+    public String getUnclaimedItemName(int position) {
+        return gameObjects.getUnClaimedGameItem(position).getGameItemName();
+    }
+
+    public String getUnclaimedItemDescription(int position) {
+        return gameObjects.getUnClaimedGameItem(position).getDescription();
+    }
+
+    public void addUnclaimedItems() {
+        gameObjects.addUnclaimedItems();
+    }
+
+
+    public InventoryItem getInventoryItemObject(int position) {
+        return  inventory.getAllInventoryItems().get(position);
+    }
+
+    public ArrayList<Integer> getGameItemStats(GameItem item) {
+        return inventory.getGameItemStats(item);
+    }
+
+    public String getGameItemNameAndDescription(GameItem item) {
+        String output = "";
+        output += "Name:\t" + inventory.getGameItemName(item) + "\nDescription:\t"
+                + inventory.getGameItemDescription(item) + "\nWorth:\t" + inventory.getGameItemPrice(item);
+        return output;
+    }
+
+    public String getGameItemName(GameItem item) {
+        return inventory.getGameItemName(item);
+    }
 
 }

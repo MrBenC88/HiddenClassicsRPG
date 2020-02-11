@@ -40,24 +40,35 @@ public class Inventory {
     }
 
     public void removeInventoryItem(GameItem item, int quantity) {
-        boolean foundItem = true;
+        boolean removeItemFromArray = false;
         for (InventoryItem i : inventoryItems) {
             if (i.getGameItem() == item) {
                 if (i.getQuantity() > 0) {
                     i.removeQuantity(quantity);
-                    foundItem = false;
-                    break;
+                    if (i.getQuantity() == 0) {
+                        inventoryItems.remove(i);
+                    }
+                } else if (i.getQuantity() == 0) {
+                    inventoryItems.remove(i);
                 }
+                break;
+
             }
         }
-        totalItems = totalItems + quantity;
+        totalItems = totalItems - quantity;
+    }
+
+
+
+    public void removeGameItem(GameItem item) {
+        inventoryItems.remove(item);
     }
 
     public int getInventoryTotalItems() {
         return totalItems;
     }
 
-    public ArrayList<InventoryItem> showInventoryItems() {
+    public ArrayList<InventoryItem> getAllInventoryItems() {
         return inventoryItems;
     }
 

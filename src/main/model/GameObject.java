@@ -18,7 +18,11 @@ public class GameObject {
         unclaimedGameItems.add(new GameItem("Golden Pear",
                 "A golden pear which works as a decoration", 11.00, 2,2,2,0));
         unclaimedGameItems.add(new GameItem("Golden Strawberry",
-                "A golden apple which works as a decoration", 9.00, 1,1,2,2));
+                "A golden strawberry which works as a decoration",
+                9.00, 1,1,2,2));
+        unclaimedGameItems.add(new GameItem("Golden Kiwi",
+                "A golden kiwi which works as a decoration",
+                1.00, 2,2,3,12));
     }
 
     public GameItem getUnClaimedGameItem(int positionInArray) {
@@ -30,8 +34,4 @@ public class GameObject {
     public void removeUnClaimedGameItem(GameItem gameItem) {
         unclaimedGameItems.remove(gameItem);
     }
-
-
-
-    //String name,String description, double marketPrice, int hp, int atk, int def, int spd)
 }

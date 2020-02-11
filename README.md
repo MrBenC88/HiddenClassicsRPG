@@ -17,7 +17,8 @@ Obstacles are in the way blocking the user's end goal as the user will have to d
 
 **Target User(s):**
 - Idle individuals
-- The TA marking this
+- RPG enthusiasts 
+- The handsome TA marking this
 
 **Why this project:**
 This project was chosen because of the interest in creating a functional RPG using object oriented programming. The goal is to surpass a simple text-based project with more interesting and involved mechanics for the end user.
@@ -26,14 +27,15 @@ This project was chosen because of the interest in creating a functional RPG usi
 
 **Phase 1**:*End-user*
 - As the user, I want to be able to create a character with a specific name and choose a character class. [completed]
-- As the user, I want to be able to obtain a starter item and have it automatically added into my inventory.
+- As the user, I want to be able to obtain a starter item and have it automatically added into my inventory. [completed]
+- As the user, I want to be able to be notified that I have it automatically added into my inventory. [completed]
+- As the user, I want to be able to select an item in my inventory and be able to view its name, description, and worth. [completed]
+- As the user, I want to be able to choose what to do with the item that I selected in the inventory (use, discard, view different item). [completed]
+- As the user, I want to be able to see the item selected used, discarded, or to view a different item. [completed]
 
-- As the user, I want to be able to view, add to, and remove from my item inventory.
-- As the user, I want to be be able to use items in my inventory.
 
+**Extra:**
 For Phase 2: Add initial text selection and starter text, abilities, etc. Refactor character stats, starter item and inventory to read and write from txt file
-
-Extra:
 - As the user, I want to be able to view my stats.
 - As the user, I want to be able to view the in game shop and my balance.
 - As the user, I want to be able to make purchases.
