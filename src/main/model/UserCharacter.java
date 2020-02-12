@@ -34,6 +34,8 @@ public class UserCharacter {
             characterChoice = "Assassin";
         } else if (num == 4) {
             characterChoice = "Wanderer";
+        } else {
+            characterChoice = "Wanderer";
         }
         return  characterChoice;
     }

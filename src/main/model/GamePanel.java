@@ -35,6 +35,8 @@ public class GamePanel {
             setAssassin();
         } else if (characterChoice.equals("Wanderer")) {
             setWanderer();
+        } else {
+            setWanderer();
         }
         return character.getCharacterAttributes();
     }

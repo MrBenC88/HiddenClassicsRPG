@@ -51,6 +51,7 @@ public class InventoryTest {
         testInventory.setMaxItemsPerInventorySlot(1);
         testInventory.setMaxInventoryItemSlots(1);
         testInventory.addInventoryItem(item1,1);
+        assertEquals(1, testInventory.getInventoryTotalItems());
         testInventory.addInventoryItem(item1,1);
         assertEquals(2, testInventory.getInventoryTotalItems());
     }
