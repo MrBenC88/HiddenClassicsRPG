@@ -41,6 +41,21 @@ public class InventoryTest {
     }
 
     @Test
+    void testAddInventoryItemSingle() {
+        testInventory.addInventoryItem(item1,10);
+        assertEquals(10, testInventory.getInventoryTotalItems());
+    }
+
+    @Test
+    void testAddInventoryItemMoreThanMaxInventoryItemSlots() {
+        testInventory.setMaxItemsPerInventorySlot(1);
+        testInventory.setMaxInventoryItemSlots(1);
+        testInventory.addInventoryItem(item1,1);
+        testInventory.addInventoryItem(item1,1);
+        assertEquals(2, testInventory.getInventoryTotalItems());
+    }
+
+    @Test
     void testAddNotFoundInventoryItem() {
         testInventory.addInventoryItem(item1,1);
     }
@@ -54,6 +69,13 @@ public class InventoryTest {
         assertEquals(6,testInventory.getInventoryTotalItems());
         testInventory.removeInventoryItem(item1, 1);
         assertEquals( 0,testInventory.getTotalNumberOfSpecificGameItem(item1));
+    }
+
+    @Test
+    void testRemoveInventoryItemQuantityGreaterThanZero() {
+        testInventory.addInventoryItem(item1,2);
+        testInventory.removeInventoryItem(item1,1);
+        assertEquals(1, testInventory.getInventoryTotalItems());
     }
 
     @Test

@@ -39,6 +39,8 @@ public class Inventory {
         }
         if (!foundItem && inventoryItems.size() < maxInventoryItemSlots) {
             inventoryItems.add(new InventoryItem(item, quantity));
+        } else if (fullInventorySlot && inventoryItems.size() < maxInventoryItemSlots) {
+            inventoryItems.add(new InventoryItem(item, quantity));
         }
         totalItems = totalItems + quantity;
     }
