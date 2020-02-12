@@ -41,6 +41,11 @@ public class InventoryTest {
     }
 
     @Test
+    void testAddNotFoundInventoryItem() {
+        testInventory.addInventoryItem(item1,1);
+    }
+
+    @Test
     void testRemoveInventoryItem() {
         testAddInventoryItem();
         testInventory.removeInventoryItem(item1, 1);

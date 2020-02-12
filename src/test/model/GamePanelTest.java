@@ -32,7 +32,8 @@ public class GamePanelTest {
         assertEquals("{Speed=8, Health=60, Attack=50, Defense=9}",gamePanel.character.getCharacterAttributes().toString());
         gamePanel.adjustAttributes("Wanderer");
         assertEquals("{Speed=99, Health=99, Attack=99, Defense=99}",gamePanel.character.getCharacterAttributes().toString());
-
+        gamePanel.setCharacterClass(4);
+        assertEquals("Wanderer",gamePanel.character.getCharacterClass());
     }
 
     @Test

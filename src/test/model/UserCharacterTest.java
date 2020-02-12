@@ -31,6 +31,7 @@ class UserCharacterTest {
         testCharacter.setCharacterClass(3);
         assertEquals("Assassin", testCharacter.getCharacterClass());
         testCharacter.setCharacterClass(4);
+        assertTrue(testCharacter.getCharacterClass().equals("Wanderer"));
         assertEquals("Wanderer", testCharacter.getCharacterClass());
     }
 
