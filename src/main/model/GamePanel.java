@@ -32,9 +32,7 @@ public class GamePanel {
         } else if (characterChoice.equals("Mage")) {
             setMage();
         } else if (characterChoice.equals("Assassin")) {
-            setAssassin();
-        } else if (characterChoice.equals("Wanderer")) {
-            setWanderer();
+            setAssassin();;
         } else {
             setWanderer();
         }

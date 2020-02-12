@@ -51,9 +51,8 @@ public class Inventory {
     public void removeInventoryItem(GameItem item, int quantity) {
         for (InventoryItem i : inventoryItems) {
             if (i.getGameItem() == item) {
-                if (i.getQuantity() > 0) {
-                    i.removeQuantity(quantity);
-                }
+                i.removeQuantity(quantity);
+              
                 if (i.getQuantity() == 0) {
                     inventoryItems.remove(i);
                 }

@@ -32,8 +32,6 @@ public class UserCharacter {
             characterChoice = "Mage";
         } else if (num == 3) {
             characterChoice = "Assassin";
-        } else if (num == 4) {
-            characterChoice = "Wanderer";
         } else {
             characterChoice = "Wanderer";
         }
