@@ -184,6 +184,9 @@ public class UserCharacter {
     //EFFECTS: removes amount to current balance
     public void removeBalance(double amount) {
         this.balance -= amount;
+        if (this.balance <= 0) {
+            this.balance = 0;
+        }
 
     }
 
@@ -191,6 +194,8 @@ public class UserCharacter {
     public double getBalance() {
         return balance;
     }
+
+
 
 
 

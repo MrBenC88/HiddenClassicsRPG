@@ -39,8 +39,6 @@ public class Inventory {
         }
         if (!foundItem && inventoryItems.size() < maxInventoryItemSlots) {
             inventoryItems.add(new InventoryItem(item, quantity));
-        } else if (fullInventorySlot && inventoryItems.size() < maxInventoryItemSlots) {
-            inventoryItems.add(new InventoryItem(item, quantity));
         }
         totalItems = totalItems + quantity;
     }
@@ -55,10 +53,8 @@ public class Inventory {
             if (i.getGameItem() == item) {
                 if (i.getQuantity() > 0) {
                     i.removeQuantity(quantity);
-                    if (i.getQuantity() == 0) {
-                        inventoryItems.remove(i);
-                    }
-                } else if (i.getQuantity() == 0) {
+                }
+                if (i.getQuantity() == 0) {
                     inventoryItems.remove(i);
                 }
                 break;
@@ -122,7 +118,7 @@ public class Inventory {
 
     //REQUIRES: maxItemsPerInventorySlot > 0
     //MODIFIES: this
-    //EFFECTS: sets the max number of items per inventory slots
+    //EFFECTS: sets the max number of items per inventory slot
     public void setMaxItemsPerInventorySlot(int maxItemsPerInventorySlot) {
         this.maxItemsPerInventorySlot = maxItemsPerInventorySlot;
     }
@@ -132,6 +128,14 @@ public class Inventory {
         return item.getGameItemName();
     }
 
+    //EFFECTS: returns the max number of items per inventory slot
+    public int getMaxItemsPerInventorySlot() {
+        return maxInventoryItemSlots;
+    }
 
+    //EFFECTS: returns the max number of inventory item slots
+    public int getMaxInventoryItemSlots() {
+        return maxItemsPerInventorySlot;
+    }
 
 }

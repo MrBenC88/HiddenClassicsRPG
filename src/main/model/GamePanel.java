@@ -20,7 +20,7 @@ public class GamePanel {
         gameObjects = new GameObject();
         //textCollection = new TextCollection();
         //store = new Store();
-        System.out.println("Initialized");
+        //System.out.println("Initialized");
     }
 
     //REQUIRES: characterChoice must be either "Knight", "Mage", "Assassin", or "Wanderer"
@@ -141,6 +141,12 @@ public class GamePanel {
     public ArrayList<InventoryItem> showInventoryItems() {
         return inventory.getAllInventoryItems();
     }
+
+    //EFFECTS: returns the total number of unclaimed items in the list of unclaimed items
+    public int getNumberOfUnclaimedItems() {
+        return gameObjects.getTotalUnClaimedGameItem();
+    }
+
 
     //MODIFIES: gameObjects
     //EFFECTS: removes a specified GameItem from the list of unclaimedGameItems

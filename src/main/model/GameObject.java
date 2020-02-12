@@ -12,6 +12,11 @@ public class GameObject {
         unclaimedGameItems = new ArrayList<>();
     }
 
+    //EFFECTS: gets the total unclaimed game items
+    public int getTotalUnClaimedGameItem() {
+        return unclaimedGameItems.size();
+    }
+
     //MODIFIES: unclaimedGameItems
     //EFFECTS: adds Game Items to the list of unclaimed GameItems
     public void addUnclaimedItems() {
