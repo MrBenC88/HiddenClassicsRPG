@@ -1,6 +1,6 @@
 package model;
 
-//Represents an item in one spot of the user inventory.
+//A class that represents an item in one spot of the user inventory.
 // Has the specific game item, and the quantity of that item
 public class InventoryItem {
     private GameItem gameItem;
@@ -29,9 +29,9 @@ public class InventoryItem {
         this.quantity += quantity;
     }
 
-    // REQUIRES: quantity > 0
+    // REQUIRES: quantity < 0
     // MODIFIES: this
-    // EFFECTS: adds the additional quantity of item specified to quantity.
+    // EFFECTS: removes the  quantity of item specified.
     public void removeQuantity(int quantity) {
         this.quantity -= quantity;
     }

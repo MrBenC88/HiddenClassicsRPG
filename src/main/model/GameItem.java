@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 
 
-//Represents a game item having a description, market price, and stats
+//A class which represents a game item having a name, description, market price, and stats consisting of health,
+// attack, defense, and speed
 public class GameItem {
     private String name;
     private String description;
@@ -14,8 +15,7 @@ public class GameItem {
     private  int spd; //    Consists of hp, atk, def, spd
 
 
-    //EFFECTS: constructs the game item with description , market price,
-    // and the stats
+    //EFFECTS: constructs the game item with description , market price, and the stats
     public GameItem(String name,String description, double marketPrice, int hp, int atk, int def, int spd) {
         this.name = name;
         this.description = description;
@@ -27,22 +27,22 @@ public class GameItem {
 
     }
 
-    //EFFECTS: returns the game item description
+    //EFFECTS: gets the game item description
     public String getDescription() {
         return description;
     }
 
-    //EFFECTS: returns the game item name
+    //EFFECTS: gets the game item name
     public String getGameItemName() {
         return name;
     }
 
-    //EFFECTS: returns the game item market price in dollars
+    //EFFECTS: gets the game item market price in dollars
     public double getMarketPrice() {
         return marketPrice;
     }
 
-    //EFFECTS: returns the game item stats in the form of an ArrayList
+    //EFFECTS: gets the game item stats in the form of an ArrayList
     public ArrayList<Integer> getStats() {
         ArrayList<Integer> stats = new ArrayList<>(4);
         stats.add(hp);

@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// Represents the user's character having a name, balance (in dollars), attributes, and inventory
+// Class is a representation of the user's character having a name, balance (in dollars), attributes, and inventory
 public class UserCharacter {
     private String name;
     private double balance;
@@ -23,6 +23,8 @@ public class UserCharacter {
         characterAttributes.put("Speed", 0);
     }
 
+    //REQUIRES: num [1:4]
+    //EFFECTS: based on user input, sets the characterChoice to a specific type
     public String setCharacterClass(int num) {
         if (num == 1) {
             characterChoice = "Knight";
@@ -36,25 +38,34 @@ public class UserCharacter {
         return  characterChoice;
     }
 
+    //EFFECTS: returns the characterChoice
     public String getCharacterClass() {
         return characterChoice;
     }
 
-
+    //EFFECTS: returns the character's attributes
     public HashMap<String,Integer> getCharacterAttributes() {
         return characterAttributes;
     }
 
+    //MODIFIES: characterAttributes
+    //EFFECTS: Sets the user's attack attribute
     public void setAttack(int num) {
         characterAttributes.replace("Attack",num);
     }
 
+    //REQUIRES: num >= 0
+    //MODIFIES: characterAttributes
+    //EFFECTS: Adds the specified attack to the character Attack attribute
     public void addAttack(int num) {
         int oldAtk = characterAttributes.get("Attack");
         int newAtk = oldAtk + num;
         characterAttributes.replace("Attack", newAtk);
     }
 
+    //REQUIRES: num <=0
+    //MODIFIES: characterAttributes
+    //EFFECTS: removes the specified attack from the character Attack attribute
     public void removeAtk(int num) {
         int oldAtk = characterAttributes.get("Attack");
         int newAtk = oldAtk - num;
@@ -65,16 +76,24 @@ public class UserCharacter {
         characterAttributes.replace("Attack", newAtk);
     }
 
+    //MODIFIES: characterAttributes
+    //EFFECTS: Sets the user's defense attribute
     public void setDef(int num) {
         characterAttributes.replace("Defense",num);
     }
 
+    //REQUIRES: num >= 0
+    //MODIFIES: characterAttributes
+    //EFFECTS: Adds the specified defense to the character defense attribute
     public void addDef(int num) {
         int oldDef = characterAttributes.get("Defense");
         int newDef = oldDef + num;
         characterAttributes.replace("Defense", newDef);
     }
 
+    //REQUIRES: num <=0
+    //MODIFIES: characterAttributes
+    //EFFECTS: removes the specified defense from the character defense attribute
     public void removeDef(int num) {
         int oldDef = characterAttributes.get("Defense");
         int newDef = oldDef - num;
@@ -85,16 +104,24 @@ public class UserCharacter {
         characterAttributes.replace("Defense", newDef);
     }
 
+    //MODIFIES: characterAttributes
+    //EFFECTS: Sets the user's speed  attribute
     public void setSpeed(int num) {
         characterAttributes.replace("Speed",num);
     }
 
+    //REQUIRES: num >= 0
+    //MODIFIES: characterAttributes
+    //EFFECTS: Adds the specified speed to the character speed attribute
     public void addSpd(int num) {
         int oldSpd = characterAttributes.get("Speed");
         int newSpd = oldSpd + num;
         characterAttributes.replace("Speed", newSpd);
     }
 
+    //REQUIRES: num <=0
+    //MODIFIES: characterAttributes
+    //EFFECTS: removes the specified speed from the character speed attribute
     public void removeSpd(int num) {
         int oldSpd = characterAttributes.get("Speed");
         int newSpd = oldSpd - num;
@@ -105,16 +132,24 @@ public class UserCharacter {
         characterAttributes.replace("Speed", newSpd);
     }
 
+    //MODIFIES: characterAttributes
+    //EFFECTS: Sets the user's health attribute
     public void setHealth(int num) {
         characterAttributes.replace("Health",num);
     }
 
+    //REQUIRES: num >= 0
+    //MODIFIES: characterAttributes
+    //EFFECTS: Adds the specified health to the character health attribute
     public void addHealth(int num) {
         int oldHealth = characterAttributes.get("Health");
         int newHealth = oldHealth + num;
         characterAttributes.replace("Health", newHealth);
     }
 
+    //REQUIRES: num <=0
+    //MODIFIES: characterAttributes
+    //EFFECTS: removes the specified health from the character health attribute
     public void removeHealth(int num) {
         int oldHealth = characterAttributes.get("Health");
         int newHealth = oldHealth - num;
@@ -136,6 +171,7 @@ public class UserCharacter {
         return name;
     }
 
+    //REQUIRES: amount >=0
     //MODIFIES: this
     //EFFECTS: adds amount to current balance
     public void addBalance(double amount) {
@@ -143,6 +179,7 @@ public class UserCharacter {
 
     }
 
+    //REQUIRES: amount <= 0
     //MODIFIES: this
     //EFFECTS: removes amount to current balance
     public void removeBalance(double amount) {
@@ -150,6 +187,7 @@ public class UserCharacter {
 
     }
 
+    //EFFECTS: returns the balance
     public double getBalance() {
         return balance;
     }

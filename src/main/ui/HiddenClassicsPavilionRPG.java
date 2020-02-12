@@ -6,7 +6,8 @@ import model.InventoryItem;
 
 import java.util.Scanner;
 
-// Class for the RPG Game Application, Runs the Game Menus , Set Up for Character Customization and Selection
+// Class representation for the RPG Game Application's User interface which includes Game Menus ,
+// Set Up for Character Customization, and Item Selection UIs
 public class HiddenClassicsPavilionRPG {
     private Scanner input;
     protected GamePanel game;
@@ -15,7 +16,7 @@ public class HiddenClassicsPavilionRPG {
     //private Store store;
 
 
-    // EFFECTS: runs the game application
+    // EFFECTS: runs the game application and initializes a GamePanel object
     public HiddenClassicsPavilionRPG() {
         currentScreen = "main_menu";
         game = new GamePanel();
@@ -39,8 +40,6 @@ public class HiddenClassicsPavilionRPG {
         while (gameRunning) {
             System.out.println("game running");
             command = input.next();
-            command = command.toLowerCase();
-
             if (command.equals("quit")) {
                 gameRunning = false;
             } else if (command.equals("main menu")) {
@@ -49,6 +48,7 @@ public class HiddenClassicsPavilionRPG {
         }
     }
 
+    //EFFECTS: displays the main menu
     private void displayMainMenu() {
         System.out.println("Main Menu\n\t\t\t Welcome to the Hidden Classics Pavilion RPG");
         System.out.println("Select an option:\n\t\t\t 1. Start Game\t\t\t 2. Info\t\t\t 3. Quit");
@@ -73,6 +73,8 @@ public class HiddenClassicsPavilionRPG {
         }
     }
 
+    //MODIFIES: character
+    //EFFECTS: changes the name of the character
     private void createCharacter() {
         currentScreen = "character_creation";
         System.out.println("Customize Character---");
@@ -83,6 +85,7 @@ public class HiddenClassicsPavilionRPG {
         System.out.println("Your character name has been set to: " + game.getCharacterName());
     }
 
+    //EFFECTS: initializes character setup
     private void initialCharacterSetUp() {
         createCharacter();
         chooseClass();
@@ -94,6 +97,8 @@ public class HiddenClassicsPavilionRPG {
         System.exit(0);
     }
 
+    //MODIFIES: character
+    //EFFECTS:  sets the character class and its stats
     private void chooseClass() {
         currentScreen = "class_selection";
         System.out.println("Select your class--- \n");
@@ -110,6 +115,7 @@ public class HiddenClassicsPavilionRPG {
         System.out.println(game.getCharacterStats());
     }
 
+    //EFFECTS: displays the in game menu based on user input
     private void inGameMenu() {
         currentScreen = "inGameMenu";
         System.out.println("\n\t\t\t\tIn Game Menu--\n");
@@ -124,6 +130,8 @@ public class HiddenClassicsPavilionRPG {
         inGameMenuSelector(optionSelect);
     }
 
+    //REQUIRES: num from [1:5]
+    //EFFECTS: calls upon corresponding method depending on user input
     private void inGameMenuSelector(int num) {
         if (num == 1) {
             currentScreen = "inventory";
@@ -148,11 +156,13 @@ public class HiddenClassicsPavilionRPG {
             inGameMenu();
         } else if (num == 5) {
             System.out.println("Exited InGame Menu.");
-            // all call to resume game method
+            // a call to resume game method
 
         }
     }
 
+    //MODIFIES: gameObject
+    //EFFECTS: selects a item from unclaimed items
     private void selectItem() {
         currentScreen = "item_select";
         // in future iterations, this item selection will be RANDOMIZED and used whenever a user
@@ -176,6 +186,7 @@ public class HiddenClassicsPavilionRPG {
 
     }
 
+    //EFFECTS: shows inventory items and gets user input to select an inventory item
     private void openInventory() {
         if (game.inventory.getInventoryTotalItems() != 0) {
             currentScreen = "inventory";
@@ -187,7 +198,7 @@ public class HiddenClassicsPavilionRPG {
             InventoryItem selectedItem = game.getInventoryItemObject(itemSelect);
             System.out.println(selectedItem);
             System.out.println(game.getGameItemNameAndDescription(selectedItem.getGameItem()));
-            viewItemInInventory(selectedItem.getGameItem());
+            viewItemInInventoryMenu(selectedItem.getGameItem());
         } else {
             System.out.println("You have no items in your inventory!\n\nExiting Inventory.");
             inGameMenu();
@@ -195,7 +206,8 @@ public class HiddenClassicsPavilionRPG {
 
     }
 
-    private void viewItemInInventory(GameItem item) {
+    //EFFECTS: Allows the user to select an option on what to do with their item
+    private void viewItemInInventoryMenu(GameItem item) {
         System.out.println("What would like to do with the item?");
         System.out.println("Select an option:\t\n1. Use Item\n2. Discard Item\n3. View Different Item\n4. Quit Menu");
         int optionSelect = input.nextInt();
@@ -203,6 +215,8 @@ public class HiddenClassicsPavilionRPG {
 
     }
 
+    //REQUIRES: a number for option select between 1-4
+    //EFFECTS: based on input from user, show corresponding menu or adjust stat based on item
     private void viewItemInInventoryOptions(int optionSelect, GameItem item) {
         if (optionSelect == 1) {
             game.useGameItem(item);

@@ -3,7 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// Class for the RPG Game Application, Runs the Game Menus , Set Up for Character Customization and Selection
+// A class representing a GamePanel Object which contains all the mechanics of the character customization/selection,
+// call to inventory,  calls to gameObjects, call to TextCollection, and Store
 public class GamePanel {
     public UserCharacter character;
     public Inventory inventory;
@@ -12,7 +13,7 @@ public class GamePanel {
     //private Store store;
 
 
-    // EFFECTS: runs the game application
+    // EFFECTS: initializes the UserCharacter,Inventory, GameObjects, TextCollection, and Store classes
     public GamePanel() {
         character = new UserCharacter();
         inventory = new Inventory();
@@ -22,7 +23,9 @@ public class GamePanel {
         System.out.println("Initialized");
     }
 
-
+    //REQUIRES: characterChoice must be either "Knight", "Mage", "Assassin", or "Wanderer"
+    //MODIFIES: character
+    //EFFECTS: based on the characterChoice, adjusts the character attributes accordingly
     public HashMap<String, Integer> adjustAttributes(String characterChoice) {
         if (characterChoice.equals("Knight")) {
             setKnight();
@@ -36,6 +39,8 @@ public class GamePanel {
         return character.getCharacterAttributes();
     }
 
+    //MODIFIES: character
+    //EFFECTS: sets the character attributes and returns the character attributes
     public HashMap<String, Integer> setKnight() {
         character.setHealth(200);
         character.setAttack(12);
@@ -45,6 +50,8 @@ public class GamePanel {
         return character.getCharacterAttributes();
     }
 
+    //MODIFIES: character
+    //EFFECTS: sets the character attributes and returns the character attributes
     public HashMap<String, Integer> setMage() {
         character.setHealth(100);
         character.setAttack(20);
@@ -54,6 +61,8 @@ public class GamePanel {
         return character.getCharacterAttributes();
     }
 
+    //MODIFIES: character
+    //EFFECTS: sets the character attributes and returns the character attributes
     public HashMap<String, Integer> setAssassin() {
         character.setHealth(60);
         character.setAttack(50);
@@ -63,6 +72,8 @@ public class GamePanel {
         return character.getCharacterAttributes();
     }
 
+    //MODIFIES: character
+    //EFFECTS: sets the character attributes and returns the character attributes
     public HashMap<String, Integer> setWanderer() {
         character.setHealth(99);
         character.setAttack(99);
@@ -72,6 +83,8 @@ public class GamePanel {
         return character.getCharacterAttributes();
     }
 
+    //MODIFIES: character, inventory
+    //EFFECTS: sets the character attributes removes the gameItem from the user inventory
     public void useGameItem(GameItem item) {
         int hp;
         int atk;
@@ -89,54 +102,68 @@ public class GamePanel {
         removeGameObjectInInventory(item, 1);
     }
 
+    //MODIFIES: character
+    //EFFECTS:  sets the character's name
     public void createCharacter(String name) {
         character.setName(name);
     }
 
+    //EFFECTS: gets the character's name
     public String getCharacterName() {
         return character.getName();
     }
 
+    //REQUIRES: charChoice within [1:4]
+    //MODIFIES: character
+    //EFFECTS: sets the character's class
     public void setCharacterClass(int charChoice) {
         character.setCharacterClass(charChoice);
     }
 
+    //EFFECTS: returns the user's character
     public UserCharacter getCharacter() {
         return character;
     }
 
+    //EFFECTS: returns the character's class
     public String getCharacterChoice() {
         return character.getCharacterClass();
     }
 
+    //EFFECTS: returns the character stats as a String
     public String getCharacterStats() {
         String output = "";
         output += character.getCharacterAttributes();
         return output;
     }
 
+    //EFFECTS: returns all the InventoryItems within user inventory
     public ArrayList<InventoryItem> showInventoryItems() {
         return inventory.getAllInventoryItems();
     }
 
-
+    //MODIFIES: gameObjects
+    //EFFECTS: removes a specified GameItem from the list of unclaimedGameItems
     public void removeGameObject(GameItem gameItem) {
         gameObjects.removeUnClaimedGameItem(gameItem);
     }
 
+    //REQUIRES: quantity > 0
+    //MODIFIES: inventory
+    //EFFECTS: adds a InventoryItem to user inventory
     public void addGameObjectToInventory(GameItem gameItem, int quantity) {
         inventory.addInventoryItem(gameItem, quantity);
     }
 
+    //REQUIRES: quantity > 0
+    //MODIFIES: inventory
+    //EFFECTS: removes a InventoryItem from user inventory
     public void removeGameObjectInInventory(GameItem gameItem, int quantity) {
         inventory.removeInventoryItem(gameItem, quantity);
 
     }
 
-    public ArrayList<InventoryItem> showInventory() {
-        return inventory.getAllInventoryItems();
-    }
-
+    //EFFECTS: returns a string of the inventory item details
     public String showInventoryItemDetails() {
         String strOutput = "";
         String itemName;
@@ -158,27 +185,33 @@ public class GamePanel {
         return strOutput;
     }
 
+    //EFFECTS: returns an unClaimedItem's name based on the index position
     public String getUnclaimedItemName(int position) {
         return gameObjects.getUnClaimedGameItem(position).getGameItemName();
     }
 
+    //EFFECTS: returns an unClaimedItem's description based on the index position
     public String getUnclaimedItemDescription(int position) {
         return gameObjects.getUnClaimedGameItem(position).getDescription();
     }
 
+    //MODIFIES: gameObjects
+    //EFFECTS: adds the unClaimedItems into the unClaimedGameItem list
     public void addUnclaimedItems() {
         gameObjects.addUnclaimedItems();
     }
 
-
+    //EFFECTS: returns an InventoryItem Object
     public InventoryItem getInventoryItemObject(int position) {
         return  inventory.getAllInventoryItems().get(position);
     }
 
+    //EFFECTS: returns a GameItem's Stats
     public ArrayList<Integer> getGameItemStats(GameItem item) {
         return inventory.getGameItemStats(item);
     }
 
+    //EFFECTS: returns a game item's name and description as a single string
     public String getGameItemNameAndDescription(GameItem item) {
         String output = "";
         output += "Name:\t" + inventory.getGameItemName(item) + "\nDescription:\t"
@@ -186,6 +219,7 @@ public class GamePanel {
         return output;
     }
 
+    //EFFECTS: returns a game item's name
     public String getGameItemName(GameItem item) {
         return inventory.getGameItemName(item);
     }
