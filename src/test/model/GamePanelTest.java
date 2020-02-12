@@ -36,6 +36,9 @@ public class GamePanelTest {
         gamePanel.setCharacterClass(4);
         assertTrue(gamePanel.character.getCharacterClass().equals("Wanderer"));
         assertEquals("Wanderer",gamePanel.character.getCharacterClass());
+        gamePanel.setCharacterClass(5);
+        assertTrue(gamePanel.character.getCharacterClass().equals("Wanderer"));
+        assertEquals("Wanderer",gamePanel.character.getCharacterClass());
     }
 
     @Test

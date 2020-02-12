@@ -33,6 +33,9 @@ class UserCharacterTest {
         testCharacter.setCharacterClass(4);
         assertTrue(testCharacter.getCharacterClass().equals("Wanderer"));
         assertEquals("Wanderer", testCharacter.getCharacterClass());
+        testCharacter.setCharacterClass(5);
+        assertTrue(testCharacter.getCharacterClass().equals("Wanderer"));
+        assertEquals("Wanderer", testCharacter.getCharacterClass());
     }
 
     @Test
