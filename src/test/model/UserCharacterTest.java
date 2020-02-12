@@ -75,13 +75,16 @@ class UserCharacterTest {
     void testRemoveStatsNegativeInput() {
         testAddStats();
         testCharacter.removeSpd(10);
-        testCharacter.removeBalance(10);
+        testCharacter.removeBalance(100);
         testCharacter.removeAtk(10);
         testCharacter.removeHealth(10);
         testCharacter.removeDef(10);
         assertEquals("{Speed=0, Health=0, Attack=0, Defense=0}",
                 testCharacter.getCharacterAttributes().toString());
         assertEquals(0, testCharacter.getBalance());
+        testCharacter.addBalance(10);
+        testCharacter.removeBalance(5);
+        assertEquals(5,testCharacter.getBalance());
     }
 
     @Test
