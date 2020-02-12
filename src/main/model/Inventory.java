@@ -52,7 +52,7 @@ public class Inventory {
         for (InventoryItem i : inventoryItems) {
             if (i.getGameItem() == item) {
                 i.removeQuantity(quantity);
-              
+
                 if (i.getQuantity() == 0) {
                     inventoryItems.remove(i);
                 }

@@ -25,7 +25,7 @@ This project was chosen because of the interest in creating a functional RPG usi
 
 ## User Stories
 
-**Phase 1**:*End-user*
+**Phase 1**:*Menu Setup, Character Setup, Inventory*
 - As the user, I want to be able to create a character with a specific name and choose a character class. [completed]
 - As the user, I want to be able to obtain a starter item and have it automatically added into my inventory. [completed]
 - As the user, I want to be able to be notified of the starter item I have chosen and to have it automatically added into my inventory. [completed]
