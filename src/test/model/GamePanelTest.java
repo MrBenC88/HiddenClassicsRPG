@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class GamePanelTest {
@@ -33,6 +34,7 @@ public class GamePanelTest {
         gamePanel.adjustAttributes("Wanderer");
         assertEquals("{Speed=99, Health=99, Attack=99, Defense=99}",gamePanel.character.getCharacterAttributes().toString());
         gamePanel.setCharacterClass(4);
+        assertTrue(gamePanel.character.getCharacterClass().equals("Wanderer"));
         assertEquals("Wanderer",gamePanel.character.getCharacterClass());
     }
 
