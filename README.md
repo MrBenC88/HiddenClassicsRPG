@@ -32,16 +32,23 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to select an item in my inventory and be able to view its name, description, and worth. [completed]
 - As the user, I want to be able to choose what to do with the item that I selected in the inventory (use, discard, view different item). [completed]
 - As the user, I want to be able to see the item selected used, discarded, or to view a different item. [completed]
-- As the user, I want to be able to view my stats which shows my character name, class, balance, stats, inventory items, total inventory items. [Completed]
+- As the user, I want to be able to view my stats which shows my character name, class, balance, stats, inventory items, total inventory items. [completed]
+
+**Phase 2**:*Starter Texts, Text Collection (Inventory for Texts), NPC, Battle Phase, Persistence*
+- As the user, I want to be able to select a starter text following item selection.
+- As the user, I want to be able to view the text's name, description, abilities.
+- As the user, I want to be able to view the list of texts owned in the character attribute section.
+- As the user, I want to be able to enter a battle phase with a dummy NPC.
+- As the user, I want to be able to save my character stats, owned items, and abilities.
+- As the user, I want to be able to reload those saved character stats, owned items, and abilities back into the game.
 
 
-**Extra:**
-For Phase 2: Add initial text selection and starter text, abilities, etc. Refactor character stats, starter item and inventory to read and write from txt file
+**Extra for future phase:**
+Complete shop which allows users to buy items/ spend gold.
 
 - As the user, I want to be able to view the in game shop and my balance.
 - As the user, I want to be able to make purchases.
 - As the user, I want to be able to select a text in my collection and read its contents.
 - As the user, I want to be able to make purchases.
-- As the user. I want to be able to select options to progress the story.
 - As the user, I want to be able to collect texts and add it to my collection of texts.
 
