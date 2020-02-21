@@ -13,8 +13,6 @@ public class HiddenClassicsPavilionRPG {
     private Scanner input;
     protected GamePanel game;
     public String currentScreen;
-    private TextCollection textCollection;
-    //private Store store;
 
 
     // EFFECTS: runs the game application and initializes a GamePanel object
@@ -22,31 +20,30 @@ public class HiddenClassicsPavilionRPG {
         currentScreen = "main_menu";
         game = new GamePanel();
         game.addUnclaimedItems();
-        textCollection = new TextCollection();
-        //store = new Store();
+        game.addUnclaimedTexts();
+        game.addNpcs();
+        //Hardcoded this for testing purposes
+        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(0));
+        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(1));
+        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(2));
+        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(3));
+        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(4));
         System.out.println("Initialized");
         input = new Scanner(System.in);
-        runGame();
+        startGame();
     }
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    private void runGame() {
+    private void startGame() {
         boolean gameRunning = true;
         String command = null;
 
 
         displayMainMenu();
+        runGame();
 
-        while (gameRunning) {
-            System.out.println("game running");
-            command = input.next();
-            if (command.equals("quit")) {
-                gameRunning = false;
-            } else if (command.equals("main menu")) {
-                displayMainMenu();
-            }
-        }
+
     }
 
     //EFFECTS: displays the main menu
@@ -58,8 +55,6 @@ public class HiddenClassicsPavilionRPG {
 
         if (optionSelect == 1) {
             initialCharacterSetUp(); //method for setting up the character
-            selectItem();
-            selectItem(); //added another to test adding two items
             inGameMenu();
 
         } else if (optionSelect == 2) {
@@ -139,12 +134,10 @@ public class HiddenClassicsPavilionRPG {
             openInventory();
         } else if (num == 2) {
             currentScreen = "store";
-            System.out.println("function call to store method");
-            //call to ui method for store related
+            openStore();
         } else if (num == 3) {
             currentScreen = "collection";
-            System.out.println("function call to collection method");
-            //call to ui method for collection related
+            openCollection();
         } else if (num == 4) {
             currentScreen = "stats";
             System.out.println("Name:\t" + game.character.getName());
@@ -152,12 +145,10 @@ public class HiddenClassicsPavilionRPG {
             System.out.println("Stats:\t" + game.character.getCharacterAttributes());
             System.out.println("Starting Class:\t" + game.character.getCharacterClass());
             System.out.println("\nInventory:\nTotal Inventory Items:\t" + game.inventory.getInventoryTotalItems()
-                    + "\nInventory Item Objects (DEVELOPER USE):\t" + game.inventory.getAllInventoryItems()
-                    + "\nInventory Item List:\t" + game.inventory.getAllInventoryItemGameItemNames());
+                    + "\nText Collection:\nTotal Text Items:\t" + game.textCollection.getAllTextItemNames());
             inGameMenu();
         } else if (num == 5) {
             System.out.println("Exited InGame Menu.");
-            // a call to resume game method
 
         }
     }
@@ -166,6 +157,7 @@ public class HiddenClassicsPavilionRPG {
     //EFFECTS: selects a item from unclaimed items
     private void selectItem() {
         currentScreen = "item_select";
+        game.gameObjects.shuffleUnclaimedGameItems();
         // in future iterations, this item selection will be RANDOMIZED and used whenever a user
         // encounters an item or wins / defeats opponent
         System.out.println("\n\t\t\t\tItem Selection--\n");
@@ -185,6 +177,51 @@ public class HiddenClassicsPavilionRPG {
         System.out.println("The following has been added to your inventory:\n");
         System.out.println(game.showInventoryItemDetails());
 
+    }
+
+    private void openStore() {
+        currentScreen = "store";
+        System.out.println("\n\t\t\t\tWelcome to the Store--\nOur policy is based off luck.--");
+        System.out.println("\n\tWould you like to purchase a random item? (50 gold each):\t(Y/N)--\n");
+        String optionSelect = input.next();
+        if (optionSelect.equals("Y") || optionSelect.equals("yes") || optionSelect.equals("y")) {
+            if (game.character.getBalance() < 50) {
+                System.out.println("Sorry, your balance is insufficient!");
+                inGameMenu();
+            } else {
+                System.out.println("50 gold has been removed from your balance!");
+                game.character.removeBalance(50);
+                System.out.println("Your current balance is:\t" + game.character.getBalance());
+                selectItem();
+                openStore();
+            }
+        } else if (optionSelect.equals("N") || optionSelect.equals("no") || optionSelect.equals("n")) {
+            System.out.println("Have a good day!");
+            inGameMenu();
+        } else {
+            System.out.println("You entered an invalid character. Please try again.");
+            openStore();;
+        }
+
+    }
+
+    private void openCollection() {
+        if (game.textCollection.getTextCollectionTotalTexts() != 0) {
+            currentScreen = "textcollection";
+            System.out.println("\n\t\t\t\tWelcome to your Text Collection--\n");
+            System.out.println(game.showTextDetails());
+            System.out.println("Input: q to go back.");
+            String optionSelect = input.next();
+            if (optionSelect.equals("q")) {
+                inGameMenu();;
+            } else {
+                System.out.println("You entered an invalid character. Please try again.");
+                openCollection();;
+            }
+        } else {
+            System.out.println("You have no texts in your text collection!\n\nExiting Collection.");
+            inGameMenu();
+        }
     }
 
     //EFFECTS: shows inventory items and gets user input to select an inventory item
@@ -242,5 +279,36 @@ public class HiddenClassicsPavilionRPG {
         }
 
     }
+
+    //EFFECTS: Starts the Game
+    private void runGame() {
+        boolean characterAlive = true;
+        while (characterAlive) {
+            System.out.println("In game! Select the following:\t\n walk, \tmenu");
+            String option = input.next();
+            if (option.equals("walk")) {
+                String winner;
+                System.out.println("Walking");
+                System.out.println("You have encountered\t" + game.gameObjects.getNPC(0).getName());
+                winner = game.order(game.gameObjects.getNPC(0));
+                if (winner.equals("npc")) {
+                    game.character.removeBalance(50);
+                    System.out.println("The winner of the encounter is:\t"
+                            + game.gameObjects.getNPC(0).getName()
+                            + "\tYour new balance is\t\t" + game.character.getBalance());
+                    game.character.removeBalance(10);
+                } else if (winner.equals("player")) {
+                    game.character.addBalance(50);
+                    System.out.println("You have won! \t Your new balance is\t\t" + game.character.getBalance());
+                }
+            } else if (option.equals("menu")) {
+                inGameMenu();
+            }
+        }
+    }
+
+
+
+
 
 }

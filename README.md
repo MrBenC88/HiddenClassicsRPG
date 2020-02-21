@@ -38,19 +38,15 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to view my stats which shows my character name, class, balance, stats, inventory items, total inventory items. [completed]
 
 **Phase 2**:*Text Collection (Inventory for Texts), NPC, Battle Phase, Persistence*
-- As the user, I want to be able to view the text's name and description
-- As the user, I want to be able to view the list of texts owned in the character attribute section.
+- As the user, I want to be able to view the in game shop and my balance. [completed]
+- As the user, I want to be able to make purchases. [completed]
+- As the user, I want to be able to view the text's name and description [completed]
 - As the user, I want to be able to enter a battle phase with a dummy NPC.
+
 - As the user, I want to be able to save my character stats, owned items, and owned texts.
 - As the user, I want to be able to reload those saved character stats, owned items, and owned texts back into the game.
 
 
 **Extra for future phase:**
-Complete shop which allows users to buy items/ spend gold.
-
-- As the user, I want to be able to view the in game shop and my balance.
-- As the user, I want to be able to make purchases.
-- As the user, I want to be able to select a text in my collection and read its contents.
-- As the user, I want to be able to make purchases.
 - As the user, I want to be able to collect texts and add it to my collection of texts.
 

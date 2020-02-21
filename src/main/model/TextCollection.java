@@ -68,6 +68,18 @@ public class TextCollection {
         return listOfString;
     }
 
+    public String getTextName(TextItem i) {
+        return i.getTextItemName();
+    }
+
+    public String getTextContent(TextItem i) {
+        return i.getTextItemContent();
+    }
+
+    public String getBookID(TextItem i) {
+        return i.getBookID();
+    }
+
     //EFFECTS: returns an arraylist of the text item's data
     public ArrayList<String> getTextItemData(TextItem item) {
         ArrayList<String> listOfString = new ArrayList<>();

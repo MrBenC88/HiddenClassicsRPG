@@ -1,5 +1,6 @@
 package model;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,8 +10,7 @@ public class GamePanel {
     public UserCharacter character;
     public Inventory inventory;
     public GameObject gameObjects;
-    private TextCollection textCollection;
-    //private Store store;
+    public TextCollection textCollection;
 
 
     // EFFECTS: initializes the UserCharacter,Inventory, GameObjects, TextCollection, and Store classes
@@ -19,8 +19,89 @@ public class GamePanel {
         inventory = new Inventory();
         gameObjects = new GameObject();
         textCollection = new TextCollection();
-        //store = new Store();
-        //System.out.println("Initialized");
+
+    }
+
+    //EFFECTS: initiates the battle event with a specific NPC and determines order
+    public String order(NPC n) {
+        HashMap<String, Integer> npcStats;
+        HashMap<String, Integer> charStats;
+        npcStats =  n.getNpcStats();
+        charStats = character.getCharacterAttributes();
+        String order = "npcFirst";
+        if (charStats.get("Speed") > npcStats.get("Speed")) {
+            order = "playerFirst";
+        }
+        String result = battle(order, npcStats);
+        return result;
+    }
+
+    //EFFECTS: initiates the actual battle event with who goes first
+    public String battle(String n, HashMap<String, Integer> npcStats) {
+        String winner = "";
+
+        if (n.equals("npcFirst")) { //NPC first
+            winner = battleEventNPC(winner, npcStats);
+
+        } else if (n.equals("playerFirst")) { //player  first
+            winner = battleEventPlayer(winner,npcStats);
+
+        }
+        return winner;
+    }
+
+    public String battleEventNPC(String winner, HashMap<String, Integer> npcStats) {
+        String battleWinner;
+        int npcHP = npcStats.get("Health");
+        int npcAtk = npcStats.get("Attack");
+        int npcDef = npcStats.get("Defense");
+        HashMap<String, Integer> charStats = character.getCharacterAttributes();
+        int playerHp = charStats.get("Health");
+        int playerAttack = charStats.get("Attack");
+        int playerDefense = charStats.get("Defense");
+        while (winner.equals("")) {
+            playerHp -= (npcAtk * (10) / playerDefense);
+            npcHP -= (playerAttack * (10) / npcDef);
+
+            battleWinner = checkWinner(playerHp, npcHP);
+            if (battleWinner.equals("npc") || battleWinner.equals("player")) {
+                winner = battleWinner;
+            }
+        }
+        return winner;
+    }
+
+
+    public String checkWinner(int playerHp, int npcHP) {
+        String winner = "";
+
+        if (playerHp <= 0) {
+            winner = "npc";
+        }
+        if (npcHP <= 0) {
+            winner = "player";
+        }
+        return winner;
+    }
+
+    public String battleEventPlayer(String winner, HashMap<String, Integer> npcStats) {
+        String battleWinner;
+        int npcHP = npcStats.get("Health");
+        int npcAtk = npcStats.get("Attack");
+        int npcDef = npcStats.get("Defense");
+        HashMap<String, Integer> charStats = character.getCharacterAttributes();
+        int playerHp = charStats.get("Health");
+        int playerAttack = charStats.get("Attack");
+        int playerDefense = charStats.get("Defense");
+        while (winner.equals("")) {
+            npcHP -= (playerAttack * (10) / npcDef);
+            playerHp -= (npcAtk * (10) / playerDefense);
+            battleWinner = checkWinner(playerHp, npcHP);
+            if (battleWinner.equals("npc") || battleWinner.equals("player")) {
+                winner = battleWinner;
+            }
+        }
+        return winner;
     }
 
     //REQUIRES: characterChoice must be either "Knight", "Mage", "Assassin", or "Wanderer"
@@ -169,6 +250,24 @@ public class GamePanel {
 
     }
 
+    //EFFECTS: returns a string of the text item details
+    public String showTextDetails() {
+        String strOutput = "";
+        String textName;
+        String textDescription;
+        String textID;
+
+        for (TextItem i : textCollection.getAllTextItems()) {
+
+            textName = textCollection.getTextName(i);
+            textDescription = textCollection.getTextContent(i);
+            textID = textCollection.getBookID(i);
+            strOutput += "Text ID: " + textID + "|\t\t\t " + textName +  "\n\tContent:\t" + textDescription + "\n\n";
+        }
+        return strOutput;
+    }
+
+
     //EFFECTS: returns a string of the inventory item details
     public String showInventoryItemDetails() {
         String strOutput = "";
@@ -207,6 +306,13 @@ public class GamePanel {
         gameObjects.addUnclaimedItems();
     }
 
+    //MODIFIES: gameObjects
+    //EFFECTS: adds the unclaimed texts into the unClaimed textItem list
+    public void addUnclaimedTexts() {
+        gameObjects.addUnclaimedTextItems();
+    }
+
+
     //EFFECTS: returns an InventoryItem Object
     public InventoryItem getInventoryItemObject(int position) {
         return  inventory.getAllInventoryItems().get(position);
@@ -231,5 +337,9 @@ public class GamePanel {
     }
 
 
-
+    //MODIFIES: gameObjects
+    //EFFECTS: adds the npcs to the gameobjects
+    public void addNpcs() {
+        gameObjects.addNpcs();
+    }
 }

@@ -11,6 +11,8 @@ public class NPC {
     private String name;
     private String title;
     private ArrayList<String> listOfNpcLines;
+
+    //HP,ATK,DEF,SPD
     private HashMap<String, Integer> npcStats;
 
     //EFFECTS: constructs an npc with given parameters
