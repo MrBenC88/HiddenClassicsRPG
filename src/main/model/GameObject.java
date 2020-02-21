@@ -2,15 +2,51 @@ package model;
 
 import java.util.ArrayList;
 
-// A class representing game objects within the game which includes unclaimed game items and npcs
+// A class representing game objects within the game which includes unclaimed game items , unclaimed text items and npcs
 public class GameObject {
     private ArrayList<GameItem> unclaimedGameItems;
+    private ArrayList<TextItem> unclaimedTextItems;
     //private ArrayList<NPC> npcs;
 
-    //EFFECTS: constructs a game object and initializes an empty array of unclaimedGameItems
+    //EFFECTS: constructs a game object and initializes an empty array of unclaimedGameItems and unclaimedTextItems
     public GameObject() {
         unclaimedGameItems = new ArrayList<>();
+        unclaimedTextItems = new ArrayList<>();
     }
+
+    //EFFECTS: returns the total unclaimed text items
+    public int getTotalUnclaimedTextItems() {
+        return unclaimedTextItems.size();
+    }
+
+    //MODIFIES: unclaimedGameItems
+    //EFFECTS: adds Text Items to the list of unclaimed TextItems
+    public void addUnclaimedTextItems() {
+        unclaimedTextItems.add(new TextItem("Book of Recursion",
+                "Trust the natural recursion","1"));
+        unclaimedTextItems.add(new TextItem("Book of Recipes", "Follow the Recipe. HTDF", "2"));
+        unclaimedTextItems.add(new TextItem("Book of Advancement",
+                "The truth starts with BSL which then leads to ISL, and finally ASL.", "3"));
+        unclaimedTextItems.add(new TextItem("Book of Truth",
+                "Functional programming is magical", "4"));
+        unclaimedTextItems.add(new TextItem("Book of Trials",
+                "A test is an example before it is actually a test.", "5"));
+    }
+
+    //REQUIRES: num must be within range of the array
+    //EFFECTS: returns the unclaimed TextItem in the specified position of the arrayList
+    public TextItem getUnClaimedTextItem(int positionInArray) {
+        TextItem textItemFromWild;
+        textItemFromWild = unclaimedTextItems.get(positionInArray);
+        return  textItemFromWild;
+    }
+
+    //MODIFIES: unclaimedTextItems
+    //EFFECTS: removes a specific TextItem from the list of unclaimed TextItems
+    public void removeUnClaimedTextItem(TextItem textItem) {
+        unclaimedTextItems.remove(textItem);
+    }
+
 
     //EFFECTS: gets the total unclaimed game items
     public int getTotalUnClaimedGameItem() {

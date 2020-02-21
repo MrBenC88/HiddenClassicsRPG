@@ -9,7 +9,7 @@ public class GamePanel {
     public UserCharacter character;
     public Inventory inventory;
     public GameObject gameObjects;
-    //private TextCollection textCollection;
+    private TextCollection textCollection;
     //private Store store;
 
 
@@ -18,7 +18,7 @@ public class GamePanel {
         character = new UserCharacter();
         inventory = new Inventory();
         gameObjects = new GameObject();
-        //textCollection = new TextCollection();
+        textCollection = new TextCollection();
         //store = new Store();
         //System.out.println("Initialized");
     }

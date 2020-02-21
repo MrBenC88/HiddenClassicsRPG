@@ -3,6 +3,7 @@ package ui;
 import model.GameItem;
 import model.GamePanel;
 import model.InventoryItem;
+import model.TextCollection;
 
 import java.util.Scanner;
 
@@ -12,7 +13,7 @@ public class HiddenClassicsPavilionRPG {
     private Scanner input;
     protected GamePanel game;
     public String currentScreen;
-    //private TextCollection textCollection;
+    private TextCollection textCollection;
     //private Store store;
 
 
@@ -21,7 +22,7 @@ public class HiddenClassicsPavilionRPG {
         currentScreen = "main_menu";
         game = new GamePanel();
         game.addUnclaimedItems();
-        //textCollection = new TextCollection();
+        textCollection = new TextCollection();
         //store = new Store();
         System.out.println("Initialized");
         input = new Scanner(System.in);
