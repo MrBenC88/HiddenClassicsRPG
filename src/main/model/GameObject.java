@@ -111,11 +111,12 @@ public class GameObject {
         return  textItemFromWild;
     }
 
+    /*
     //MODIFIES: unclaimedTextItems
     //EFFECTS: removes a specific TextItem from the list of unclaimed TextItems
     public void removeUnClaimedTextItem(TextItem textItem) {
         unclaimedTextItems.remove(textItem);
-    }
+    }*/
 
 
     //EFFECTS: gets the total unclaimed game items

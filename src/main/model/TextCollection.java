@@ -68,14 +68,17 @@ public class TextCollection {
         return listOfString;
     }
 
+    //EFFECTS: returns the text item name of specified text item
     public String getTextName(TextItem i) {
         return i.getTextItemName();
     }
 
+    //EFFECTS: returns the text content of specified text item
     public String getTextContent(TextItem i) {
         return i.getTextItemContent();
     }
 
+    //EFFECTS: returns the text book id of specified text item
     public String getBookID(TextItem i) {
         return i.getBookID();
     }

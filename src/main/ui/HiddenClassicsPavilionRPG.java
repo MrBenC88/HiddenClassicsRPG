@@ -39,16 +39,10 @@ public class HiddenClassicsPavilionRPG {
     }
 
     // MODIFIES: this
-    // EFFECTS: processes user input
+    // EFFECTS: calls upon the main menu method and run game
     private void startGame() {
-        boolean gameRunning = true;
-        String command = null;
-
-
         displayMainMenu();
         runGame();
-
-
     }
 
     //EFFECTS: displays the main menu
@@ -160,6 +154,8 @@ public class HiddenClassicsPavilionRPG {
         }
     }
 
+    //MODIFIES: writer
+    //EFFECTS: saves the game data to file
     public void saveGame(GamePanel game) {
         try {
             Writer file = new Writer(new File(GAME_FILE));
@@ -196,6 +192,8 @@ public class HiddenClassicsPavilionRPG {
 
     }
 
+    //MODIFIES: character, inventory
+    //EFFECTS: opens the store menu
     private void openStore() {
         currentScreen = "store";
         System.out.println("\n\t\t\t\tWelcome to the Store--\nOur policy is based off luck.--");
@@ -222,6 +220,7 @@ public class HiddenClassicsPavilionRPG {
 
     }
 
+    //EFFECTS: opens the collection menu to show text collection details
     private void openCollection() {
         if (game.textCollection.getTextCollectionTotalTexts() != 0) {
             currentScreen = "textcollection";

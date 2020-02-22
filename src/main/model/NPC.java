@@ -26,46 +26,65 @@ public class NPC {
         this.npcStats = stats;
     }
 
+    //EFFECTS: returns the npc name
     public String getName() {
         return name;
     }
 
+    /*
+    //MODIFIES: this
+    //EFFECTS: sets the npcType
     public void setNpcType(String npcType) {
         this.npcType = npcType;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the npc direction
     public void setDirection(String direction) {
         this.direction = direction;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the npc name
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
+    /*
+    //MODIFIES: this
+    //EFFECTS: sets the npc stats
     public void setNpcStats(HashMap<String, Integer> npcStats) {
         this.npcStats = npcStats;
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets the npc title
     public void setTitle(String title) {
         this.title = title;
-    }
+    } */
 
+
+    //EFFECTS: returns  the npcType
     public String getNpcType() {
         return npcType;
     }
 
+    //EFFECTS: returns  the npc title
     public String getTitle() {
         return title;
     }
 
+    //EFFECTS: returns  the npc direction
     public String getDirection() {
         return  direction;
     }
 
+    //EFFECTS: returns  the npc lines
     public ArrayList<String> getListOfNpcLines() {
         return listOfNpcLines;
     }
 
+    //EFFECTS: returns  the npc stats
     public HashMap<String, Integer> getNpcStats() {
         return npcStats;
     }

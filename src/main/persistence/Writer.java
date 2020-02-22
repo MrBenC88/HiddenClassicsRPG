@@ -1,17 +1,14 @@
 package persistence;
 
-// Majority of code from: TellerApp example
+// Some snippets of code from: TellerApp example such as constructor, write, close.
 
 import model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-
-import javax.xml.soap.Text;
 import java.io.*;
 
 
-// A writer that can write game  data to a file
+// A class representing a  writer that can write game  data to a file
 public class Writer {
     private PrintWriter printWriter;
 

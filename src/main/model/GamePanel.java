@@ -52,6 +52,7 @@ public class GamePanel {
         return winner;
     }
 
+    //EFFECTS: returns the winning player or npc based on stats/attributes
     public String battleEventNPC(String winner, HashMap<String, Integer> npcStats) {
         String battleWinner;
         int npcHP = npcStats.get("Health");
@@ -74,6 +75,7 @@ public class GamePanel {
     }
 
 
+    //EFFECTS: returns the winner based on health
     public String checkWinner(int playerHp, int npcHP) {
         String winner = "";
 
@@ -86,6 +88,7 @@ public class GamePanel {
         return winner;
     }
 
+    //EFFECTS: returns the winner based on battle event
     public String battleEventPlayer(String winner, HashMap<String, Integer> npcStats) {
         String battleWinner;
         int npcHP = npcStats.get("Health");
