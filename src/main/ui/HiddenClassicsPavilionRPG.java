@@ -5,11 +5,16 @@ import model.GamePanel;
 import model.InventoryItem;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 import persistence.Writer;
+import persistence.Reader;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+
+import static persistence.Reader.readData;
 
 // Class representation for the RPG Game Application's User interface which includes Game Menus ,
 // Set Up for Character Customization, and Item Selection UIs
@@ -48,17 +53,15 @@ public class HiddenClassicsPavilionRPG {
     //EFFECTS: displays the main menu
     private void displayMainMenu() {
         System.out.println("Main Menu\n\t\t\t Welcome to the Hidden Classics Pavilion RPG");
-        System.out.println("Select an option:\n\t\t\t 1. Start Game\t\t\t 2. Info\t\t\t 3. Quit");
+        System.out.println("Select an option:\n\t\t\t 1. New Game\t\t\t 2. Load Game\t\t\t 3. Quit");
         int optionSelect;
         optionSelect = input.nextInt(); // can probably put a try catch here / exception handling
 
         if (optionSelect == 1) {
             initialCharacterSetUp(); //method for setting up the character
-            inGameMenu();
-
         } else if (optionSelect == 2) {
             currentScreen = "load";
-            // !!!
+            loadGame();
             displayMainMenu();
         } else if (optionSelect == 3) {
             quit();
@@ -84,7 +87,7 @@ public class HiddenClassicsPavilionRPG {
     private void initialCharacterSetUp() {
         createCharacter();
         chooseClass();
-        //call to method for show character attribute
+        inGameMenu();
     }
 
     //EFFECTS: Terminates the Java Program with Status Code 0
@@ -162,6 +165,26 @@ public class HiddenClassicsPavilionRPG {
             file.save(game);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: loads game data from GAME_FILE, if the file exists
+    // otherwise initializes GAME with default values
+    private void loadGame() {
+        try {
+            FileReader reader = new FileReader(GAME_FILE);
+            JSONObject jsonObj = readData(reader);
+            game = new GamePanel((String) jsonObj.get("character_name"), (double) jsonObj.get("character_balance"),
+                    (HashMap<String, Integer>)jsonObj.get("character_attributes"),
+                    (String)jsonObj.get("character_class"));
+
+
+
+            inGameMenu();
+        } catch (IOException | ParseException e) {
+            System.out.println("Didn't work?");
+            initialCharacterSetUp();
         }
     }
 

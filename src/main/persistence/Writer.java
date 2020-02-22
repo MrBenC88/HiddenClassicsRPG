@@ -1,6 +1,7 @@
 package persistence;
 
-// Some snippets of code from: TellerApp example such as constructor, write, close.
+// Some snippets of code from: TellerApp
+//Inspired  by https://mkyong.com/java/json-simple-example-read-and-write-json/
 
 import model.*;
 import org.json.simple.JSONArray;

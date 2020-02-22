@@ -22,6 +22,15 @@ public class UserCharacter {
         characterAttributes.put("Speed", 0);
     }
 
+    //EFFECTS: constructs the user's character with defined parameters
+    public UserCharacter(String name, double balance, HashMap<String, Integer> attr, String characterChoice) {
+        this.name = name;
+        this.balance = balance;
+        this.characterChoice = characterChoice;
+        this.characterAttributes = attr;
+
+    }
+
     //REQUIRES: num [1:4]
     //EFFECTS: based on user input, sets the characterChoice to a specific type
     public String setCharacterClass(int num) {
@@ -36,6 +45,7 @@ public class UserCharacter {
         }
         return  characterChoice;
     }
+
 
     //EFFECTS: returns the characterChoice
     public String getCharacterClass() {

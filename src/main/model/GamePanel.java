@@ -21,7 +21,11 @@ public class GamePanel {
         inventory = new Inventory();
         gameObjects = new GameObject();
         textCollection = new TextCollection();
+    }
 
+    //EFFECTS: another constructor which takes in parameters to reconstruct the game from loaded data
+    public GamePanel(String characterName, double bal,HashMap<String, Integer> attr, String charChoice) {
+        character = new UserCharacter(characterName, bal, attr, charChoice);
     }
 
     //EFFECTS: initiates the battle event with a specific NPC and determines order
