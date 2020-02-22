@@ -41,7 +41,7 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to view the in game shop and my balance. [completed]
 - As the user, I want to be able to make purchases. [completed]
 - As the user, I want to be able to view the text's name and description [completed]
-- As the user, I want to be able to enter a battle phase with a dummy NPC.
+- As the user, I want to be able to enter a battle phase with a dummy NPC. [completed]
 
 - As the user, I want to be able to save my character stats, owned items, and owned texts.
 - As the user, I want to be able to reload those saved character stats, owned items, and owned texts back into the game.
