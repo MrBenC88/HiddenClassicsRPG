@@ -3,13 +3,16 @@ package ui;
 import model.GameItem;
 import model.GamePanel;
 import model.InventoryItem;
-import model.TextCollection;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.Scanner;
 
 // Class representation for the RPG Game Application's User interface which includes Game Menus ,
 // Set Up for Character Customization, and Item Selection UIs
 public class HiddenClassicsPavilionRPG {
+    private static final String GAME_FILE = "./data/gamefile.txt";
     private Scanner input;
     protected GamePanel game;
     public String currentScreen;
@@ -58,8 +61,8 @@ public class HiddenClassicsPavilionRPG {
             inGameMenu();
 
         } else if (optionSelect == 2) {
-            currentScreen = "info";
-            System.out.println("Info and Instructions go here! \n\t\t\t Text Text Text Text Text Text Text\n\n");
+            currentScreen = "load";
+            // !!!
             displayMainMenu();
         } else if (optionSelect == 3) {
             quit();
@@ -120,7 +123,8 @@ public class HiddenClassicsPavilionRPG {
         System.out.println("\t\t\t 3. Collection\n\t\t\t\t\tView your collection of texts!");
         System.out.println("\t\t\t 4. Character Stats\n\t\t\t\t\tView your current stats!");
         System.out.println("\t\t\t 5. Exit\n\t\t\t\t\tExit this in game menu!");
-        System.out.println("\nInput value [1,5]: ");
+        System.out.println("\t\t\t 6. Save\n\t\t\t\t\tSave your progress!");
+        System.out.println("\nInput value [1,6]: ");
         int optionSelect;
         optionSelect = input.nextInt();
         inGameMenuSelector(optionSelect);
@@ -150,7 +154,17 @@ public class HiddenClassicsPavilionRPG {
         } else if (num == 5) {
             System.out.println("Exited InGame Menu.");
 
+        } else if (num == 6) {
+            System.out.println("Saved Game.");
+            //CALL TO SAVE ACCOUNTS
+            // !!!
+            //saveGame();
+
         }
+    }
+
+    public void saveGame() {
+        //save game method
     }
 
     //MODIFIES: gameObject

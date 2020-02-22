@@ -1,6 +1,5 @@
 package model;
 
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -342,4 +341,5 @@ public class GamePanel {
     public void addNpcs() {
         gameObjects.addNpcs();
     }
+
 }

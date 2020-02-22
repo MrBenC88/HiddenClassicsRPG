@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 // Class is a representation of the user's character having a name, balance (in dollars), attributes, and inventory
@@ -194,9 +193,6 @@ public class UserCharacter {
     public double getBalance() {
         return balance;
     }
-
-
-
 
 
 }
