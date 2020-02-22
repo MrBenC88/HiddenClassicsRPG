@@ -1,5 +1,8 @@
 package model;
 
+import persistence.Reader;
+
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +16,7 @@ public class GamePanel {
 
 
     // EFFECTS: initializes the UserCharacter,Inventory, GameObjects, TextCollection, and Store classes
-    public GamePanel() {
+    public GamePanel()  {
         character = new UserCharacter();
         inventory = new Inventory();
         gameObjects = new GameObject();
@@ -341,5 +344,6 @@ public class GamePanel {
     public void addNpcs() {
         gameObjects.addNpcs();
     }
+
 
 }

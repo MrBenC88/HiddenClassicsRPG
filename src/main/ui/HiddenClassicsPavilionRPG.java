@@ -3,10 +3,12 @@ package ui;
 import model.GameItem;
 import model.GamePanel;
 import model.InventoryItem;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import persistence.Writer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 
 // Class representation for the RPG Game Application's User interface which includes Game Menus ,
@@ -14,7 +16,7 @@ import java.util.Scanner;
 public class HiddenClassicsPavilionRPG {
     private static final String GAME_FILE = "./data/gamefile.txt";
     private Scanner input;
-    protected GamePanel game;
+    public GamePanel game;
     public String currentScreen;
 
 
@@ -153,19 +155,20 @@ public class HiddenClassicsPavilionRPG {
             inGameMenu();
         } else if (num == 5) {
             System.out.println("Exited InGame Menu.");
-
         } else if (num == 6) {
-            System.out.println("Saved Game.");
-            //CALL TO SAVE ACCOUNTS
-            // !!!
-            //saveGame();
-
+            saveGame(game);
         }
     }
 
-    public void saveGame() {
-        //save game method
+    public void saveGame(GamePanel game) {
+        try {
+            Writer file = new Writer(new File(GAME_FILE));
+            file.save(game);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     //MODIFIES: gameObject
     //EFFECTS: selects a item from unclaimed items

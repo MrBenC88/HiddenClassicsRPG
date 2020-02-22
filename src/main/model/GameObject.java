@@ -42,10 +42,51 @@ public class GameObject {
         return  npc;
     }
 
+    //EFFECTS: returns all npcs
+    public ArrayList<NPC> getAllNPCs() {
+        return npcs;
+    }
 
-    //EFFECTS: returns the total unclaimed text items
-    public int getTotalUnclaimedTextItems() {
-        return unclaimedTextItems.size();
+    //EFFECTS: returns an array list of the the npc's data
+    public ArrayList<String> getAllNpcData(NPC n) {
+        ArrayList<String> listOfString = new ArrayList<>();
+        listOfString.add(n.getName());
+        listOfString.add(n.getTitle());
+        listOfString.add(n.getNpcType());
+        listOfString.add(n.getDirection());
+        listOfString.add(n.getNpcStats().toString());
+        listOfString.add(n.getListOfNpcLines().toString());
+        return listOfString;
+    }
+
+    //EFFECTS: returns all unclaimed text items
+    public ArrayList<TextItem> getAllUnclaimedTextItems() {
+        return unclaimedTextItems;
+    }
+
+    //EFFECTS: returns all unclaimed text items
+    public ArrayList<GameItem> getAllUnclaimedGameItems() {
+        return unclaimedGameItems;
+    }
+
+
+    //EFFECTS: returns an array list of the unclaimed text item's data
+    public ArrayList<String> getAllUnclaimedTextItemsData(TextItem item) {
+        ArrayList<String> listOfString = new ArrayList<>();
+        listOfString.add(item.getTextItemName());
+        listOfString.add(item.getTextItemContent());
+        listOfString.add(item.getBookID());
+        return listOfString;
+    }
+
+    //EFFECTS: returns an array list of the unclaimed text item's data
+    public ArrayList<String> getAllUnclaimedGameItemsData(GameItem item) {
+        ArrayList<String> listOfString = new ArrayList<>();
+        listOfString.add(item.getGameItemName());
+        listOfString.add(item.getDescription());
+        listOfString.add(item.getStats().toString());
+        listOfString.add(String.valueOf(item.getMarketPrice()));
+        return listOfString;
     }
 
     //MODIFIES: unclaimedGameItems
