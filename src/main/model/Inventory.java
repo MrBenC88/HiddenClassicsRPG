@@ -22,12 +22,13 @@ public class Inventory {
     public Inventory(ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
                      ArrayList<String> itemDescrip) {
         int count = 0;
+        inventoryItems = new ArrayList<>(maxInventoryItemSlots);
         for (String i: itemNames) {
             for (double j: itemPrices) {
                 for (ArrayList<Long> k: itemStats) {
                     for (String l: itemDescrip) {
                         count++;
-                        inventoryItems = new ArrayList<>(maxInventoryItemSlots);
+
                         inventoryItems.add(new InventoryItem(new GameItem(i, j, k,l), 1));
                     }
                 }

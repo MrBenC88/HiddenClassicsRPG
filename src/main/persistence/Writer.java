@@ -38,8 +38,11 @@ public class Writer {
         JSONArray listOfGameItemsPrice = new JSONArray();
         JSONArray listOfGameItemsStats = new JSONArray();
         JSONArray listOfGameItemsDescrip = new JSONArray();
-        JSONArray listOfTextItemData = new JSONArray();
-        addToJson(game, obj);
+        addCharacterDataToJson(game, obj);
+        addTextCollectionToJson(game, obj);
+        addGameObjectsToJson(game, obj);
+        addUnClaimedItemsToJson(game,obj);
+        addUnclaimedTextCollectionToJson(game, obj);
         for (InventoryItem i: game.inventory.getAllInventoryItems()) {
             listOfGameItemsPrice.add(i.getGameItem().getMarketPrice());
             listOfGameItemsStats.add(i.getGameItem().getStats());
@@ -49,37 +52,90 @@ public class Writer {
         obj.put("inventory_item_price", listOfGameItemsPrice);
         obj.put("inventory_item_stats", listOfGameItemsStats);
         obj.put("inventory_item_description", listOfGameItemsDescrip);
-        for (TextItem t: game.textCollection.getAllTextItems()) {
-            listOfTextItemData.add(game.textCollection.getTextItemData(t));
-        }
-        obj.put("text_collection_item_data", listOfTextItemData);
+
         write(obj.toJSONString());
         close();
     }
 
+    //MODIFIES: JSON Object
+    //EFFECTS: creates a JSONArray object and adds the game objects unclaimed game item data to JSON
+    public void addUnClaimedItemsToJson(GamePanel game, JSONObject obj) {
+        JSONArray listOfUnclaimedGameItemsNames = new JSONArray();
+        JSONArray listOfUnclaimedGameItemsPrice = new JSONArray();
+        JSONArray listOfUnclaimedGameItemsStats = new JSONArray();
+        JSONArray listOfUnclaimedGameItemsDescrip = new JSONArray();
+        for (GameItem i: game.gameObjects.getAllUnclaimedGameItems()) {
+            listOfUnclaimedGameItemsNames.add(i.getGameItemName());
+            listOfUnclaimedGameItemsPrice.add(i.getMarketPrice());
+            listOfUnclaimedGameItemsStats.add(i.getStats());
+            listOfUnclaimedGameItemsDescrip.add(i.getDescription());
+        }
+        obj.put("unclaimed_game_item_name",listOfUnclaimedGameItemsNames);
+        obj.put("unclaimed_game_item_price",listOfUnclaimedGameItemsPrice);
+        obj.put("unclaimed_game_item_stat",listOfUnclaimedGameItemsStats);
+        obj.put("unclaimed_game_item_description",listOfUnclaimedGameItemsDescrip);
+    }
+
+    //MODIFIES: JSON Object
+    //EFFECTS: creates a JSONArray object and adds the game objects (NPCs) data to JSON
+    public void addGameObjectsToJson(GamePanel game, JSONObject obj) {
+        JSONArray listOfNpcsLines = new JSONArray();
+        JSONArray listOfNpcsTitles = new JSONArray();
+        JSONArray listOfNpcsDirections = new JSONArray();
+        JSONArray listOfNpcsTypes = new JSONArray();
+        JSONArray listOfNpcsNames = new JSONArray();
+        for (NPC n : game.gameObjects.getAllNPCs()) {
+            listOfNpcsLines.add(game.gameObjects.getListOfNpcLines(n));
+            listOfNpcsTitles.add(game.gameObjects.getNpcTitle(n));
+            listOfNpcsDirections.add(game.gameObjects.getNpcDirection(n));
+            listOfNpcsTypes.add(game.gameObjects.getNpcType(n));
+            listOfNpcsNames.add(game.gameObjects.getNpcName(n));
+        }
+        obj.put("npc_lines", listOfNpcsLines);
+        obj.put("npc_titles", listOfNpcsTitles);
+        obj.put("npc_directions", listOfNpcsDirections);
+        obj.put("npc_types", listOfNpcsTypes);
+        obj.put("npc_names", listOfNpcsNames);
+    }
+
+    public void addUnclaimedTextCollectionToJson(GamePanel game, JSONObject obj) {
+        JSONArray listOfUnclaimedTextItemName = new JSONArray();
+        JSONArray listOfUnclaimedTextItemContent = new JSONArray();
+        JSONArray listOfUnclaimedTextItemBookId = new JSONArray();
+        for (TextItem t: game.gameObjects.getAllUnclaimedTextItems()) {
+            listOfUnclaimedTextItemName.add(game.gameObjects.getUnclaimedTextItemName(t));
+            listOfUnclaimedTextItemContent.add(game.gameObjects.getUnclaimedTextItemContent(t));
+            listOfUnclaimedTextItemBookId.add(game.gameObjects.getUnclaimedTextItemBookId(t));
+        }
+        obj.put("unclaimed_text_collection_item_name", listOfUnclaimedTextItemName);
+        obj.put("unclaimed_text_collection_item_content", listOfUnclaimedTextItemContent);
+        obj.put("unclaimed_text_collection_item_bookId", listOfUnclaimedTextItemBookId);
+    }
+
+
+    //MODIFIES: JSON Object
+    //EFFECTS: creates a JSONArray object and adds the text collection data to JSON
+    public void addTextCollectionToJson(GamePanel game, JSONObject obj) {
+        JSONArray listOfTextItemName = new JSONArray();
+        JSONArray listOfTextItemContent = new JSONArray();
+        JSONArray listOfTextItemBookId = new JSONArray();
+        for (TextItem t: game.textCollection.getAllTextItems()) {
+            listOfTextItemName.add(game.textCollection.getTextName(t));
+            listOfTextItemContent.add(game.textCollection.getTextContent(t));
+            listOfTextItemBookId.add(game.textCollection.getBookID(t));
+        }
+        obj.put("text_collection_item_name", listOfTextItemName);
+        obj.put("text_collection_item_content", listOfTextItemContent);
+        obj.put("text_collection_item_bookId", listOfTextItemBookId);
+    }
+
     //MODIFIES: JSON object
-    //EFFECTS: creates a JSONArray objects and adds to JSON
-    public void addToJson(GamePanel game, JSONObject obj) {
+    //EFFECTS: creates a JSONArray objects and adds character data to JSON
+    public void addCharacterDataToJson(GamePanel game, JSONObject obj) {
         obj.put("character_name", game.character.getName());
         obj.put("character_attributes", game.character.getCharacterAttributes());
         obj.put("character_balance",game.character.getBalance());
         obj.put("character_class",game.character.getCharacterClass());
-
         obj.put("inventory_total_items", game.inventory.getInventoryTotalItems());
-        JSONArray listOfUnclaimedTextItems = new JSONArray();
-        JSONArray listOfUnclaimedGameItems = new JSONArray();
-        JSONArray listOfNpcs = new JSONArray();
-        for (TextItem i: game.gameObjects.getAllUnclaimedTextItems()) {
-            listOfUnclaimedTextItems.add(game.gameObjects.getAllUnclaimedTextItemsData(i));
-        }
-        obj.put("gameObjects_unclaimedTextItems", listOfUnclaimedTextItems);
-        for (GameItem i: game.gameObjects.getAllUnclaimedGameItems()) {
-            listOfUnclaimedGameItems.add(game.gameObjects.getAllUnclaimedGameItemsData(i));
-        }
-        obj.put("gameObjects_unclaimedGameItems", listOfUnclaimedGameItems);
-        for (NPC n: game.gameObjects.getAllNPCs()) {
-            listOfNpcs.add(game.gameObjects.getAllNpcData(n));
-        }
-        obj.put("gameObjects_npc_data", listOfNpcs);
     }
 }

@@ -18,6 +18,40 @@ public class GameObject {
         npcs = new ArrayList<>();
     }
 
+    public String getUnclaimedTextItemName(TextItem i) {
+        return i.getTextItemName();
+    }
+
+    public String getUnclaimedTextItemContent(TextItem i) {
+        return i.getTextItemContent();
+    }
+
+    public String getUnclaimedTextItemBookId(TextItem i) {
+        return i.getBookID();
+    }
+
+    public String getNpcTitle(NPC n) {
+        return n.getTitle();
+    }
+
+    public String getNpcDirection(NPC n) {
+        return n.getDirection();
+    }
+
+    public ArrayList<String> getListOfNpcLines(NPC n) {
+        return n.getListOfNpcLines();
+    }
+
+    public String getNpcType(NPC n) {
+        return n.getNpcType();
+    }
+
+    public String getNpcName(NPC n) {
+        return n.getName();
+    }
+
+
+
     //MODIFIES: npcs
     //EFFECTS: adds NPC into list of npcs
     public void addNpcs() {
