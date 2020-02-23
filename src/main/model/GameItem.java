@@ -24,8 +24,21 @@ public class GameItem {
         this.atk = atk;
         this.def = def;
         this.spd = spd;
-
     }
+
+    //EFFECTS: constructs the game item from parameters and casts the array of longs to integer
+    public GameItem(String name, double price, ArrayList<Long> itemStats, String descrp) {
+        this.name = name;
+        marketPrice = price;
+        //We have to get the intValue so we can get an integer rather than long
+        this.hp = itemStats.get(0).intValue();
+        this.atk = itemStats.get(1).intValue();
+        this.def = itemStats.get(2).intValue();
+        spd = itemStats.get(3).intValue();
+        description = descrp;
+    }
+
+
 
     //EFFECTS: gets the game item description
     public String getDescription() {

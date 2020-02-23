@@ -18,6 +18,24 @@ public class Inventory {
         totalItems = 0;
     }
 
+    //EFFECTS: Constructs an Inventory based on parameters
+    public Inventory(ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
+                     ArrayList<String> itemDescrip) {
+        int count = 0;
+        for (String i: itemNames) {
+            for (double j: itemPrices) {
+                for (ArrayList<Long> k: itemStats) {
+                    for (String l: itemDescrip) {
+                        count++;
+                        inventoryItems = new ArrayList<>(maxInventoryItemSlots);
+                        inventoryItems.add(new InventoryItem(new GameItem(i, j, k,l), 1));
+                    }
+                }
+            }
+        }
+        totalItems = count;
+    }
+
     //REQUIRES: quantity > 0
     //MODIFIES: InventoryItem, this
     //EFFECTS: adds quantity to the quantity of an InventoryItem if it exists already, else adds a new InventoryItem

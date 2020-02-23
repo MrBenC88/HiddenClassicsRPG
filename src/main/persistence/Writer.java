@@ -64,6 +64,7 @@ public class Writer {
         obj.put("character_attributes", game.character.getCharacterAttributes());
         obj.put("character_balance",game.character.getBalance());
         obj.put("character_class",game.character.getCharacterClass());
+
         obj.put("inventory_total_items", game.inventory.getInventoryTotalItems());
         JSONArray listOfUnclaimedTextItems = new JSONArray();
         JSONArray listOfUnclaimedGameItems = new JSONArray();

@@ -10,6 +10,7 @@ import persistence.Writer;
 import persistence.Reader;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -148,10 +149,9 @@ public class HiddenClassicsPavilionRPG {
             System.out.println("Stats:\t" + game.character.getCharacterAttributes());
             System.out.println("Starting Class:\t" + game.character.getCharacterClass());
             System.out.println("\nInventory:\nTotal Inventory Items:\t" + game.inventory.getInventoryTotalItems()
+                    + "\nInventory Items:\t" + game.inventory.getAllInventoryItemGameItemNames()
                     + "\nText Collection:\nTotal Text Items:\t" + game.textCollection.getAllTextItemNames());
             inGameMenu();
-        } else if (num == 5) {
-            System.out.println("Exited InGame Menu.");
         } else if (num == 6) {
             saveGame(game);
         }
@@ -177,8 +177,10 @@ public class HiddenClassicsPavilionRPG {
             JSONObject jsonObj = readData(reader);
             game = new GamePanel((String) jsonObj.get("character_name"), (double) jsonObj.get("character_balance"),
                     (HashMap<String, Integer>)jsonObj.get("character_attributes"),
-                    (String)jsonObj.get("character_class"));
-
+                    (String)jsonObj.get("character_class"), (ArrayList<String>) jsonObj.get("inventory_item_names"),
+                    (ArrayList<Double>) jsonObj.get("inventory_item_price"),
+                    (ArrayList<ArrayList<Long>>) jsonObj.get("inventory_item_stats"),
+                    (ArrayList<String>) jsonObj.get("inventory_item_description"));
 
 
             inGameMenu();

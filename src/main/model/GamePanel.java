@@ -24,9 +24,14 @@ public class GamePanel {
     }
 
     //EFFECTS: another constructor which takes in parameters to reconstruct the game from loaded data
-    public GamePanel(String characterName, double bal,HashMap<String, Integer> attr, String charChoice) {
+    public GamePanel(String characterName, double bal,HashMap<String, Integer> attr, String charChoice,
+                     ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
+                     ArrayList<String> itemDescrip) {
         character = new UserCharacter(characterName, bal, attr, charChoice);
+        inventory = new Inventory(itemNames, itemPrices, itemStats, itemDescrip);
     }
+
+
 
     //EFFECTS: initiates the battle event with a specific NPC and determines order
     public String order(NPC n) {

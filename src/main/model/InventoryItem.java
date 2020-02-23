@@ -12,6 +12,8 @@ public class InventoryItem {
         this.quantity = quantity;
     }
 
+
+
     // EFFECTS: returns the quantity of this specific item type
     public int getQuantity() {
         return quantity;
