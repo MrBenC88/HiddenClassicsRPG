@@ -1,5 +1,6 @@
 package model;
 
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,38 +19,108 @@ public class GameObject {
         npcs = new ArrayList<>();
     }
 
+    //EFFECTS: constructs a game object and initializes a filled array of unclaimedGameItems, unclaimedTextItems,
+    // and npcs
+    public GameObject(ArrayList<String> unclaimedGameItemName,
+                      ArrayList<Double> unclaimedGameItemPrice, ArrayList<ArrayList<Long>> unclaimedGameItemStat,
+                      ArrayList<String> unclaimedGameItemDescrip, ArrayList<ArrayList<String>> npcLines,
+                      ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
+                      ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
+                      ArrayList<String> unclaimedTextName,
+                      ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId) {
+        unclaimedGameItems = new ArrayList<>();
+        unclaimedTextItems = new ArrayList<>();
+        npcs = new ArrayList<>();
+        rebuildUnclaimedGameItems(unclaimedGameItemName,unclaimedGameItemPrice, unclaimedGameItemStat,
+                unclaimedGameItemDescrip, unclaimedGameItems);
+        rebuildUnclaimedTextItems(unclaimedTextName,unclaimedTextContent,unclaimedTextBookId, unclaimedTextItems);
+        rebuildNpcs(npcLines, npcTitle, npcDirection,  npcType, npcNames, npcStats, npcs);
+    }
+
+    public void rebuildNpcs(ArrayList<ArrayList<String>> npcLines,
+                            ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
+                            ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
+                            ArrayList<NPC> npcs) {
+        for (int i = 0; i < npcNames.size(); i++) {
+            String npcName = npcNames.get(i);
+            String npcTitl = npcTitle.get(i);
+            String npcTy = npcType.get(i);
+            ArrayList<String> npcLin = npcLines.get(i);
+            String dir = npcDirection.get(i);
+            HashMap<String, Integer> npcStat = npcStats.get(i);
+            npcs.add(new NPC(npcName, npcTy, npcTitl, dir, npcStat, npcLin));
+        }
+    }
+
+    public void rebuildUnclaimedTextItems(ArrayList<String> unclaimedTextName,
+                                          ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
+                                          ArrayList<TextItem> unclaimedTextItems) {
+        for (int i = 0; i < unclaimedTextName.size(); i++) {
+            String unclTextName = unclaimedTextName.get(i);
+            String unclTextContent = unclaimedTextContent.get(i);
+            String unclTextBookId = unclaimedTextBookId.get(i);
+            unclaimedTextItems.add(new TextItem(unclTextName,unclTextContent,unclTextBookId));
+        }
+    }
+
+    public void rebuildUnclaimedGameItems(ArrayList<String> unclaimedGameItemName,
+                                          ArrayList<Double> unclaimedGameItemPrice,
+                                          ArrayList<ArrayList<Long>> unclaimedGameItemStat,
+                                          ArrayList<String> unclaimedGameItemDescrip,
+                                          ArrayList<GameItem> unclaimedGameItems) {
+        for (int i = 0; i < unclaimedGameItemName.size(); i++) {
+            String uncGameItemName = unclaimedGameItemName.get(i);
+            double uncGameItemPrice = unclaimedGameItemPrice.get(i);
+            ArrayList<Long> uncGameItemStat = unclaimedGameItemStat.get(i);
+            String uncGameItemDesc = unclaimedGameItemDescrip.get(i);
+            unclaimedGameItems.add(new GameItem(uncGameItemName,uncGameItemPrice, uncGameItemStat,uncGameItemDesc));
+        }
+    }
+
+    //EFFECTS: returns unclaimed text item name
     public String getUnclaimedTextItemName(TextItem i) {
         return i.getTextItemName();
     }
 
+    //EFFECTS: returns unclaimed text item content
     public String getUnclaimedTextItemContent(TextItem i) {
         return i.getTextItemContent();
     }
 
+    //EFFECTS: returns unclaimed text item book id
     public String getUnclaimedTextItemBookId(TextItem i) {
         return i.getBookID();
     }
 
+    //EFFECTS: returns npc title
     public String getNpcTitle(NPC n) {
         return n.getTitle();
     }
 
+    //EFFECTS: returns npc direction
     public String getNpcDirection(NPC n) {
         return n.getDirection();
     }
 
+    //EFFECTS: returns npc list of lines
     public ArrayList<String> getListOfNpcLines(NPC n) {
         return n.getListOfNpcLines();
     }
 
+    //EFFECTS: returns npc type
     public String getNpcType(NPC n) {
         return n.getNpcType();
     }
 
+    //EFFECTS: returns npc name
     public String getNpcName(NPC n) {
         return n.getName();
     }
 
+    //EFFECTS: returns npc name
+    public HashMap<String, Integer> getNpcStat(NPC n) {
+        return n.getNpcStats();
+    }
 
 
     //MODIFIES: npcs
@@ -81,6 +152,7 @@ public class GameObject {
         return npcs;
     }
 
+    /*
     //EFFECTS: returns an array list of the the npc's data
     public ArrayList<String> getAllNpcData(NPC n) {
         ArrayList<String> listOfString = new ArrayList<>();
@@ -91,7 +163,7 @@ public class GameObject {
         listOfString.add(n.getNpcStats().toString());
         listOfString.add(n.getListOfNpcLines().toString());
         return listOfString;
-    }
+    }*/
 
     //EFFECTS: returns all unclaimed text items
     public ArrayList<TextItem> getAllUnclaimedTextItems() {
@@ -103,7 +175,7 @@ public class GameObject {
         return unclaimedGameItems;
     }
 
-
+    /*
     //EFFECTS: returns an array list of the unclaimed text item's data
     public ArrayList<String> getAllUnclaimedTextItemsData(TextItem item) {
         ArrayList<String> listOfString = new ArrayList<>();
@@ -121,7 +193,7 @@ public class GameObject {
         listOfString.add(item.getStats().toString());
         listOfString.add(String.valueOf(item.getMarketPrice()));
         return listOfString;
-    }
+    }*/
 
     //MODIFIES: unclaimedGameItems
     //EFFECTS: adds Text Items to the list of unclaimed TextItems

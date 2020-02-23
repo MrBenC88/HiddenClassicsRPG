@@ -20,7 +20,7 @@ public class GameObjectTest {
     @Test
     void testAddUnclaimedGameItems() {
         gameObject.addUnclaimedItems();
-        assertEquals(4,gameObject.getTotalUnClaimedGameItem());
+        assertEquals(8,gameObject.getTotalUnClaimedGameItem());
     }
 
     @Test
@@ -28,6 +28,6 @@ public class GameObjectTest {
         testAddUnclaimedGameItems();
         GameItem item1 = gameObject.getUnClaimedGameItem(1);
         gameObject.removeUnClaimedGameItem(item1);
-        assertEquals(3, gameObject.getTotalUnClaimedGameItem());
+        assertEquals(7, gameObject.getTotalUnClaimedGameItem());
     }
 }

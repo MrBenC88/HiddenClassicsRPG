@@ -16,6 +16,17 @@ public class TextCollection {
         totalTextItems = 0;
     }
 
+    //EFFECTS: Constructs a Text Collection with text items based on parameters
+    public TextCollection(ArrayList<String> textName, ArrayList<String> textContent, ArrayList<String> textBookId) {
+        textItems = new ArrayList<>(maxTextSlots);
+        int counter = 0;
+        for (int i = 0; i < textName.size(); i++) {
+            counter++;
+            textItems.add(new TextItem(textName.get(i), textContent.get(i), textBookId.get(i)));
+        }
+        totalTextItems = counter;
+    }
+
     //REQUIRES: quantity > 0
     //MODIFIES: TextItem, this
     //EFFECTS: adds a text item to the text collection, if it already exists- adds a new entry which takes up a slot
@@ -41,13 +52,14 @@ public class TextCollection {
         totalTextItems++;
     }
 
+    /*
     //REQUIRES: quantity > 0
     //MODIFIES: TextItem, this
     //EFFECTS: removes the TextItem from the TextCollection
     public void removeTextItem(TextItem item) {
         textItems.remove(item);
         totalTextItems--;
-    }
+    } */
 
     //EFFECTS: return the total text collection items
     public int getTextCollectionTotalTexts() {
@@ -62,7 +74,7 @@ public class TextCollection {
     //EFFECTS: returns a list of all the names of the text items in the text collection
     public ArrayList<String> getAllTextItemNames() {
         ArrayList<String> listOfString = new ArrayList<>();
-        for (TextItem i: textItems) {
+        for (TextItem i : textItems) {
             listOfString.add(i.getTextItemName());
         }
         return listOfString;
@@ -83,6 +95,7 @@ public class TextCollection {
         return i.getBookID();
     }
 
+    /*
     //EFFECTS: returns an arraylist of the text item's data
     public ArrayList<String> getTextItemData(TextItem item) {
         ArrayList<String> listOfString = new ArrayList<>();
@@ -90,7 +103,7 @@ public class TextCollection {
         listOfString.add(item.getTextItemContent());
         listOfString.add(item.getBookID());
         return listOfString;
-    }
+    }*/
 
 
 }

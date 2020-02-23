@@ -26,6 +26,16 @@ public class NPC {
         this.npcStats = stats;
     }
 
+    public NPC(String name, String npcType, String npcTitle, String direction,HashMap<String, Integer> stats,
+               ArrayList<String> npcLines) {
+        this.name = name;
+        this.npcType = npcType;
+        title = npcTitle;
+        this.direction = direction;
+        npcStats = stats;
+        listOfNpcLines = npcLines;
+    }
+
     //EFFECTS: returns the npc name
     public String getName() {
         return name;

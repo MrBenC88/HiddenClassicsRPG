@@ -79,7 +79,7 @@ public class GamePanelTest {
     void testRemoveGameObject() {
         gamePanel.gameObjects.addUnclaimedItems();
         gamePanel.removeGameObject(gamePanel.gameObjects.getUnClaimedGameItem(0));
-        assertEquals(3,gamePanel.getNumberOfUnclaimedItems());
+        assertEquals(7,gamePanel.getNumberOfUnclaimedItems());
     }
 
     @Test
@@ -92,7 +92,7 @@ public class GamePanelTest {
     @Test
     void testAddUnclaimedItem() {
         gamePanel.addUnclaimedItems();
-        assertEquals(4, gamePanel.gameObjects.getTotalUnClaimedGameItem());
+        assertEquals(8, gamePanel.gameObjects.getTotalUnClaimedGameItem());
     }
 
     @Test

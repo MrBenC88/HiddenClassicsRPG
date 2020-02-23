@@ -26,9 +26,23 @@ public class GamePanel {
     //EFFECTS: another constructor which takes in parameters to reconstruct the game from loaded data
     public GamePanel(String characterName, double bal,HashMap<String, Integer> attr, String charChoice,
                      ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
-                     ArrayList<String> itemDescrip) {
+                     ArrayList<String> itemDescrip, ArrayList<String> uncGin,
+                     ArrayList<Double> uncGip, ArrayList<ArrayList<Long>> uncGiS,
+                     ArrayList<String> unclaimedGameItemDescrip, ArrayList<ArrayList<String>> npcLines,
+                     ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
+                     ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
+                     ArrayList<String> unclaimedTextName,
+                     ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
+                     ArrayList<String> textName, ArrayList<String> textContent, ArrayList<String> textBookId) {
         character = new UserCharacter(characterName, bal, attr, charChoice);
         inventory = new Inventory(itemNames, itemPrices, itemStats, itemDescrip);
+        //uncGin is unclaimedGameItem name
+        //uncGip is unclaimedGameItem price - simplified to keep line to <= 120 char long
+        gameObjects = new GameObject(uncGin,uncGip, uncGiS,
+                unclaimedGameItemDescrip, npcLines,npcTitle, npcDirection, npcType, npcNames, npcStats,
+                unclaimedTextName,unclaimedTextContent, unclaimedTextBookId);
+        textCollection = new TextCollection(textName, textContent, textBookId);
+
     }
 
 

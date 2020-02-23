@@ -23,16 +23,13 @@ public class Inventory {
                      ArrayList<String> itemDescrip) {
         int count = 0;
         inventoryItems = new ArrayList<>(maxInventoryItemSlots);
-        for (String i: itemNames) {
-            for (double j: itemPrices) {
-                for (ArrayList<Long> k: itemStats) {
-                    for (String l: itemDescrip) {
-                        count++;
-
-                        inventoryItems.add(new InventoryItem(new GameItem(i, j, k,l), 1));
-                    }
-                }
-            }
+        for (int i = 0; i < itemNames.size(); i++) {
+            count++;
+            String itemName = itemNames.get(i);
+            double itemPrice = itemPrices.get(i);
+            ArrayList<Long> itemStat = itemStats.get(i);
+            String itemDescription = itemDescrip.get(i);
+            inventoryItems.add(new InventoryItem(new GameItem(itemName, itemPrice, itemStat, itemDescription), 1));
         }
         totalItems = count;
     }

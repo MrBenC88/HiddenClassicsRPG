@@ -20,7 +20,7 @@ import static persistence.Reader.readData;
 // Class representation for the RPG Game Application's User interface which includes Game Menus ,
 // Set Up for Character Customization, and Item Selection UIs
 public class HiddenClassicsPavilionRPG {
-    private static final String GAME_FILE = "./data/gamedata.json";
+    private static final String GAME_FILE = "./data/game_data.json";
     private Scanner input;
     public GamePanel game;
     public String currentScreen;
@@ -150,7 +150,7 @@ public class HiddenClassicsPavilionRPG {
             System.out.println("Starting Class:\t" + game.character.getCharacterClass());
             System.out.println("\nInventory:\nTotal Inventory Items:\t" + game.inventory.getInventoryTotalItems()
                     + "\nInventory Items:\t" + game.inventory.getAllInventoryItemGameItemNames()
-                    + "\nText Collection:\nTotal Text Items:\t" + game.textCollection.getAllTextItemNames());
+                    + "\nText Collection\tTotal Text Items:\t" + game.textCollection.getAllTextItemNames());
             inGameMenu();
         } else if (num == 6) {
             saveGame(game);
@@ -175,17 +175,23 @@ public class HiddenClassicsPavilionRPG {
         try {
             FileReader reader = new FileReader(GAME_FILE);
             JSONObject jsonObj = readData(reader);
-            game = new GamePanel((String) jsonObj.get("character_name"), (double) jsonObj.get("character_balance"),
-                    (HashMap<String, Integer>)jsonObj.get("character_attributes"),
-                    (String)jsonObj.get("character_class"), (ArrayList<String>) jsonObj.get("inventory_item_names"),
-                    (ArrayList<Double>) jsonObj.get("inventory_item_price"),
-                    (ArrayList<ArrayList<Long>>) jsonObj.get("inventory_item_stats"),
-                    (ArrayList<String>) jsonObj.get("inventory_item_description"));
-
-
+            game = new GamePanel((String) jsonObj.get("char_name"), (double) jsonObj.get("char_balance"),
+                    (HashMap<String, Integer>)jsonObj.get("char_attributes"),(String)jsonObj.get("char_class"),
+                    (ArrayList<String>) jsonObj.get("inv_item_names"),(ArrayList<Double>) jsonObj.get("inv_item_price"),
+                    (ArrayList<ArrayList<Long>>) jsonObj.get("inv_item_stats"),
+                    (ArrayList<String>) jsonObj.get("inv_item_des"),(ArrayList<String>) jsonObj.get("uncl_i_name"),
+                    (ArrayList<Double>) jsonObj.get("uncl_i_pri"),(ArrayList<ArrayList<Long>>) jsonObj.get("uncl_i_s"),
+                    (ArrayList<String>) jsonObj.get("uncl_i_desc"),
+                    (ArrayList<ArrayList<String>>)jsonObj.get("npclines"),
+                    (ArrayList<String>) jsonObj.get("npctitles"),(ArrayList<String>) jsonObj.get("npcdirs"),
+                    (ArrayList<String>)jsonObj.get("npctypes"), (ArrayList<String>)jsonObj.get("npcnames"),
+                    (ArrayList<HashMap<String, Integer>>) jsonObj.get("npcstat"),
+                    (ArrayList<String>)jsonObj.get("uncl_ti_name"), (ArrayList<String>)jsonObj.get("uncl_ti_content"),
+                    (ArrayList<String>)jsonObj.get("uncl_ti_bookId"),
+                    (ArrayList<String>)jsonObj.get("text_item_name"),(ArrayList<String>)jsonObj.get("text_item_cont"),
+                    (ArrayList<String>)jsonObj.get("text_item_bookId"));
             inGameMenu();
         } catch (IOException | ParseException e) {
-            System.out.println("Didn't work?");
             initialCharacterSetUp();
         }
     }
