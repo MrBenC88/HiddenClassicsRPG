@@ -2,18 +2,56 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class GamePanelTest {
     GamePanel gamePanel;
+    GamePanel gamePanel2;
     GameItem item1;
+    GameObject gameObject;
+    ArrayList<String> testStringArray;
+    HashMap<String, Integer> testCharAttributes;
+
 
     @BeforeEach
     void runBefore() {
+        testCharAttributes = new HashMap<>();
+        testCharAttributes.put("Health",10);
+        testCharAttributes.put("Defense",4);
+        testCharAttributes.put("Attack",3);
+        testCharAttributes.put("Speed",9);
+
         gamePanel = new GamePanel();
+        testStringArray = new ArrayList<>();
+        testStringArray.add("TestString");
+        gamePanel2 = new GamePanel("Hi", 1.0, testCharAttributes,"Wanderer",
+                new ArrayList<>(),
+                new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                new ArrayList<>(), new ArrayList<>(),
+                new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                new ArrayList<>(),new ArrayList<>(), new ArrayList<>(), new ArrayList<>() , testStringArray,
+                testStringArray, testStringArray);
+        gameObject = new GameObject();
         item1 = new GameItem("Test","TestDescription", 1.00,5,5,5,5);
+    }
+
+    //Tests for the second constructor, gamepanel2 and makes sure it the game panel object is constructed properly
+    // with test parameters.
+    @Test
+    void testConstructorForParams() {
+        assertTrue(gamePanel2 instanceof GamePanel);
+        assertEquals("Hi",gamePanel2.character.getName());
+        assertEquals(1.0,gamePanel2.character.getBalance());
+        assertEquals("Wanderer",gamePanel2.character.getCharacterClass());
+        assertEquals(1,gamePanel2.textCollection.getAllTextItems().size());
+        assertEquals("[TestString]", gamePanel2.textCollection.getAllTextItemNames().toString());
+        assertEquals("{Speed=9, Health=10, Attack=3, Defense=4}", gamePanel2.character.
+                getCharacterAttributes().toString());
     }
 
     @Test
@@ -39,6 +77,26 @@ public class GamePanelTest {
         gamePanel.setCharacterClass(5);
         assertTrue(gamePanel.character.getCharacterClass().equals("Wanderer"));
         assertEquals("Wanderer",gamePanel.character.getCharacterClass());
+    }
+
+    @Test
+    void testAddUnclaimedTexts() {
+        gamePanel.addUnclaimedTexts();
+        assertEquals(5, gamePanel.getUnclaimedTexts().size());
+    }
+
+    @Test
+    void testShowTextDetails() {
+        gamePanel.textCollection.addTextItem(new TextItem("name", "content","1"));
+        assertEquals("Text ID: 1|\t\t\t name\n" +
+                "\tContent:\tcontent\n\n", gamePanel.showTextDetails());
+    }
+
+    @Test
+    void testAddNpcs() {
+        gamePanel.addNpcs();
+        assertEquals(1,gamePanel.getNPCs().size());
+
     }
 
     @Test
@@ -121,7 +179,32 @@ public class GamePanelTest {
                 "Description:\tTestDescription\n" +
                 "Worth:\t1.0", gamePanel.getGameItemNameAndDescription(item1));
         assertEquals("Test", gamePanel.getGameItemName(item1));
+    }
 
+    @Test
+    void setOrder() {
+        ArrayList<String> npcTestLines = new ArrayList<>();
+        npcTestLines.add("line1");
+        npcTestLines.add("line2");
+        HashMap<String, Integer> testNPCStats = new HashMap<>();
+        testNPCStats.put("Health",1);
+        testNPCStats.put("Attack",2);
+        testNPCStats.put("Defense",3);
+        testNPCStats.put("Speed",4);
+        NPC n = new NPC("Test1","Enemy","Villager", "Down", npcTestLines, testNPCStats);
+        assertEquals("player", gamePanel2.order(n));
+    }
+
+    @Test
+    void testBattle() {
+        setOrder();
+        HashMap<String, Integer> testNPCStatsStrongerVer = new HashMap<>();
+        testNPCStatsStrongerVer.put("Health",1000);
+        testNPCStatsStrongerVer.put("Attack",2000);
+        testNPCStatsStrongerVer.put("Defense",3);
+        testNPCStatsStrongerVer.put("Speed",99);
+        NPC t = new NPC("Test1","Enemy","Villager", "Down", new ArrayList<>(), testNPCStatsStrongerVer);
+        assertEquals("npc", gamePanel2.order(t));
     }
 
 

@@ -29,27 +29,19 @@ public class TextCollection {
 
     //REQUIRES: quantity > 0
     //MODIFIES: TextItem, this
-    //EFFECTS: adds a text item to the text collection, if it already exists- adds a new entry which takes up a slot
-    // anyways
+    //EFFECTS: adds a text item to the text collection if the text inventory is not full
     public void addTextItem(TextItem item) {
-        boolean foundItem = false;
-        fullTextInventory = false;
 
-        for (TextItem i : textItems) {
-            if (i == item) {
-                if (textItems.size() < maxTextSlots) {
-                    textItems.add(item);
-                    foundItem = true;
-                }
-            } else {
-                fullTextInventory = true;
-            }
-            break;
+
+        if (textItems.size() < maxTextSlots) {
+            fullTextInventory = false;
+        } else if (textItems.size() >= maxTextSlots) {
+            fullTextInventory = true;
         }
-        if (!foundItem && textItems.size() < maxTextSlots) {
+        if (!fullTextInventory & textItems.size() < maxTextSlots) {
             textItems.add(item);
+            totalTextItems++;
         }
-        totalTextItems++;
     }
 
     /*

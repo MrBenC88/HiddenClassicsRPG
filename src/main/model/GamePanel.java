@@ -34,6 +34,7 @@ public class GamePanel {
                      ArrayList<String> unclaimedTextName,
                      ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
                      ArrayList<String> textName, ArrayList<String> textContent, ArrayList<String> textBookId) {
+
         character = new UserCharacter(characterName, bal, attr, charChoice);
         inventory = new Inventory(itemNames, itemPrices, itemStats, itemDescrip);
         //uncGin is unclaimedGameItem name
@@ -44,8 +45,6 @@ public class GamePanel {
         textCollection = new TextCollection(textName, textContent, textBookId);
 
     }
-
-
 
     //EFFECTS: initiates the battle event with a specific NPC and determines order
     public String order(NPC n) {
@@ -286,7 +285,6 @@ public class GamePanel {
         String textID;
 
         for (TextItem i : textCollection.getAllTextItems()) {
-
             textName = textCollection.getTextName(i);
             textDescription = textCollection.getTextContent(i);
             textID = textCollection.getBookID(i);
@@ -340,6 +338,11 @@ public class GamePanel {
         gameObjects.addUnclaimedTextItems();
     }
 
+    //EFFECTS: get the unclaimed texts in the unClaimed textItem list
+    public ArrayList<TextItem> getUnclaimedTexts() {
+        return gameObjects.getAllUnclaimedTextItems();
+    }
+
 
     //EFFECTS: returns an InventoryItem Object
     public InventoryItem getInventoryItemObject(int position) {
@@ -369,6 +372,11 @@ public class GamePanel {
     //EFFECTS: adds the npcs to the gameobjects
     public void addNpcs() {
         gameObjects.addNpcs();
+    }
+
+    //EFFECTS: returns the npcs
+    public ArrayList<NPC> getNPCs() {
+        return gameObjects.getAllNPCs();
     }
 
 

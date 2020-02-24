@@ -9,10 +9,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserCharacterTest {
     private UserCharacter testCharacter;
+    private UserCharacter testCharacter2;
+    private HashMap<String, Integer> testCharAttri;
 
     @BeforeEach
     void runBefore() {
         testCharacter = new UserCharacter();
+        testCharAttri = new HashMap<>();
+        testCharAttri.put("Health", 1);
+        testCharAttri.put("Attack", 1);
+        testCharAttri.put("Defense", 1);
+        testCharAttri.put("Speed", 1);
+        testCharacter2 = new UserCharacter("Ben", 0.0, testCharAttri,"Wanderer");
     }
 
     @Test
@@ -20,6 +28,13 @@ class UserCharacterTest {
         assertEquals(0.00, testCharacter.getBalance());
         assertEquals("", testCharacter.getName());
         assertEquals(4,testCharacter.getCharacterAttributes().size());
+    }
+
+    @Test
+    void testConstructorWithParam() {
+        assertEquals(0.0, testCharacter2.getBalance());
+        assertEquals("Ben", testCharacter2.getName());
+        assertEquals(4,testCharacter2.getCharacterAttributes().size());
     }
 
     @Test

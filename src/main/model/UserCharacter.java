@@ -203,6 +203,4 @@ public class UserCharacter {
     public double getBalance() {
         return balance;
     }
-
-
 }

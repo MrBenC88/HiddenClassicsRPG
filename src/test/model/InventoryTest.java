@@ -2,15 +2,23 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InventoryTest {
     private Inventory testInventory;
+    private Inventory testInventory2;
     private GameItem item1;
     private GameItem item2;
     private GameItem item3;
+    private ArrayList<String>itemNames;
+    private ArrayList<Double>itemPrices;
+    private ArrayList<ArrayList<Long>> itemStats;
+    private ArrayList<String> itemDescrip;
 
     @BeforeEach
     void runBefore() {
@@ -18,12 +26,35 @@ public class InventoryTest {
         item1 = new GameItem("1","2", 1.00, 1,1,1,1);
         item2 = new GameItem("2","3", 1.20, 2,2,2,2);
         item3 = new GameItem("3","4", 1.23, 3,3,3,3);
+        itemNames = new ArrayList<>();
+        itemPrices = new ArrayList<>();
+        itemStats = new ArrayList<>();
+        itemDescrip = new ArrayList<>();
+        itemNames.add("Ben");
+        itemPrices.add(1.00);
+        itemDescrip.add("Test");
+        ArrayList<Long> arrayOfLong = new ArrayList<>();
+        arrayOfLong.add((long)1);
+        arrayOfLong.add((long)2);
+        arrayOfLong.add((long)3);
+        arrayOfLong.add((long)4);
+        itemStats.add(arrayOfLong);
+
+
+        testInventory2 = new Inventory(itemNames, itemPrices,itemStats,itemDescrip);
     }
 
     @Test
     void testConstructor() {
         assertEquals("[]", testInventory.getAllInventoryItems().toString());
         assertEquals(0, testInventory.getInventoryTotalItems());
+    }
+
+
+    @Test
+    void testConstructorWithParams() {
+        assertEquals("[Ben]", testInventory2.getAllInventoryItemGameItemNames().toString());
+        assertEquals(1, testInventory2.getInventoryTotalItems());
     }
 
     @Test
