@@ -89,7 +89,7 @@ public class GamePanel {
             npcHP -= (playerAttack * (10) / npcDef);
 
             battleWinner = checkWinner(playerHp, npcHP);
-            if (battleWinner.equals("npc") || battleWinner.equals("player")) {
+            if (!battleWinner.equals("")) {
                 winner = battleWinner;
             }
         }
@@ -124,7 +124,7 @@ public class GamePanel {
             npcHP -= (playerAttack * (10) / npcDef);
             playerHp -= (npcAtk * (10) / playerDefense);
             battleWinner = checkWinner(playerHp, npcHP);
-            if (battleWinner.equals("npc") || battleWinner.equals("player")) {
+            if (!battleWinner.equals("")) {
                 winner = battleWinner;
             }
         }

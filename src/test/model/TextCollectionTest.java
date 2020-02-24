@@ -46,6 +46,8 @@ public class TextCollectionTest {
         assertEquals(5, textCollection.getTextCollectionTotalTexts());
         textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(4));
         assertEquals(5, textCollection.getTextCollectionTotalTexts());
+        textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(4));
+        assertEquals(5, textCollection.getTextCollectionTotalTexts());
 
     }
 }

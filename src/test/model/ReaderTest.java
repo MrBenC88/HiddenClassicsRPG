@@ -1,10 +1,11 @@
-package persistence;
+package model;
 
 import model.GamePanel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import persistence.Reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static persistence.Reader.readData;
 
 public class ReaderTest {
-    private  Reader reader;
+    private Reader reader;
 
     @BeforeEach
     void runBefore() {

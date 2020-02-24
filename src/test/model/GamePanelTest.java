@@ -207,6 +207,32 @@ public class GamePanelTest {
         assertEquals("npc", gamePanel2.order(t));
     }
 
+    @Test
+    void testBattlePlayerFirst() {
+        ArrayList<String> npcTestLines = new ArrayList<>();
+        npcTestLines.add("line1");
+        npcTestLines.add("line2");
+        HashMap<String, Integer> testNPCStats = new HashMap<>();
+        testNPCStats.put("Health",1);
+        testNPCStats.put("Attack",2);
+        testNPCStats.put("Defense",3);
+        testNPCStats.put("Speed",4);
+        NPC n = new NPC("Test1","Enemy","Villager", "Down", npcTestLines, testNPCStats);
+        assertEquals("player", gamePanel2.battle("playerFirst", testNPCStats));
+    }
 
-
+    @Test
+    void testBattleNPCFirst() {
+        ArrayList<String> npcTestLines = new ArrayList<>();
+        npcTestLines.add("line1");
+        npcTestLines.add("line2");
+        HashMap<String, Integer> testNPCStats = new HashMap<>();
+        testNPCStats.put("Health",999);
+        testNPCStats.put("Attack",992);
+        testNPCStats.put("Defense",3);
+        testNPCStats.put("Speed",994);
+        NPC n = new NPC("Test1","Enemy","Villager", "Down", npcTestLines, testNPCStats);
+        assertEquals("npc", gamePanel2.battle("npcFirst", testNPCStats));
+    }
+    
 }
