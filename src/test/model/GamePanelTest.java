@@ -234,5 +234,5 @@ public class GamePanelTest {
         NPC n = new NPC("Test1","Enemy","Villager", "Down", npcTestLines, testNPCStats);
         assertEquals("npc", gamePanel2.battle("npcFirst", testNPCStats));
     }
-    
+
 }

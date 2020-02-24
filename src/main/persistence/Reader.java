@@ -19,12 +19,6 @@ import java.util.List;
 
 // A reader that can read game data from a file
 public class Reader {
-    private java.io.Reader reader;
-
-    // constructs the reader
-    public Reader(File file) throws FileNotFoundException {
-        reader = new FileReader(file);
-    }
 
     //Returns the json object read from file
     public static JSONObject readData(FileReader reader) throws IOException, ParseException {

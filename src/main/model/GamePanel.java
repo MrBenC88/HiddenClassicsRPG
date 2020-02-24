@@ -67,7 +67,7 @@ public class GamePanel {
         if (n.equals("npcFirst")) { //NPC first
             winner = battleEventNPC(winner, npcStats);
 
-        } else if (n.equals("playerFirst")) { //player  first
+        } else { //player  first
             winner = battleEventPlayer(winner,npcStats);
 
         }
@@ -89,9 +89,8 @@ public class GamePanel {
             npcHP -= (playerAttack * (10) / npcDef);
 
             battleWinner = checkWinner(playerHp, npcHP);
-            if (!battleWinner.equals("")) {
-                winner = battleWinner;
-            }
+            winner = battleWinner;
+
         }
         return winner;
     }
@@ -124,9 +123,9 @@ public class GamePanel {
             npcHP -= (playerAttack * (10) / npcDef);
             playerHp -= (npcAtk * (10) / playerDefense);
             battleWinner = checkWinner(playerHp, npcHP);
-            if (!battleWinner.equals("")) {
-                winner = battleWinner;
-            }
+
+            winner = battleWinner;
+
         }
         return winner;
     }

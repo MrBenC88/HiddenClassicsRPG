@@ -18,20 +18,7 @@ import static persistence.Reader.readData;
 public class ReaderTest {
     private Reader reader;
 
-    @BeforeEach
-    void runBefore() {
-        try {
-            reader = new Reader(new File("./data/gamedatatest.json"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            fail("IOException should not have been thrown");
-        }
-    }
 
-    @Test
-    void testConstructor() {
-        assertTrue(reader instanceof Reader);
-    }
 
     @Test
     void testReadData() throws FileNotFoundException {
