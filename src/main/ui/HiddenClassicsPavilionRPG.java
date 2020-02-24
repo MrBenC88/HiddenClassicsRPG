@@ -196,7 +196,6 @@ public class HiddenClassicsPavilionRPG {
         }
     }
 
-
     //MODIFIES: gameObject
     //EFFECTS: selects a item from unclaimed items
     private void selectItem() {

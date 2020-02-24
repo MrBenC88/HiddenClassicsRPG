@@ -2,6 +2,7 @@ package model;
 
 import model.GamePanel;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,13 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 import static persistence.Reader.readData;
 
-public class ReaderTest {
+class ReaderTest {
+    private Reader reader = new Reader();
+
+    @Test
+    void testConstructor() {
+        assertTrue(reader instanceof Reader);
+    }
 
     @Test
     void testReadData() throws FileNotFoundException {
