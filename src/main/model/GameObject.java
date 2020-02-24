@@ -37,6 +37,7 @@ public class GameObject {
         rebuildNpcs(npcLines, npcTitle, npcDirection,  npcType, npcNames, npcStats, npcs);
     }
 
+    //EFFECTS: adds new npc objects to the list of npcs
     public void rebuildNpcs(ArrayList<ArrayList<String>> npcLines,
                             ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
                             ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
@@ -52,6 +53,7 @@ public class GameObject {
         }
     }
 
+    //EFFECTS: adds new text items to array list
     public void rebuildUnclaimedTextItems(ArrayList<String> unclaimedTextName,
                                           ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
                                           ArrayList<TextItem> unclaimedTextItems) {
@@ -63,6 +65,7 @@ public class GameObject {
         }
     }
 
+    //EFFECTS: adds new game items to list of unclaimed game items
     public void rebuildUnclaimedGameItems(ArrayList<String> unclaimedGameItemName,
                                           ArrayList<Double> unclaimedGameItemPrice,
                                           ArrayList<ArrayList<Long>> unclaimedGameItemStat,

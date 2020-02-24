@@ -104,6 +104,4 @@ public class TextCollection {
         listOfString.add(item.getBookID());
         return listOfString;
     }*/
-
-
 }
