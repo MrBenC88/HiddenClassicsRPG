@@ -15,16 +15,16 @@ public class GameObjectTest {
     private ArrayList<Double> gameItemDoubleTests;
     private ArrayList<ArrayList<Long>> gameItemStat;
     private ArrayList<ArrayList<String>> npcLines;
-    private ArrayList<HashMap<String, Integer>> npcTestStats;
+    private ArrayList<HashMap<String, Long>> npcTestStats;
 
     @BeforeEach
     void runBefore() {
         npcTestStats = new ArrayList<>();
-        HashMap<String, Integer> npcStat1 = new HashMap<>();
-        npcStat1.put("Health", 10);
-        npcStat1.put("Defense", 10);
-        npcStat1.put("Attack", 10);
-        npcStat1.put("Speed", 10);
+        HashMap<String, Long> npcStat1 = new HashMap<>();
+        npcStat1.put("Health", (long) 10);
+        npcStat1.put("Defense", (long) 10);
+        npcStat1.put("Attack", (long) 10);
+        npcStat1.put("Speed",(long) 10);
         npcTestStats.add(npcStat1);
 
         strTests = new ArrayList<>();

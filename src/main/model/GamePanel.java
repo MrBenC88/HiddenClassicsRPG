@@ -24,13 +24,13 @@ public class GamePanel {
     }
 
     //EFFECTS: another constructor which takes in parameters to reconstruct the game from loaded data
-    public GamePanel(String characterName, double bal,HashMap<String, Integer> attr, String charChoice,
+    public GamePanel(String characterName, double bal,HashMap<String, Long> attr, String charChoice,
                      ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
                      ArrayList<String> itemDescrip, ArrayList<String> uncGin,
                      ArrayList<Double> uncGip, ArrayList<ArrayList<Long>> uncGiS,
                      ArrayList<String> unclaimedGameItemDescrip, ArrayList<ArrayList<String>> npcLines,
                      ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
-                     ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
+                     ArrayList<String> npcNames, ArrayList<HashMap<String, Long>> npcStats,
                      ArrayList<String> unclaimedTextName,
                      ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
                      ArrayList<String> textName, ArrayList<String> textContent, ArrayList<String> textBookId) {

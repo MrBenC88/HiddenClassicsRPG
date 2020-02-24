@@ -15,16 +15,16 @@ public class GamePanelTest {
     GameItem item1;
     GameObject gameObject;
     ArrayList<String> testStringArray;
-    HashMap<String, Integer> testCharAttributes;
+    HashMap<String, Long> testCharAttributes;
 
 
     @BeforeEach
     void runBefore() {
         testCharAttributes = new HashMap<>();
-        testCharAttributes.put("Health",10);
-        testCharAttributes.put("Defense",4);
-        testCharAttributes.put("Attack",3);
-        testCharAttributes.put("Speed",9);
+        testCharAttributes.put("Health",(long) 10);
+        testCharAttributes.put("Defense",(long) 4);
+        testCharAttributes.put("Attack",(long) 3);
+        testCharAttributes.put("Speed", (long) 9);
 
         gamePanel = new GamePanel();
         testStringArray = new ArrayList<>();

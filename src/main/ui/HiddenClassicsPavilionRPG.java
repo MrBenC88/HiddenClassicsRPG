@@ -134,7 +134,6 @@ public class HiddenClassicsPavilionRPG {
     //EFFECTS: calls upon corresponding method depending on user input
     private void inGameMenuSelector(int num) {
         if (num == 1) {
-            currentScreen = "inventory";
             openInventory();
         } else if (num == 2) {
             currentScreen = "store";
@@ -154,6 +153,8 @@ public class HiddenClassicsPavilionRPG {
             inGameMenu();
         } else if (num == 6) {
             saveGame(game);
+        } else {
+            runGame();
         }
     }
 
@@ -176,7 +177,7 @@ public class HiddenClassicsPavilionRPG {
             FileReader reader = new FileReader(GAME_FILE);
             JSONObject jsonObj = readData(reader);
             game = new GamePanel((String) jsonObj.get("char_name"), (double) jsonObj.get("char_balance"),
-                    (HashMap<String, Integer>)jsonObj.get("char_attributes"),(String)jsonObj.get("char_class"),
+                    (HashMap<String, Long>)jsonObj.get("char_attributes"),(String)jsonObj.get("char_class"),
                     (ArrayList<String>) jsonObj.get("inv_item_names"),(ArrayList<Double>) jsonObj.get("inv_item_price"),
                     (ArrayList<ArrayList<Long>>) jsonObj.get("inv_item_stats"),
                     (ArrayList<String>) jsonObj.get("inv_item_des"),(ArrayList<String>) jsonObj.get("uncl_i_name"),
@@ -185,7 +186,7 @@ public class HiddenClassicsPavilionRPG {
                     (ArrayList<ArrayList<String>>)jsonObj.get("npclines"),
                     (ArrayList<String>) jsonObj.get("npctitles"),(ArrayList<String>) jsonObj.get("npcdirs"),
                     (ArrayList<String>)jsonObj.get("npctypes"), (ArrayList<String>)jsonObj.get("npcnames"),
-                    (ArrayList<HashMap<String, Integer>>) jsonObj.get("npcstat"),
+                    (ArrayList<HashMap<String, Long>>) jsonObj.get("npcstat"),
                     (ArrayList<String>)jsonObj.get("uncl_ti_name"), (ArrayList<String>)jsonObj.get("uncl_ti_content"),
                     (ArrayList<String>)jsonObj.get("uncl_ti_bookId"),
                     (ArrayList<String>)jsonObj.get("text_item_name"),(ArrayList<String>)jsonObj.get("text_item_cont"),
@@ -273,6 +274,7 @@ public class HiddenClassicsPavilionRPG {
 
     //EFFECTS: shows inventory items and gets user input to select an inventory item
     private void openInventory() {
+        currentScreen = "inventory";
         if (game.inventory.getInventoryTotalItems() != 0) {
             currentScreen = "inventory";
             System.out.println("\n\t\t\t\tWelcome to your Inventory--\n");

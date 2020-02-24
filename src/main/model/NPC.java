@@ -26,13 +26,19 @@ public class NPC {
         this.npcStats = stats;
     }
 
-    public NPC(String name, String npcType, String npcTitle, String direction,HashMap<String, Integer> stats,
+    public NPC(String name, String npcType, String npcTitle, String direction,HashMap<String, Long> stats,
                ArrayList<String> npcLines) {
         this.name = name;
         this.npcType = npcType;
         title = npcTitle;
         this.direction = direction;
-        npcStats = stats;
+        //We must convert long values to integer.
+        npcStats = new HashMap<>();
+        npcStats.put("Speed", stats.get("Speed").intValue());
+        npcStats.put("Health", stats.get("Health").intValue());
+        npcStats.put("Defense", stats.get("Defense").intValue());
+        npcStats.put("Attack", stats.get("Attack").intValue());
+
         listOfNpcLines = npcLines;
     }
 

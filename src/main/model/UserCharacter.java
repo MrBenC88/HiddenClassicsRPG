@@ -23,11 +23,21 @@ public class UserCharacter {
     }
 
     //EFFECTS: constructs the user's character with defined parameters
-    public UserCharacter(String name, double balance, HashMap<String, Integer> attr, String characterChoice) {
+    public UserCharacter(String name, double balance, HashMap<String, Long> attr, String characterChoice) {
         this.name = name;
         this.balance = balance;
         this.characterChoice = characterChoice;
-        this.characterAttributes = attr;
+        //We must convert long values to integer.
+        int hp = attr.get("Health").intValue();
+        int atk = attr.get("Attack").intValue();
+        int def = attr.get("Defense").intValue();
+        int spd = attr.get("Speed").intValue();
+        characterAttributes = new HashMap<>();
+
+        characterAttributes.put("Health", attr.get("Health").intValue());
+        characterAttributes.put("Attack", attr.get("Attack").intValue());
+        characterAttributes.put("Defense", attr.get("Defense").intValue());
+        characterAttributes.put("Speed",attr.get("Speed").intValue());
 
     }
 

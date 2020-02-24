@@ -10,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserCharacterTest {
     private UserCharacter testCharacter;
     private UserCharacter testCharacter2;
-    private HashMap<String, Integer> testCharAttri;
+    private HashMap<String, Long> testCharAttri;
 
     @BeforeEach
     void runBefore() {
         testCharacter = new UserCharacter();
         testCharAttri = new HashMap<>();
-        testCharAttri.put("Health", 1);
-        testCharAttri.put("Attack", 1);
-        testCharAttri.put("Defense", 1);
-        testCharAttri.put("Speed", 1);
+        testCharAttri.put("Health", (long) 1);
+        testCharAttri.put("Attack", (long) 1);
+        testCharAttri.put("Defense", (long) 1);
+        testCharAttri.put("Speed", (long) 1);
         testCharacter2 = new UserCharacter("Ben", 0.0, testCharAttri,"Wanderer");
     }
 

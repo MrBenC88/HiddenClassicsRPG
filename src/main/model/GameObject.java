@@ -25,7 +25,7 @@ public class GameObject {
                       ArrayList<Double> unclaimedGameItemPrice, ArrayList<ArrayList<Long>> unclaimedGameItemStat,
                       ArrayList<String> unclaimedGameItemDescrip, ArrayList<ArrayList<String>> npcLines,
                       ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
-                      ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
+                      ArrayList<String> npcNames, ArrayList<HashMap<String, Long>> npcStats,
                       ArrayList<String> unclaimedTextName,
                       ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId) {
         unclaimedGameItems = new ArrayList<>();
@@ -40,7 +40,7 @@ public class GameObject {
     //EFFECTS: adds new npc objects to the list of npcs
     public void rebuildNpcs(ArrayList<ArrayList<String>> npcLines,
                             ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
-                            ArrayList<String> npcNames, ArrayList<HashMap<String, Integer>> npcStats,
+                            ArrayList<String> npcNames, ArrayList<HashMap<String, Long>> npcStats,
                             ArrayList<NPC> npcs) {
         for (int i = 0; i < npcNames.size(); i++) {
             String npcName = npcNames.get(i);
@@ -48,7 +48,7 @@ public class GameObject {
             String npcTy = npcType.get(i);
             ArrayList<String> npcLin = npcLines.get(i);
             String dir = npcDirection.get(i);
-            HashMap<String, Integer> npcStat = npcStats.get(i);
+            HashMap<String, Long> npcStat = npcStats.get(i);
             npcs.add(new NPC(npcName, npcTy, npcTitl, dir, npcStat, npcLin));
         }
     }

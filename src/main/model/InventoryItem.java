@@ -13,7 +13,6 @@ public class InventoryItem {
     }
 
 
-
     // EFFECTS: returns the quantity of this specific item type
     public int getQuantity() {
         return quantity;
