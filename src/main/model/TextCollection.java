@@ -35,7 +35,7 @@ public class TextCollection {
 
         if (textItems.size() < maxTextSlots) {
             fullTextInventory = false;
-        } else if (textItems.size() >= maxTextSlots) {
+        } else {
             fullTextInventory = true;
         }
         if (!fullTextInventory & textItems.size() < maxTextSlots) {

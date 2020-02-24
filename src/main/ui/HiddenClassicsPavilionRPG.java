@@ -153,9 +153,8 @@ public class HiddenClassicsPavilionRPG {
             inGameMenu();
         } else if (num == 6) {
             saveGame(game);
-        } else {
-            runGame();
         }
+        runGame();
     }
 
     //MODIFIES: writer

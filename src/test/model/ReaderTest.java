@@ -16,15 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static persistence.Reader.readData;
 
 public class ReaderTest {
-    private Reader reader;
-
-
 
     @Test
     void testReadData() throws FileNotFoundException {
         try {
             FileReader reader = new FileReader("./data/gamedatatest.json");
             JSONObject jsonObj = readData(reader);
+
             assertEquals("[]", jsonObj.get("npcstat").toString());
             assertEquals("[[3,1,0,1],[2,2,2,0],[1,1,2,2],[2,2,3,12]," +
                     "[2,2,3,12],[2,2,3,12],[2,2,3,12],[2,2,3,12]]", jsonObj.get("uncl_i_s").toString());

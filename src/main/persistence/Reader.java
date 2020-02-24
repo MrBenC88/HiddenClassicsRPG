@@ -1,6 +1,5 @@
 package persistence;
 
-// Some snippets of code from: TellerApp
 //Inspired by https://mkyong.com/java/json-simple-example-read-and-write-json/
 
 import org.json.simple.JSONObject;
