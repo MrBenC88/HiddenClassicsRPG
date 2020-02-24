@@ -16,11 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-// A reader that can read game data from a file
+// A class which represents a reader that can read game data from a file
 public class Reader {
-
-    public Reader() {
-    }
 
     //Returns the json object read from file
     public static JSONObject readData(FileReader reader) throws IOException, ParseException {

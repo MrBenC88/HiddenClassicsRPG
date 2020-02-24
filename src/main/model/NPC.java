@@ -26,6 +26,8 @@ public class NPC {
         this.npcStats = stats;
     }
 
+    //EFFECTS: Constructs an NPC given the retrieved game data and sets the NPC's characteristics such as name, type,
+    // title, direction, stats
     public NPC(String name, String npcType, String npcTitle, String direction,HashMap<String, Long> stats,
                ArrayList<String> npcLines) {
         this.name = name;

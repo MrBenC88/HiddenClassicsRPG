@@ -23,7 +23,7 @@ public class GamePanel {
         textCollection = new TextCollection();
     }
 
-    //EFFECTS: another constructor which takes in parameters to reconstruct the game from loaded data
+    //EFFECTS:  constructor which takes in parameters to reconstruct the game panel object from loaded data from JSON
     public GamePanel(String characterName, double bal,HashMap<String, Long> attr, String charChoice,
                      ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
                      ArrayList<String> itemDescrip, ArrayList<String> uncGin,
@@ -35,10 +35,11 @@ public class GamePanel {
                      ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
                      ArrayList<String> textName, ArrayList<String> textContent, ArrayList<String> textBookId) {
 
+        //Reconstruct each object relevant to the game state based on previous existing data from JSON
         character = new UserCharacter(characterName, bal, attr, charChoice);
         inventory = new Inventory(itemNames, itemPrices, itemStats, itemDescrip);
         //uncGin is unclaimedGameItem name
-        //uncGip is unclaimedGameItem price - simplified to keep line to <= 120 char long
+        //uncGip is unclaimedGameItem price - simplified to keep line to <= 120 char long (for checkstyle)
         gameObjects = new GameObject(uncGin,uncGip, uncGiS,
                 unclaimedGameItemDescrip, npcLines,npcTitle, npcDirection, npcType, npcNames, npcStats,
                 unclaimedTextName,unclaimedTextContent, unclaimedTextBookId);

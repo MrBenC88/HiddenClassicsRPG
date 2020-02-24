@@ -43,10 +43,10 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to view the text's name and description [completed] 
 - As the user, I want to be able to enter a battle phase with a dummy NPC. [completed] 
 - As the user, I want to be able to save my game data! (In a JSON!!!) [completed] 
--    
-- As the user, I want to be able to load my game data! (From a JSON!!!) 
+- As the user, I want to be able to load my game data! (From a JSON!!!)  [completed] 
 
 
 **Extra for future phase:**
 - As the user, I want to be able to collect texts and add it to my collection of texts.
+- UI elements
 

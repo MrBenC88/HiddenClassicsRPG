@@ -2,7 +2,8 @@ package model;
 
 import java.util.HashMap;
 
-// Class is a representation of the user's character having a name, balance (in dollars), attributes, and inventory
+// Class is a representation of the user's character having a name, balance (in dollars), attributes, and inventory,
+// and character class (characterChoice)
 public class UserCharacter {
     private String name;
     private double balance;
@@ -22,23 +23,19 @@ public class UserCharacter {
         characterAttributes.put("Speed", 0);
     }
 
-    //EFFECTS: constructs the user's character with defined parameters
+    //EFFECTS: constructs the user's character with defined parameters which are passed from GamePanel
     public UserCharacter(String name, double balance, HashMap<String, Long> attr, String characterChoice) {
         this.name = name;
         this.balance = balance;
         this.characterChoice = characterChoice;
-        //We must convert long values to integer.
-        int hp = attr.get("Health").intValue();
-        int atk = attr.get("Attack").intValue();
-        int def = attr.get("Defense").intValue();
-        int spd = attr.get("Speed").intValue();
+
         characterAttributes = new HashMap<>();
 
+        //We must convert long values to integer.
         characterAttributes.put("Health", attr.get("Health").intValue());
         characterAttributes.put("Attack", attr.get("Attack").intValue());
         characterAttributes.put("Defense", attr.get("Defense").intValue());
         characterAttributes.put("Speed",attr.get("Speed").intValue());
-
     }
 
     //REQUIRES: num [1:4]
@@ -195,7 +192,6 @@ public class UserCharacter {
     //EFFECTS: adds amount to current balance
     public void addBalance(double amount) {
         this.balance += amount;
-
     }
 
     //REQUIRES: amount <= 0

@@ -19,8 +19,8 @@ public class GameObject {
         npcs = new ArrayList<>();
     }
 
-    //EFFECTS: constructs a game object and initializes a filled array of unclaimedGameItems, unclaimedTextItems,
-    // and npcs
+    //EFFECTS: constructs a game object and initializes the gameobjects of unclaimedGameItems, unclaimedTextItems,
+    // and npcs and populates the ArrayList of each
     public GameObject(ArrayList<String> unclaimedGameItemName,
                       ArrayList<Double> unclaimedGameItemPrice, ArrayList<ArrayList<Long>> unclaimedGameItemStat,
                       ArrayList<String> unclaimedGameItemDescrip, ArrayList<ArrayList<String>> npcLines,
@@ -37,7 +37,7 @@ public class GameObject {
         rebuildNpcs(npcLines, npcTitle, npcDirection,  npcType, npcNames, npcStats, npcs);
     }
 
-    //EFFECTS: adds new npc objects to the list of npcs
+    //EFFECTS: Adds new npc objects to the list of npcs based on data from parameters
     public void rebuildNpcs(ArrayList<ArrayList<String>> npcLines,
                             ArrayList<String> npcTitle, ArrayList<String> npcDirection, ArrayList<String> npcType,
                             ArrayList<String> npcNames, ArrayList<HashMap<String, Long>> npcStats,
@@ -53,7 +53,7 @@ public class GameObject {
         }
     }
 
-    //EFFECTS: adds new text items to array list
+    //EFFECTS: adds new text items to array list based on data from parameters
     public void rebuildUnclaimedTextItems(ArrayList<String> unclaimedTextName,
                                           ArrayList<String> unclaimedTextContent, ArrayList<String> unclaimedTextBookId,
                                           ArrayList<TextItem> unclaimedTextItems) {
@@ -65,7 +65,7 @@ public class GameObject {
         }
     }
 
-    //EFFECTS: adds new game items to list of unclaimed game items
+    //EFFECTS: adds new game items to list of unclaimed game items based on data from parameters
     public void rebuildUnclaimedGameItems(ArrayList<String> unclaimedGameItemName,
                                           ArrayList<Double> unclaimedGameItemPrice,
                                           ArrayList<ArrayList<Long>> unclaimedGameItemStat,

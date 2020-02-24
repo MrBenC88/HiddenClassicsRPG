@@ -15,7 +15,7 @@ public class GameItem {
     private  int spd; //    Consists of hp, atk, def, spd
 
 
-    //EFFECTS: constructs the game item with description , market price, and the stats
+    //EFFECTS: constructs the game item with name, description , market price, and the stats
     public GameItem(String name,String description, double marketPrice, int hp, int atk, int def, int spd) {
         this.name = name;
         this.description = description;
@@ -31,6 +31,8 @@ public class GameItem {
         this.name = name;
         marketPrice = price;
         //We have to get the intValue so we can get an integer rather than long
+        //When reading from JSON, it casts all integer values to longs so, we need to change these long values back
+        // into integer values with .intValue()
         this.hp = itemStats.get(0).intValue();
         this.atk = itemStats.get(1).intValue();
         this.def = itemStats.get(2).intValue();

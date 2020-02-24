@@ -2,7 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
-//a class representing the user's inventory which is a list of inventory items, and keeps track of the total items
+//A class representing the user's inventory which is a list of inventory items, and keeps track of the total items
 // in the inventory, the max items allowed per slot, and the max items in the inventory
 public class Inventory {
 
@@ -18,11 +18,13 @@ public class Inventory {
         totalItems = 0;
     }
 
-    //EFFECTS: Constructs an Inventory based on parameters
+    //EFFECTS: Constructs an Inventory based on parameters; initializes inventoryItems array and populates it with
+    // retrieved game data
     public Inventory(ArrayList<String> itemNames, ArrayList<Double> itemPrices, ArrayList<ArrayList<Long>> itemStats,
                      ArrayList<String> itemDescrip) {
         int count = 0;
         inventoryItems = new ArrayList<>(maxInventoryItemSlots);
+
         for (int i = 0; i < itemNames.size(); i++) {
             count++;
             String itemName = itemNames.get(i);

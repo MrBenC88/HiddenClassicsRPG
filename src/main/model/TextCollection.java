@@ -17,6 +17,7 @@ public class TextCollection {
     }
 
     //EFFECTS: Constructs a Text Collection with text items based on parameters
+    // initializes the textItems array list and adds the retrieved game data of text items to the array list
     public TextCollection(ArrayList<String> textName, ArrayList<String> textContent, ArrayList<String> textBookId) {
         textItems = new ArrayList<>(maxTextSlots);
         int counter = 0;
@@ -31,8 +32,6 @@ public class TextCollection {
     //MODIFIES: TextItem, this
     //EFFECTS: adds a text item to the text collection if the text inventory is not full
     public void addTextItem(TextItem item) {
-
-
         if (textItems.size() < maxTextSlots) {
             fullTextInventory = false;
         } else {
