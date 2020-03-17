@@ -11,6 +11,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -33,6 +35,8 @@ public class InventoryGUI extends SceneSettings {
     ImageView noItemImage;
     Button useItemButton;
     Button discardItemButton;
+    Button refreshButton;
+    Button viewItemDetailsButton;
     ListView<String> listView;
     Text userInfoAfterItemEvent;
 
@@ -59,6 +63,7 @@ public class InventoryGUI extends SceneSettings {
         setUpListView();
         setUpButtons();
         checkIfNoItems();
+        setUpKeyEvent();
         StackPane.setMargin(noItemImage, new Insets(0,0,22,0));
 
         StackPane.setMargin(userInfoAfterItemEvent, new Insets(370,0,0,0));
@@ -102,12 +107,45 @@ public class InventoryGUI extends SceneSettings {
         discardItemButton = new Button("Discard Item");
         StackPane.setMargin(discardItemButton, new Insets(170,0,600,250));
 
-        mainLayout.getChildren().addAll(okButton,useItemButton, discardItemButton);
+        viewItemDetailsButton = new Button("View Details");
+        StackPane.setMargin(viewItemDetailsButton, new Insets(170,0,600,-90));
+
+        refreshButton = new Button("Refresh");
+        StackPane.setMargin(refreshButton, new Insets(170,0,600,-260));
+
+        mainLayout.getChildren().addAll(refreshButton,okButton,useItemButton, discardItemButton, viewItemDetailsButton);
         okButton.setOnAction(e -> switchToInGameMenu());
 
+        refreshButton.setOnAction(e -> reloadListView());
         useItemButton.setOnAction(e -> useGameItem());
         discardItemButton.setOnAction(e -> discardGameItem());
+        viewItemDetailsButton.setOnAction(e -> viewItemDetails());
 
+    }
+
+    public void viewItemDetails() {
+        if (game.inventory.getInventoryTotalItems() == 0) {
+            Alert noItems = new Alert(Alert.AlertType.INFORMATION);
+            noItems.setHeaderText("No Inventory Items Alert");
+            noItems.setContentText("You have no items in your inventory!");
+            noItems.show();
+
+        } else if (listView.getSelectionModel().getSelectedItem() == null) {
+            Alert noSelectedItem = new Alert(Alert.AlertType.INFORMATION);
+            noSelectedItem.setHeaderText("No Item Selected Alert");
+            noSelectedItem.setContentText("You have not selected an item in your inventory!");
+            noSelectedItem.show();
+        } else if (game.inventory.getInventoryTotalItems() >= 1) {
+            int userSelection;
+            userSelection = listView.getSelectionModel().getSelectedIndex();
+            InventoryItem selectedItem = game.getInventoryItemObject(userSelection);
+
+            userInfoAfterItemEvent.setText("Item Details: \n"
+                    + game.getGameItemNameAndDescription(selectedItem.getGameItem())
+                    + "\n\nYour current stats: \n" + game.character.getCharacterAttributes()
+                    + "\n\nCurrent Balance: \t" + game.character.getBalance());
+            checkIfNoItems();
+        }
     }
 
     public void useGameItem() {
@@ -136,6 +174,18 @@ public class InventoryGUI extends SceneSettings {
         }
     }
 
+    public void setUpKeyEvent() {
+        listView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    viewItemDetails();
+                }
+            }
+        });
+    }
+
+
     public void reloadListView() {
         ArrayList<String> reloadedList = new ArrayList<>();
         int countItems = 0;
@@ -154,12 +204,15 @@ public class InventoryGUI extends SceneSettings {
     }
 
     public void discardGameItem() {
+        discardGameItemConditions();
+    }
+
+    public void discardGameItemConditions() {
         if (game.inventory.getInventoryTotalItems() == 0) {
             Alert noItems = new Alert(Alert.AlertType.INFORMATION);
             noItems.setHeaderText("No Inventory Items Alert");
             noItems.setContentText("You have no items in your inventory!");
             noItems.show();
-
         }  else if (listView.getSelectionModel().getSelectedItem() == null) {
             Alert noSelectedItem = new Alert(Alert.AlertType.INFORMATION);
             noSelectedItem.setHeaderText("No Item Selected Alert");
@@ -175,11 +228,8 @@ public class InventoryGUI extends SceneSettings {
             userInfoAfterItemEvent.setText("You have discarded: 1 x\t" + discardedItemName
                     + "\nYou have collected 25 gold which has been added to your balance."
                     + "\n Current Balance \t" + game.character.getBalance());
-
-
             reloadListView();
             checkIfNoItems();
-
         }
     }
 

@@ -24,6 +24,7 @@ public class CharStatGUI extends SceneSettings {
     StackPane mainLayout;
     Scene inGameMenuScene;
     Button okButton;
+    Button refreshButton;
     ImageView charStatScreen;
     Text charStatsText;
 
@@ -33,7 +34,10 @@ public class CharStatGUI extends SceneSettings {
         this.inGameMenuScene = scene;
         mainLayout = new StackPane(); // controls layout of how it is displayed -> our root node
         okButton = new Button("Done");
+        refreshButton = new Button("Refresh");
         charStatsText = new Text();
+        StackPane.setMargin(refreshButton, new Insets(170,0,600,500));
+
         StackPane.setMargin(okButton, new Insets(500,0,0,700));
 
         charStatScene = new Scene(mainLayout);
@@ -48,8 +52,10 @@ public class CharStatGUI extends SceneSettings {
         }
         StackPane.setMargin(charStatsText, new Insets(0,0,0,0));
 
-        mainLayout.getChildren().addAll(okButton,charStatsText);
+        mainLayout.getChildren().addAll(okButton,charStatsText,refreshButton);
         okButton.setOnAction(e -> switchToInGameMenu());
+        refreshButton.setOnAction(e -> refreshData());
+
         displayStats();
     }
 
@@ -73,6 +79,10 @@ public class CharStatGUI extends SceneSettings {
                 + "\n\nText Collection Items:\t" + formattedTextItemsStr
                 + "\nTotal Text Items:\t" + game.textCollection.getTextCollectionTotalTexts()
         );
+    }
+
+    public void refreshData() {
+        displayStats();
     }
 
 

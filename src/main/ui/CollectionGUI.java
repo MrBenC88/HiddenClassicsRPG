@@ -34,6 +34,7 @@ public class CollectionGUI extends SceneSettings {
     Button viewDetailsButton;
     ListView<String> listView;
     Text userInfoAfterItemEvent;
+    Button refreshButton;
 
 
     public CollectionGUI(GamePanel game, Stage stage, Scene scene) {
@@ -42,7 +43,7 @@ public class CollectionGUI extends SceneSettings {
         this.inGameMenuScene = scene;
         mainLayout = new StackPane(); // controls layout of how it is displayed -> our root node
         userInfoAfterItemEvent = new Text();
-
+        listView = new ListView<>();
         collectionScene = new Scene(mainLayout);
 
         try {
@@ -62,7 +63,6 @@ public class CollectionGUI extends SceneSettings {
         StackPane.setMargin(userInfoAfterItemEvent, new Insets(370,0,0,0));
         mainLayout.getChildren().add(collectionDecorImage);
         setUpKeyEvent();
-
     }
 
 
@@ -80,8 +80,6 @@ public class CollectionGUI extends SceneSettings {
 
 
     public void setUpListView() {
-        listView = new ListView<>();
-
         for (TextItem t: game.textCollection.getAllTextItems()) {
             String textName = t.getTextItemName();
             String textID = t.getBookID();
@@ -100,12 +98,24 @@ public class CollectionGUI extends SceneSettings {
         viewDetailsButton = new Button("View Details");
         StackPane.setMargin(viewDetailsButton, new Insets(170,0,600,250));
 
+        refreshButton = new Button("Refresh");
+        StackPane.setMargin(refreshButton, new Insets(170,0,600,400));
 
-
-        mainLayout.getChildren().addAll(okButton, viewDetailsButton);
+        mainLayout.getChildren().addAll(okButton, viewDetailsButton, refreshButton);
         okButton.setOnAction(e -> switchToInGameMenu());
         viewDetailsButton.setOnAction(e -> viewTextDetails());
+        refreshButton.setOnAction(e -> refreshCollection());
 
+    }
+
+    public void refreshCollection() {
+        ArrayList<String> reloadedList = new ArrayList<>();
+        for (TextItem t: game.textCollection.getAllTextItems()) {
+            String textName = t.getTextItemName();
+            String textID = t.getBookID();
+            reloadedList.add("Book ID:\t" + textID + "\tText Name: \t" + textName);
+        }
+        listView.getItems().setAll(reloadedList);
     }
 
     public void viewTextDetails() {
