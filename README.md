@@ -41,7 +41,6 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to view the in game shop and my balance. [completed] 
 - As the user, I want to be able to make purchases. [completed] 
 - As the user, I want to be able to view the text's name and description [completed] 
-- As the user, I want to be able to enter a battle phase with a dummy NPC. [completed] 
 - As the user, I want to be able to save my game data! (In a JSON!!!) [completed] 
 - As the user, I want to be able to load my game data! (From a JSON!!!)  [completed] 
 
@@ -50,3 +49,15 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to collect texts and add it to my collection of texts.
 - UI elements
 
+**Phase 3**:*GUI*
+- Add user GUI.
+- OTHERS[TODO]
+- Add Specifications to all methods
+- Reference any third party resources
+- Finish Game element portion / write tests if necessary
+- Add Section for Instructions for Grader
+
+
+## Instructions for Grader"
+**Instructions**:*Generating Required Events*
+- content here
