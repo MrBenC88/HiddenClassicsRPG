@@ -148,6 +148,13 @@ public class MasterFrame extends Application {
         game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(2));
         game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(3));
         game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(4));
+
+        //Added Some Inventory Items to Inventory
+        game.inventory.addInventoryItem(game.gameObjects.getUnClaimedGameItem(0),2);
+        game.inventory.addInventoryItem(game.gameObjects.getUnClaimedGameItem(2),3);
+        game.inventory.addInventoryItem(game.gameObjects.getUnClaimedGameItem(1),1);
+
+
     }
 
 

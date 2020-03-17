@@ -6,13 +6,10 @@ import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import model.GamePanel;
 import persistence.Writer;
 
 import java.io.File;
@@ -46,11 +43,11 @@ public class InGameMenu {
     Button exitButton;
     Button saveButton;
 
-    InventoryGUI inventoryScene;
-    StoreGUI storeScene;
-    CollectionGUI collectionScene;
-    CharStatGUI charStatScene;
-    GameGUI inGameScene;
+    InventoryGUI inventoryGUI;
+    StoreGUI storeGUI;
+    CollectionGUI collectionGUI;
+    CharStatGUI charStatGui;
+    GameGUI inGameGui;
 
     private static final String GAME_FILE = "./data/game_data.json";
 
@@ -58,12 +55,13 @@ public class InGameMenu {
         this.game = game;
         this.stage = stage;
 
-        instantiateAllScenes(game,stage);
+
 
         mainLayout = new StackPane(); // controls layout of how it is displayed -> our root node
         inGameMenuScene = new Scene(mainLayout);
         inGameMenuScene.setCursor(Cursor.DEFAULT);
         setCurrentScene(stage);
+        instantiateAllScenes(game,stage, inGameMenuScene);
 
         try {
             Image igMenuImage = new Image(new FileInputStream("src/main/ui/asset/image/menu/ingamemenu.png"));
@@ -81,12 +79,12 @@ public class InGameMenu {
         setUpButtons();
     }
 
-    public void instantiateAllScenes(GamePanel game, Stage stage) {
-        inventoryScene = new InventoryGUI(game, stage);
-        storeScene = new StoreGUI(game, stage);
-        collectionScene = new CollectionGUI(game, stage);
-        charStatScene = new CharStatGUI(game, stage);
-        inGameScene = new GameGUI(game, stage);
+    public void instantiateAllScenes(GamePanel game, Stage stage, Scene scene) {
+        inventoryGUI = new InventoryGUI(game, stage, scene);
+        storeGUI = new StoreGUI(game, stage,  scene);
+        collectionGUI = new CollectionGUI(game, stage,  scene);
+        charStatGui = new CharStatGUI(game, stage,  scene);
+        inGameGui = new GameGUI(game, stage,  scene);
     }
 
 
@@ -155,36 +153,25 @@ public class InGameMenu {
         saveButton.setOnAction(e -> saveGame(game));
     }
 
-    public void setSceneInv(InventoryGUI inv) {
-        inv.setCurrentScene();
-    }
-
-    public void setSceneGame(GameGUI gameGUI) {
-        gameGUI.setCurrentScene();
-    }
-
-
-
     public void openInventory() {
-
+        inventoryGUI.setCurrentScene();
     }
 
     public void openStore() {
-
+        storeGUI.setCurrentScene();
     }
 
     public void openCollection() {
-
+        collectionGUI.setCurrentScene();
     }
 
     public void openCharStats() {
-
+        charStatGui.setCurrentScene();
     }
 
     public void openGame() {
-
+        inGameGui.setCurrentScene();
     }
-
 
 
     public void setCurrentScene(Stage stage) {
