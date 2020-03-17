@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -8,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -58,6 +61,20 @@ public class CollectionGUI extends SceneSettings {
 
         StackPane.setMargin(userInfoAfterItemEvent, new Insets(370,0,0,0));
         mainLayout.getChildren().add(collectionDecorImage);
+        setUpKeyEvent();
+
+    }
+
+
+    public void setUpKeyEvent() {
+        listView.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ENTER)) {
+                    viewTextDetails();
+                }
+            }
+        });
     }
 
 
@@ -110,11 +127,8 @@ public class CollectionGUI extends SceneSettings {
             userInfoAfterItemEvent.setText("You have selected the following text: \n"
                     + "Book ID:\t" + textSelected.getBookID() + "\nBook Title:\t" + textSelected.getTextItemName()
                     + "\nContent: \t" + textSelected.getTextItemContent());
-
         }
     }
-
-
 
 
     public void switchToInGameMenu() {

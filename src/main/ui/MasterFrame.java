@@ -73,9 +73,9 @@ public class MasterFrame extends Application {
         }
         setUpMainMenuButtons();
         mainLayout.getChildren().addAll(newGameButton, loadGameButton, quitButton);
-        StackPane.setMargin(newGameButton, new Insets(30,0,0,0));
-        StackPane.setMargin(loadGameButton, new Insets(150,0,0,0));
-        StackPane.setMargin(quitButton, new Insets(270,0,0,0));
+        StackPane.setMargin(newGameButton, new Insets(100,0,0,0));
+        StackPane.setMargin(loadGameButton, new Insets(220,0,0,0));
+        StackPane.setMargin(quitButton, new Insets(340,0,0,0));
         Scene scene = new Scene(mainLayout);
         scene.setCursor(Cursor.DEFAULT);
         mainWindow.setScene(scene);
