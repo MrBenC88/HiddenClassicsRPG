@@ -44,16 +44,18 @@ public class MasterFrame extends Application {
 
     @Override
     public void init() throws Exception {
-        //useful for loading assets / whatnot before app launches
-        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gamemusic.mid"));
-        //mainMenumusic.loop();
+        //useful for loading assets / whatnot before app launches //gamemusic.mid
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gracefully.wav"));
+        mainMenumusic.loop();
         System.out.println("Before");
     }
 
     @Override
     public void stop() throws Exception {
         //useful to run after we close the window
+        mainMenumusic.stop();
         System.out.println("End");
+        System.exit(0);
     }
 
     //MODIFIES: this

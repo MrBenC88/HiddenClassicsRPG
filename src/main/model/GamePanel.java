@@ -187,7 +187,7 @@ public class GamePanel {
         character.setAttack(99);
         character.setDef(99);
         character.setSpeed(99);
-        character.addBalance(50);
+        character.addBalance(10000);
         return character.getCharacterAttributes();
     }
 

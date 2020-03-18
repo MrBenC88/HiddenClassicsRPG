@@ -19,6 +19,7 @@ import static persistence.Reader.readData;
 
 // Class representation for the RPG Game Application's User interface which includes Game Menus ,
 // Set Up for Character Customization, and Item Selection UIs
+// This is the Console Application
 public class HiddenClassicsPavilionRPG {
     private static final String GAME_FILE = "./data/game_data.json";
     private Scanner input;
