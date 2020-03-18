@@ -62,19 +62,13 @@ public class InventoryGUI extends SceneSettings {
         }
         setUpListView();
         setUpButtons();
-        checkIfNoItems();
         setUpKeyEvent();
         StackPane.setMargin(noItemImage, new Insets(0,0,22,0));
-
+        mainLayout.getChildren().add(noItemImage);
         StackPane.setMargin(userInfoAfterItemEvent, new Insets(370,0,0,0));
 
     }
 
-    public void checkIfNoItems() {
-        if (game.inventory.getInventoryTotalItems() == 0) {
-            mainLayout.getChildren().add(noItemImage);
-        }
-    }
 
     public void setUpListView() {
         listView = new ListView<>();
@@ -144,7 +138,6 @@ public class InventoryGUI extends SceneSettings {
                     + game.getGameItemNameAndDescription(selectedItem.getGameItem())
                     + "\n\nYour current stats: \n" + game.character.getCharacterAttributes()
                     + "\n\nCurrent Balance: \t" + game.character.getBalance());
-            checkIfNoItems();
         }
     }
 
@@ -170,7 +163,7 @@ public class InventoryGUI extends SceneSettings {
                     + "\n\nYour current stats: \n" + game.character.getCharacterAttributes()
                     + "\n\nCurrent Balance: \t" + game.character.getBalance());
             reloadListView();
-            checkIfNoItems();
+
         }
     }
 
@@ -229,7 +222,6 @@ public class InventoryGUI extends SceneSettings {
                     + "\nYou have collected 25 gold which has been added to your balance."
                     + "\n Current Balance \t" + game.character.getBalance());
             reloadListView();
-            checkIfNoItems();
         }
     }
 
