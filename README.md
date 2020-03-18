@@ -44,11 +44,6 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to save my game data! (In a JSON!!!) [completed] 
 - As the user, I want to be able to load my game data! (From a JSON!!!)  [completed] 
 
-
-**Extra for future phase:**
-- As the user, I want to be able to collect texts and add it to my collection of texts.
-- UI elements
-
 **Phase 3**:*GUI*
 - Added user GUI.
 - Referenced all third party assets.
