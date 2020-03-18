@@ -19,6 +19,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * A class which represents the StoreGUI and shows all components associated with the GUI such as images, listview,
+ * buttons, etc.
+ */
 
 public class StoreGUI extends SceneSettings {
     GamePanel game;
@@ -38,7 +42,7 @@ public class StoreGUI extends SceneSettings {
     boolean paidGold;
     ListView<String> listOfItemAvailable;
 
-
+    //EFFECTS: constructs the StoreGUI object  and instantiates all components
     public StoreGUI(GamePanel game, Stage stage, Scene scene) {
         this.game = game;
         this.stage = stage;
@@ -55,7 +59,7 @@ public class StoreGUI extends SceneSettings {
             storeScreen = new ImageView(storeImg);
             mainLayout.getChildren().add(storeScreen);
         } catch (FileNotFoundException e) {
-            //
+            // Show no image and run program without them
         }
 
         mainLayout.getChildren().addAll(okButton, yesButton, noButton, currentBalance);
@@ -64,16 +68,21 @@ public class StoreGUI extends SceneSettings {
         setUpKeyEvent();
     }
 
+    //MODIFIES: stage
+    //EFFECTS: sets the stage to the in game menu scene
     public void switchToInGameMenu() {
         stage.setScene(inGameMenuScene);
     }
 
-
+    //MODIFIES: stage
+    //EFFECTS: sets the stage to the current storeScene
     @Override
     void setCurrentScene() {
         stage.setScene(storeScene);
     }
 
+    //MODIFIES: this
+    //EFFECTS:  sets up the buttons and its orientation
     public void setUpButtons() {
         okButton = new Button("Done");
         yesButton = new Button("Yes");
@@ -85,9 +94,10 @@ public class StoreGUI extends SceneSettings {
         StackPane.setMargin(yesButton, new Insets(300,0,600,100));
         StackPane.setMargin(noButton, new Insets(300,0,600,220));
         StackPane.setMargin(okButton, new Insets(500,0,0,700));
-
     }
 
+    //MODIFIES: this
+    //EFFECTS:  sets up the text and listview and its orientation
     public void setUpTextListView() {
         currentBalance = new Text();
         setTextBalAmount();
@@ -99,10 +109,13 @@ public class StoreGUI extends SceneSettings {
 
     }
 
+    //EFFECTS: sets the text for the balance
     public void setTextBalAmount() {
         currentBalance.setText("Current Balance:\t" + game.character.getBalance());
     }
 
+    //MODIFIES: this
+    //EFFECTS:  sets up event listeners
     public void setUpEvents() {
         okButton.setOnAction(e -> switchToInGameMenu());
         yesButton.setOnAction(e -> checkPurchase());
@@ -110,6 +123,8 @@ public class StoreGUI extends SceneSettings {
         submitPurchase.setOnAction(e -> confirmPurchase());
     }
 
+    //MODIFIES: game, game.character
+    //EFFECTS: checks if the user has enough to make purchase, if they do remove 50 gold and allow user to select item
     public void checkPurchase() {
         if (game.character.getBalance() < 50) {
             responsePrompt.setText("Sorry, your balance is insufficient!");
@@ -124,6 +139,8 @@ public class StoreGUI extends SceneSettings {
         }
     }
 
+    //MODIFIES: game.gameObjects, game
+    //EFFECTS: shuffles the unclaimed Game items and adds to the listview
     public void selectItem() {
         if (paidGold) {
             game.gameObjects.shuffleUnclaimedGameItems();
@@ -136,13 +153,16 @@ public class StoreGUI extends SceneSettings {
         }
     }
 
+    //EFFECTS: purchases the item if the user paid gold
     public void confirmPurchase() {
-
         if (paidGold) {
             purchaseConditions();
         }
     }
 
+    //MODIFIES: game.inventory
+    //EFFECTS: if the user has no items to buy or the user has not selected an item, show alert
+    // else take the user selection and add it to inventory.
     public void purchaseConditions() {
         if (listOfItemAvailable.getItems().size() == 0) {
             Alert noItems = new Alert(Alert.AlertType.INFORMATION);
@@ -160,16 +180,16 @@ public class StoreGUI extends SceneSettings {
             itemSelection = listOfItemAvailable.getSelectionModel().getSelectedIndex();
             GameItem gameSelected = game.gameObjects.getUnClaimedGameItem(itemSelection);
             game.addGameObjectToInventory(game.gameObjects.getUnClaimedGameItem(itemSelection), 1);
-            game.removeGameObject(game.gameObjects.getUnClaimedGameItem(itemSelection));
             responsePrompt.setText("The following has been added to your inventory:\n"
                     + gameSelected.getGameItemName() + "\n"
                     + gameSelected.getDescription() + "\n");
             paidGold = false;
             reloadListView();
-
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: refreshes the ListView collection to update with recent empty list
     public void reloadListView() {
         ArrayList<String> reloadedList = new ArrayList<>();
         if (paidGold) {
@@ -184,12 +204,16 @@ public class StoreGUI extends SceneSettings {
         }
     }
 
+    //EFFECTS: show item details if the user has already paid
     public void getSelectedItemDetails() {
         if (paidGold) {
             conditionsForItemDetailsShown();
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: displays alert if collection is empty, or nothing is selected
+    // else shows selected item information
     public void conditionsForItemDetailsShown() {
         if (listOfItemAvailable.getItems().size() == 0) {
             Alert noItems = new Alert(Alert.AlertType.INFORMATION);
@@ -214,6 +238,9 @@ public class StoreGUI extends SceneSettings {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: Overrides an KeyEvent handle method to respond to pressing the "ENTER" key after selecting an item in
+    // the list view
     public void setUpKeyEvent() {
         listOfItemAvailable.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override

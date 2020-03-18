@@ -41,20 +41,21 @@ public class MasterFrame extends Application {
     private static final String GAME_FILE = "./data/game_data.json";
     private InGameMenu inGameMenu;
 
-
+    //MODIFIES: mainMenumusic
+    //EFFECTS: sets up the music and loops it
     @Override
     public void init() throws Exception {
         //useful for loading assets / whatnot before app launches //gamemusic.mid
         mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gracefully.wav"));
         mainMenumusic.loop();
-        System.out.println("Before");
     }
 
+    //MODIFIES: this
+    //EFFECTS: shuts all music and exits program
     @Override
     public void stop() throws Exception {
         //useful to run after we close the window
         mainMenumusic.stop();
-        System.out.println("End");
         System.exit(0);
     }
 
@@ -162,7 +163,7 @@ public class MasterFrame extends Application {
 
     //MODIFIES: this
     //EFFECTS: loads game data from GAME_FILE, if the file exists
-    // otherwise initializes GAME with default values
+    // otherwise initializes new GAME with default values
     public void loadGame() {
         try {
             FileReader reader = new FileReader(GAME_FILE);
@@ -182,8 +183,6 @@ public class MasterFrame extends Application {
                     (ArrayList<String>)jsonObj.get("uncl_ti_bookId"),
                     (ArrayList<String>)jsonObj.get("text_item_name"),(ArrayList<String>)jsonObj.get("text_item_cont"),
                     (ArrayList<String>)jsonObj.get("text_item_bookId"));
-
-            System.out.println("LOADED GAME DATA!");
 
             inGameMenu = new InGameMenu(game, mainWindow);
 

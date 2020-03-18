@@ -15,6 +15,11 @@ import model.GamePanel;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ *  This class represents the CharacterSetUpGUI. A gui targetted towards the initial creation of the character
+ *  It allows the user to input a username and select a class. This class also displays all the GUI components
+ */
+
 public class CharacterSetUpGUI  {
     GamePanel game;
     InGameMenu inGameMenu;
@@ -28,6 +33,7 @@ public class CharacterSetUpGUI  {
     StackPane mainLayout;
     javafx.scene.control.Button submitButton;
 
+    //EFFECTS: constructor which initializes the components of the gui, the images, buttons, etc.
     public CharacterSetUpGUI(GamePanel game, Stage stage)  {
         this.game = game;
         this.stage = stage;
@@ -50,10 +56,14 @@ public class CharacterSetUpGUI  {
         setUpTextFieldAndButton(game, stage);
     }
 
+    //MODIFIES: stage
+    //EFFECTS: sets the current character set up scene as the current displaying scene on the stage
     public void setCurrentScene(Stage stage) {
         stage.setScene(characterSetUpScene);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up the text fields, combobox,  buttons, and button listeners
     public void setUpTextFieldAndButton(GamePanel game, Stage stage) {
         charName = new TextField("Name");
         charName.setMinHeight(30);
@@ -75,6 +85,8 @@ public class CharacterSetUpGUI  {
         submitButton.setOnAction(e -> setUserSetupInfo());
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up the user info text that user inputs and creates character with specified name and class
     public void setUserSetupInfo() {
         characterName = charName.getText();
         classSelection = classSelect.getValue().toString();
@@ -82,10 +94,15 @@ public class CharacterSetUpGUI  {
         switchToInGameMenu();
     }
 
+    //MODIFIES: InGameMenu
+    //EFFECTS: constructs a new in game menu object
     public void switchToInGameMenu() {
         inGameMenu = new InGameMenu(game, stage);
     }
 
+    //MODIFIES: game
+    //EFFECTS: Takes the user input and determines the appropriate class. Sets up character by changing the
+    // character fields
     public void setUpCharacter(String characterName, String classSelection) {
         game.createCharacter(characterName);
         System.out.println("Your character name has been set to: " + game.getCharacterName());
@@ -100,12 +117,11 @@ public class CharacterSetUpGUI  {
             choice = 4;
         }
         game.setCharacterClass(choice);
-        System.out.println(game.getCharacterChoice());
         game.adjustAttributes(game.getCharacter().setCharacterClass(choice));
-        System.out.println(game.getCharacterStats());
-
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up the ComboBox for the class selection and adds to main layout
     public void setUpClassSelectComboBox() {
         classSelect = new ComboBox();
         classSelect.getItems().addAll("Knight", "Mage", "Assassin", "Wanderer");

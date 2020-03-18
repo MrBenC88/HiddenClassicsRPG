@@ -7,6 +7,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.GamePanel;
 
+/**
+ * A class which represents the GameGUI. It consists of the full game elements.
+ */
 
 public class GameGUI extends SceneSettings {
     GamePanel game;
@@ -16,6 +19,7 @@ public class GameGUI extends SceneSettings {
     StackPane mainLayout;
     Button okButton;
 
+    //EFFECTS: constructs the gameGUI with its components
     public GameGUI(GamePanel game, Stage stage, Scene scene) {
         this.game = game;
         this.stage = stage;
@@ -25,16 +29,19 @@ public class GameGUI extends SceneSettings {
         StackPane.setMargin(okButton, new Insets(500,0,0,700));
 
         gameScene = new Scene(mainLayout);
-
         mainLayout.getChildren().add(okButton);
         okButton.setOnAction(e -> switchToInGameMenu());
     }
 
+    //MODIFIES: stage
+    //EFFECTS: sets the stage to the in game menu scene
     public void switchToInGameMenu() {
         stage.setScene(inGameMenuScene);
     }
 
 
+    //MODIFIES: stage
+    //EFFECTS: sets the stage to the current game gui scene
     @Override
     void setCurrentScene() {
         stage.setScene(gameScene);

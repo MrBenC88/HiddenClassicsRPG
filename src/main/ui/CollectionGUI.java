@@ -21,6 +21,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ * A class representing the Collections GUI which displays the user's collections of texts currently collected
+ * It contains all the GUI components such as images, buttons, listview, etc.
+ */
 
 public class CollectionGUI extends SceneSettings {
     GamePanel game;
@@ -36,7 +40,7 @@ public class CollectionGUI extends SceneSettings {
     Text userInfoAfterItemEvent;
     Button refreshButton;
 
-
+    //EFFECTS: constructs the CollectionGUI which consists of the Images, StackPane, Text, ListView, Buttons, etc.
     public CollectionGUI(GamePanel game, Stage stage, Scene scene) {
         this.game = game;
         this.stage = stage;
@@ -54,18 +58,19 @@ public class CollectionGUI extends SceneSettings {
             collectionDecorImage = new ImageView(collectDecorImg);
             mainLayout.getChildren().add(collectionScreen);
         } catch (FileNotFoundException e) {
-            //
+            //Load without any images.
         }
         setUpListView();
         setUpButtons();
         StackPane.setMargin(collectionDecorImage, new Insets(0,0,50,0));
-
         StackPane.setMargin(userInfoAfterItemEvent, new Insets(370,0,0,0));
         mainLayout.getChildren().add(collectionDecorImage);
         setUpKeyEvent();
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: Overrides an KeyEvent handle method to respond to pressing the "ENTER" key after selecting an item in
+    // the list view
     public void setUpKeyEvent() {
         listView.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -77,8 +82,8 @@ public class CollectionGUI extends SceneSettings {
         });
     }
 
-
-
+    //MODIFIES: this
+    //EFFECTS: sets up the list view object and adds in the appropriate data
     public void setUpListView() {
         for (TextItem t: game.textCollection.getAllTextItems()) {
             String textName = t.getTextItemName();
@@ -86,11 +91,12 @@ public class CollectionGUI extends SceneSettings {
             listView.getItems().add("Book ID:\t" + textID + "\tText Name: \t" + textName);
         }
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
         StackPane.setMargin(listView, new Insets(120, 20, 200, 20));
         mainLayout.getChildren().addAll(listView, userInfoAfterItemEvent);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up the buttons, event handlers,  and places them accordingly on the scene
     public void setUpButtons() {
         okButton = new Button("Done");
         StackPane.setMargin(okButton, new Insets(500,0,0,700));
@@ -105,9 +111,10 @@ public class CollectionGUI extends SceneSettings {
         okButton.setOnAction(e -> switchToInGameMenu());
         viewDetailsButton.setOnAction(e -> viewTextDetails());
         refreshButton.setOnAction(e -> refreshCollection());
-
     }
 
+    //MODIFIES: this
+    //EFFECTS: refreshes the ListView collection to update with recent information
     public void refreshCollection() {
         ArrayList<String> reloadedList = new ArrayList<>();
         for (TextItem t: game.textCollection.getAllTextItems()) {
@@ -118,6 +125,9 @@ public class CollectionGUI extends SceneSettings {
         listView.getItems().setAll(reloadedList);
     }
 
+    //MODIFIES: this
+    //EFFECTS: displays alert if collection is empty, or nothing is selected
+    // else displays the text details on the screen
     public void viewTextDetails() {
         if (game.textCollection.getTextCollectionTotalTexts() == 0) {
             Alert noItems = new Alert(Alert.AlertType.INFORMATION);
@@ -140,11 +150,14 @@ public class CollectionGUI extends SceneSettings {
         }
     }
 
-
+    //MODIFIES: stage
+    //EFFECTS: sets the stage to the in game menu scene
     public void switchToInGameMenu() {
         stage.setScene(inGameMenuScene);
     }
 
+    //MODIFIES: stage
+    //EFFECTS: sets the stage to the current collectionScene
     @Override
     void setCurrentScene() {
         stage.setScene(collectionScene);

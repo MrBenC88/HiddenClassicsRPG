@@ -48,15 +48,13 @@ public class InGameMenu {
     CollectionGUI collectionGUI;
     CharStatGUI charStatGui;
     GameGUI inGameGui;
-
     private static final String GAME_FILE = "./data/game_data.json";
 
+    //EFFECTS: constructs the in game menu gui and all its components
+    // initializes the other scene objects
     public InGameMenu(GamePanel game, Stage stage) {
         this.game = game;
         this.stage = stage;
-
-
-
         mainLayout = new StackPane(); // controls layout of how it is displayed -> our root node
         inGameMenuScene = new Scene(mainLayout);
         inGameMenuScene.setCursor(Cursor.DEFAULT);
@@ -79,6 +77,8 @@ public class InGameMenu {
         setUpButtons();
     }
 
+    //MODIFIES: inventoryGUI, storeGUI, collectionGUI,charStatGui, inGamegui
+    //EFFECTS: instantiate all the other scene objects
     public void instantiateAllScenes(GamePanel game, Stage stage, Scene scene) {
         inventoryGUI = new InventoryGUI(game, stage, scene);
         storeGUI = new StoreGUI(game, stage,  scene);
@@ -88,6 +88,7 @@ public class InGameMenu {
     }
 
 
+    //EFFECTS: sets up the buttons and places it on the scene with correct dimensions
     public void setUpButtons() {
         inventoryButton.setMinHeight(30);
         inventoryButton.setMinWidth(100);
@@ -109,8 +110,8 @@ public class InGameMenu {
         setUpButtonHelper();
     }
 
+    //EFFECTS: a helper function which sets up the buttons and places it on the scene with correct dimensions
     public void setUpButtonHelper() {
-
         charStatButton.setMinHeight(30);
         charStatButton.setMinWidth(100);
         charStatButton.setPrefHeight(30);
@@ -128,10 +129,10 @@ public class InGameMenu {
         saveButton.setPrefHeight(30);
         saveButton.setPrefWidth(100);
         saveButton.setMaxWidth(100);
-
         setUpButtonsHelperPositioning();
     }
 
+    //EFFECTS:sets up the button positioning
     public void setUpButtonsHelperPositioning() {
         mainLayout.getChildren().addAll(inventoryButton, storeButton,collectionButton,charStatButton,
                 exitButton,saveButton);
@@ -144,6 +145,7 @@ public class InGameMenu {
         setUpButtonEventListeners();
     }
 
+    //EFFECTS: sets up the button event listeners
     public void setUpButtonEventListeners() {
         inventoryButton.setOnAction(e -> openInventory());
         storeButton.setOnAction(e -> openStore());
@@ -153,31 +155,45 @@ public class InGameMenu {
         saveButton.setOnAction(e -> saveGame(game));
     }
 
+    //MODIFIES: inventoryGUI
+    //EFFECTS:  sets the inventoryGUI scene onto stage
     public void openInventory() {
         inventoryGUI.setCurrentScene();
     }
 
+    //MODIFIES: storeGUI
+    //EFFECTS:  sets the storeGUI scene onto stage
     public void openStore() {
         storeGUI.setCurrentScene();
     }
 
+    //MODIFIES: collectionGUI
+    //EFFECTS:  sets the collectionGUI scene onto stage
     public void openCollection() {
         collectionGUI.setCurrentScene();
     }
 
+    //MODIFIES: charStatGui
+    //EFFECTS:  sets the charStatGui scene onto stage
     public void openCharStats() {
         charStatGui.setCurrentScene();
     }
 
+    //MODIFIES: inGameGui
+    //EFFECTS:  sets the inGameGui scene onto stage
     public void openGame() {
         inGameGui.setCurrentScene();
     }
 
 
+    //MODIFIES: stage
+    //EFFECTS:  sets the current in game menu scene onto stage
     public void setCurrentScene(Stage stage) {
         stage.setScene(inGameMenuScene);
     }
 
+    //MODIFIES: writer
+    //EFFECTS: saves the game data to file
     public void saveGame(GamePanel game) {
         try {
             Writer file = new Writer(new File(GAME_FILE));

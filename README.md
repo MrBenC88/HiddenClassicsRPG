@@ -45,12 +45,12 @@ This project was chosen because of the interest in creating a functional RPG usi
 - As the user, I want to be able to load my game data! (From a JSON!!!)  [completed] 
 
 **Phase 3**:*GUI*
-- Added user GUI.
-- Referenced all third party assets.
-- Added Section for "Instructions for Grader"
+- Added user GUI. [completed] 
+- Referenced all third party assets. [completed] 
+- Added Section for "Instructions for Grader" [completed] 
+- Added Specifications to all methods [completed] 
 
 TODO
-- Add Specifications to all methods
 - Finish Game element portion / write tests if necessary
 
 

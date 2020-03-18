@@ -16,6 +16,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+/**
+ *  This class represents the character stats gui
+ *  It deals with all the functions associated with displaying the character Stats.
+ */
 
 public class CharStatGUI extends SceneSettings {
     GamePanel game;
@@ -28,6 +32,7 @@ public class CharStatGUI extends SceneSettings {
     ImageView charStatScreen;
     Text charStatsText;
 
+    //EFFECTS: Constructor initializes the character stat scene and its associated layouts/buttons/components/images
     public CharStatGUI(GamePanel game, Stage stage, Scene scene) {
         this.game = game;
         this.stage = stage;
@@ -37,9 +42,7 @@ public class CharStatGUI extends SceneSettings {
         refreshButton = new Button("Refresh");
         charStatsText = new Text();
         StackPane.setMargin(refreshButton, new Insets(170,0,600,500));
-
         StackPane.setMargin(okButton, new Insets(500,0,0,700));
-
         charStatScene = new Scene(mainLayout);
 
         try {
@@ -55,10 +58,11 @@ public class CharStatGUI extends SceneSettings {
         mainLayout.getChildren().addAll(okButton,charStatsText,refreshButton);
         okButton.setOnAction(e -> switchToInGameMenu());
         refreshButton.setOnAction(e -> refreshData());
-
         displayStats();
     }
 
+    //MODIFIES: scene
+    //EFFECTS: displays the character stats onto the scene
     public void displayStats() {
         charStatsText.setFont(Font.font("Arial", 14));
         String formattedTextItemsStr = "";
@@ -81,15 +85,20 @@ public class CharStatGUI extends SceneSettings {
         );
     }
 
+    //MODIFIES: scene
+    //EFFECTS: refreshes and reloads the Stats
     public void refreshData() {
         displayStats();
     }
 
-
+    //MODIFIES: stage
+    //EFFECTS: switches the stage scene back to in game menu
     public void switchToInGameMenu() {
         stage.setScene(inGameMenuScene);
     }
 
+    //MODIFIES: stage
+    //EFFECTS: sets the character stats scene as the scene shown on the stage
     @Override
     void setCurrentScene() {
         stage.setScene(charStatScene);
