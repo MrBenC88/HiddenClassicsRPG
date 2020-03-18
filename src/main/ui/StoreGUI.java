@@ -15,9 +15,12 @@ import model.GameItem;
 import model.GamePanel;
 import model.TextItem;
 
+import java.applet.Applet;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import static ui.MasterFrame.mainMenumusic;
 
 /**
  * A class which represents the StoreGUI and shows all components associated with the GUI such as images, listview,
@@ -71,6 +74,9 @@ public class StoreGUI extends SceneSettings {
     //MODIFIES: stage
     //EFFECTS: sets the stage to the in game menu scene
     public void switchToInGameMenu() {
+        mainMenumusic.stop();
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gracefully.wav"));
+        mainMenumusic.loop();
         stage.setScene(inGameMenuScene);
     }
 

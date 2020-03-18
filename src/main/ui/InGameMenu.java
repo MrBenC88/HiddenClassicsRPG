@@ -12,10 +12,13 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import persistence.Writer;
 
+import java.applet.Applet;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import static ui.MasterFrame.mainMenumusic;
 
 /**
  * this is the GUI for the In Game Menu. It is the master UI panel essentially
@@ -164,6 +167,9 @@ public class InGameMenu {
     //MODIFIES: storeGUI
     //EFFECTS:  sets the storeGUI scene onto stage
     public void openStore() {
+        mainMenumusic.stop();
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/instore.wav"));
+        mainMenumusic.loop();
         storeGUI.setCurrentScene();
     }
 
@@ -182,6 +188,9 @@ public class InGameMenu {
     //MODIFIES: inGameGui
     //EFFECTS:  sets the inGameGui scene onto stage
     public void openGame() {
+        mainMenumusic.stop();
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/ingame.wav"));
+        mainMenumusic.loop();
         inGameGui.setCurrentScene();
     }
 

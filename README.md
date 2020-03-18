@@ -60,6 +60,8 @@ TODO
 - Inventory Page Image Asset: http://commons.nicovideo.jp/material/nc172745
 - Character Creation Page Image Asset: https://chatsticker.com/sticker/punipuni-animated-1
 - Main Menu Music: No. 51: Sword Art Online - Gracefully (wav file) 
+- InGame Music: Radio Route 101 - Pokémon HeartGold/SoulSilver (wav file)
+- InStore Music:  Goldenrod City - Pokémon HeartGold/SoulSilver (wav file)
 
 ## Instructions for Grader
 **On StartUp**:

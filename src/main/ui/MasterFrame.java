@@ -35,11 +35,11 @@ public class MasterFrame extends Application {
     Button newGameButton;
     Button loadGameButton;
     Button quitButton;
-    public AudioClip mainMenumusic; // AudioClip only supports .wav, .au, .mid and .aiffs Pavilion
+    public static AudioClip mainMenumusic; // AudioClip only supports .wav, .au, .mid and .aiffs Pavilion
     public GamePanel game;
-    private CharacterSetUpGUI characterSetUpGUI;
+    CharacterSetUpGUI characterSetUpGUI;
     private static final String GAME_FILE = "./data/game_data.json";
-    private InGameMenu inGameMenu;
+    InGameMenu inGameMenu;
 
     //MODIFIES: mainMenumusic
     //EFFECTS: sets up the music and loops it

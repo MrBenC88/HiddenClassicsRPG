@@ -7,6 +7,10 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.GamePanel;
 
+import java.applet.Applet;
+
+import static ui.MasterFrame.mainMenumusic;
+
 /**
  * A class which represents the GameGUI. It consists of the full game elements.
  */
@@ -36,6 +40,9 @@ public class GameGUI extends SceneSettings {
     //MODIFIES: stage
     //EFFECTS: sets the stage to the in game menu scene
     public void switchToInGameMenu() {
+        mainMenumusic.stop();
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gracefully.wav"));
+        mainMenumusic.loop();
         stage.setScene(inGameMenuScene);
     }
 
