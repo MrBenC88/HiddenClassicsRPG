@@ -75,7 +75,7 @@ public class StoreGUI extends SceneSettings {
     //EFFECTS: sets the stage to the in game menu scene
     public void switchToInGameMenu() {
         mainMenumusic.stop();
-        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gracefully.wav"));
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/ingamemenumusic.wav"));
         mainMenumusic.loop();
         stage.setScene(inGameMenuScene);
     }

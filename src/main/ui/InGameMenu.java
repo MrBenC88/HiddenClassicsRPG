@@ -62,6 +62,9 @@ public class InGameMenu {
         inGameMenuScene = new Scene(mainLayout);
         inGameMenuScene.setCursor(Cursor.DEFAULT);
         setCurrentScene(stage);
+        mainMenumusic.stop();
+        mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/ingamemenumusic.wav"));
+        mainMenumusic.loop();
         instantiateAllScenes(game,stage, inGameMenuScene);
 
         try {

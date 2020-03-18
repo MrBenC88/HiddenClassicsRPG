@@ -62,6 +62,7 @@ TODO
 - Main Menu Music: No. 51: Sword Art Online - Gracefully (wav file) 
 - InGame Music: Radio Route 101 - Pokémon HeartGold/SoulSilver (wav file)
 - InStore Music:  Goldenrod City - Pokémon HeartGold/SoulSilver (wav file)
+- In Game Menu Music: Nintendo Wii - Mii Channel Theme (wav file)
 
 ## Instructions for Grader
 **On StartUp**:
