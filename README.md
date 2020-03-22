@@ -64,6 +64,7 @@ TODO (future):
 - InGame Music: Radio Route 101 - Pokémon HeartGold/SoulSilver (wav file)
 - InStore Music:  Goldenrod City - Pokémon HeartGold/SoulSilver (wav file)
 - In Game Menu Music: Nintendo Wii - Mii Channel Theme (wav file)
+- Character Sprites: https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/sheet/26778/
 
 ## Instructions for Grader
 **On StartUp**:
