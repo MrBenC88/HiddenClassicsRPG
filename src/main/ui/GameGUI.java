@@ -39,11 +39,16 @@ public class GameGUI extends SceneSettings {
     Text gamePrompt;
     Text gameResponse;
     Text gameResponse2;
-    //Image miscIMG;
+    double charX = 800 / 2;
+    double charY = 625 / 2;
+    double cameraX = -500;
+    double cameraY = -500;
+    double movementConstant = 2;
+    Image miscIMG;
     GraphicsContext gc;
     AnimatedImage charSprite;
     final long startNanoTime = System.nanoTime();
-    private final double walkingSpeed = 0.120;
+    private final double walkingSpeed = 0.10;
 
     //EFFECTS: constructs the gameGUI with its components
     public GameGUI(GamePanel game, Stage stage, Scene scene) {
@@ -65,14 +70,14 @@ public class GameGUI extends SceneSettings {
 
         gc = canvas.getGraphicsContext2D(); //SeUp Canvas
 
-        /*
+
         try {
-            // load images here
-            // miscIMG = new Image(new FileInputStream("src/main/ui/asset/image/misc/miscimg.png"));
+            // load images here- this is the map image
+            miscIMG = new Image(new FileInputStream("src/main/ui/asset/image/misc/tile/map2.png"));
 
         } catch (FileNotFoundException e) {
             //
-        }*/
+        }
         setUpSprite("StandBack");
         setUpGameLoop();
         stage.show();
@@ -85,13 +90,22 @@ public class GameGUI extends SceneSettings {
         String imageSprite = "src/main/ui/asset/image/misc/sprite/sprite";
 
         if (dir.equals("front")) {
+            cameraY -= movementConstant;
             frontSprite(imageSprite);
+
         } else if (dir.equals("back")) {
+            cameraY += movementConstant;
             backSprite(imageSprite);
+
         } else if (dir.equals("left")) {
+            cameraX += movementConstant;
             leftSprite(imageSprite);
+
         } else if (dir.equals("right")) {
+
+            cameraX -= movementConstant;
             rightSprite(imageSprite);
+
         } else if (dir.equals("StandFront")) {
             standSprites(imageSprite, 1);
         } else if (dir.equals("StandLeft")) {
@@ -194,24 +208,53 @@ public class GameGUI extends SceneSettings {
     }
 
     //MODIFIES: this
-    //EFFECTS: sets up game loop and corresponding game loop functions
+    //EFFECTS: sets up game loop and corresponding game loop functions and moves map
     //Reference: https://github.com/tutsplus/Introduction-to-JavaFX-for-Game-Development
     public void setUpGameLoop() {
         new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
-                double x = 232 + 128 * Math.cos(t);
-                double y = 232 + 128 * Math.sin(t);
+
+
                 gc.clearRect(0, 0, 800,625);
-                gc.drawImage(charSprite.getFrame(t), 400, 312.5);
+                gc.drawImage(miscIMG, cameraX, cameraY);
+                gc.drawImage(charSprite.getFrame(t), charX, charY);
+                /*System.out.println("==================================================");
+                System.out.println("Char Coordinates\t" + charX + ",\t" + charY);
+                System.out.println("==================================================");
+                System.out.println("Cam Coordinates\t" + cameraX + ",\t" + cameraY);
+                System.out.println("==================================================");*/
+
+                conditionsForCamBoundaries();
+
             }
         }.start();
     }
 
     //MODIFIES: this
-    //EFFECTS: Overrides an KeyEvent handle method to respond to pressing the WASD keys after selecting an item in
-    // the list view
+    //EFFECTS: sets boundaries for camera
+    public void conditionsForCamBoundaries() {
+        if (cameraX >= 4) {
+            cameraX = 4;
+        }
+
+        if (cameraY >= 16) {
+            cameraY = 16;
+        }
+
+        if (cameraX <= -804) {
+            cameraX = -804;
+        }
+
+        if (cameraY <= -990) {
+            cameraY = -990;
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Overrides an KeyEvent handle method to respond to pressing the WASD keys
+    //  if user makes it to the specific coordinate and presses ENTER key, they can initiate an npc battle event
     public void setUpKeyEvent() {
         gameScene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -239,6 +282,10 @@ public class GameGUI extends SceneSettings {
             setUpSprite(right);
         } else if (event.getCode().equals(KeyCode.S)) {
             setUpSprite(front);
+        } else if (event.getCode().equals(KeyCode.ENTER)) {
+            if (cameraX >= -450.0 && cameraX <= -400 && cameraY >= -80 && cameraY <= -50) {
+                walkInGame();
+            }
         }
     }
 
@@ -288,7 +335,9 @@ public class GameGUI extends SceneSettings {
         gameResponse = new Text();
         gameResponse2 = new Text();
 
-        gamePrompt.setText("In game! Select Walk To Explore. WASD Keys to move character.");
+        gamePrompt.setText("In game! Select Walk To Explore. WASD Keys to move character.\n"
+                + "Walk up to the interesting futuristic machine and tap enter to battle npc. "
+                + "(It is near the Pokemon center and Pokeball item");
 
         StackPane.setMargin(walkButton, new Insets(500,0,600,100));
         StackPane.setMargin(gamePrompt, new Insets(300,0,600,100));

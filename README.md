@@ -50,9 +50,8 @@ This project was chosen because of the interest in creating a functional RPG usi
 - Added Section for "Instructions for Grader" [completed] 
 - Added Specifications to all methods [completed] 
 - Added Simplified Text Based Game when exiting in game menu [completed]
-
-TODO (future):
-- Convert Text Based Game to Actual Game - Finish Game element portion / write tests if necessary
+- Convert Text Based Game to Actual Game - Finish Game element portion [Completed]
+- Added NPC Battle Event by walking up to futuristic experiment building and pressing enter or clicking button [completed]
 
 
 **References for Sources Utilized in Phase 3**
@@ -65,6 +64,7 @@ TODO (future):
 - InStore Music:  Goldenrod City - Pokémon HeartGold/SoulSilver (wav file)
 - In Game Menu Music: Nintendo Wii - Mii Channel Theme (wav file)
 - Character Sprites: https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/sheet/26778/
+- TileSheet: https://github.com/blackravendb/Project-Pokemon/blob/master/Project-Pokemon/res/world/tileset32x32.png
 
 ## Instructions for Grader
 **On StartUp**:
