@@ -49,9 +49,10 @@ This project was chosen because of the interest in creating a functional RPG usi
 - Referenced all third party assets. [completed] 
 - Added Section for "Instructions for Grader" [completed] 
 - Added Specifications to all methods [completed] 
+- Added Simplified Text Based Game when exiting in game menu [completed]
 
-TODO
-- Finish Game element portion / write tests if necessary
+TODO (future):
+- Convert Text Based Game to Actual Game - Finish Game element portion / write tests if necessary
 
 
 **References for Sources Utilized in Phase 3**
@@ -123,7 +124,8 @@ You can save the state of my application by...
 You can reload the state of my application by...
 - Re-run the application from Main.java
 - Click on Load Game from the main menu which displays upon opening the application
-- Click Character Attributes to see your character's updated attributes. 
+- Click Character Attributes
+- Click Refresh to see the character updated attributes
 - Troubleshooting Note: If at any point a component is not updating, be sure to click the "Refresh" button
 
 

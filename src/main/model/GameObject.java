@@ -134,8 +134,8 @@ public class GameObject {
         npcLines1.add("???");
         npcLines1.add("I don't understand.");
         HashMap<String, Integer> npcStat1 = new HashMap<>();
-        npcStat1.put("Health", 1000);
-        npcStat1.put("Attack", 10000);
+        npcStat1.put("Health", 10);
+        npcStat1.put("Attack", 5);
         npcStat1.put("Defense", 2);
         npcStat1.put("Speed", 3);
 
