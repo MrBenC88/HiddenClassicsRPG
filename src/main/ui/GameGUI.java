@@ -78,7 +78,7 @@ public class GameGUI extends SceneSettings {
         } catch (FileNotFoundException e) {
             //
         }
-        setUpSprite("StandBack");
+        setUpSprite("StandFront");
         setUpGameLoop();
         stage.show();
     }
@@ -272,7 +272,8 @@ public class GameGUI extends SceneSettings {
     }
 
     //MODIFIES: this
-    //EFFECTS: Helper function to check for conditions of key events for WASD key based on key handler
+    //EFFECTS: Helper function to check for conditions of key events for WASD key based on key handler and the
+    // ENTER key if pressed and within the coordinates specified
     public void keyEventConditionsCharSprite(KeyEvent event, String left, String back, String right, String front) {
         if (event.getCode().equals(KeyCode.A)) {
             setUpSprite(left);
@@ -336,8 +337,8 @@ public class GameGUI extends SceneSettings {
         gameResponse2 = new Text();
 
         gamePrompt.setText("In game! Select Walk To Explore. WASD Keys to move character.\n"
-                + "Walk up to the interesting futuristic machine and tap enter to battle npc. "
-                + "(It is near the Pokemon center and Pokeball item");
+                + "Walk up to the interesting futuristic machine and tap enter to battle npc.\n"
+                + "(It is near the Pokemon center and Pokeball item)");
 
         StackPane.setMargin(walkButton, new Insets(500,0,600,100));
         StackPane.setMargin(gamePrompt, new Insets(300,0,600,100));
@@ -353,7 +354,4 @@ public class GameGUI extends SceneSettings {
     void setCurrentScene() {
         stage.setScene(gameScene);
     }
-
-
-
 }
