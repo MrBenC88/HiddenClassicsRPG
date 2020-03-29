@@ -96,11 +96,7 @@ public class MasterFrame extends Application {
         mainWindow.setTitle("Hidden Classics Pavilion");
         mainWindow.setWidth(800);
         mainWindow.setHeight(625);
-        mainWindow.setMinWidth(800);
-        mainWindow.setMinHeight(625);
-        mainWindow.setMaxWidth(800);
-        mainWindow.setMaxHeight(625);
-        mainWindow.setResizable(false);
+        mainWindow.setResizable(true);
         mainWindow.initStyle(StageStyle.DECORATED); //set window style - UNDECORATED- window with no frame
     }
 

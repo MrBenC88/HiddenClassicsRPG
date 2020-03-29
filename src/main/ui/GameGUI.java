@@ -260,6 +260,7 @@ public class GameGUI extends SceneSettings {
             @Override
             public void handle(KeyEvent event) {
                 keyEventConditionsCharSprite(event, "left", "back", "right", "front");
+                resetText();
             }
         });
         gameScene.setOnKeyReleased(new EventHandler<KeyEvent>() {
@@ -269,6 +270,13 @@ public class GameGUI extends SceneSettings {
                         "StandFront");
             }
         });
+    }
+
+    //MODIFIES: this
+    //EFFECTS: resets the text to blank string
+    public void resetText() {
+        gameResponse.setText("");
+        gameResponse2.setText("");
     }
 
     //MODIFIES: this
