@@ -56,7 +56,7 @@ This project was chosen because of the interest in creating a functional RPG usi
 **Phase 4**:*Design*
 
 Phase 4: Task 2
-- Make appropriate use of the Map interface somewhere in your code.  The HashMap is used in the UserCharacter class within the field: HashMap<String, Integer> characterAttributes. [completed] 
+- Make appropriate use of the Map interface somewhere in your code.  The HashMap is used in the UserCharacter class within the field: HashMap<String, Integer> characterAttributes. Utilized in the constructor and in method which adjust the character attributes.  [completed] 
 
 
 
