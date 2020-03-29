@@ -53,14 +53,6 @@ This project was chosen because of the interest in creating a functional RPG usi
 - Convert Text Based Game to Actual Game - Finish Game element portion [Completed]
 - Added NPC Battle Event by walking up to futuristic experiment building and pressing enter or clicking button [completed]
 
-**Phase 4**:*Design*
-
-Phase 4: Task 2
-- Make appropriate use of the Map interface somewhere in your code.  The HashMap is used in the UserCharacter class within the field: HashMap<String, Integer> characterAttributes. Utilized in the constructor and in method which adjust the character attributes.  [completed] 
-
-
-
-
 
 **References for Sources Utilized in Phase 3**
 - MainMenu Background Image Asset: https://www.pinterest.ca/pin/10555380362736490/
@@ -138,3 +130,11 @@ You can reload the state of my application by...
 - Troubleshooting Note: If at any point a component is not updating, be sure to click the "Refresh" button
 
 
+**Phase 4**:*Design*
+
+Phase 4: Task 2 - Map Interface: 
+
+Make appropriate use of the Map interface somewhere in your code.  The HashMap is used in the UserCharacter class within the field: HashMap<String, Integer> characterAttributes. Utilized in the constructor and in method which adjust the character attributes.  [completed] 
+
+Phase 4: Task 3 - Changelog / Refactoring
+- entry1
