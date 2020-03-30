@@ -96,7 +96,6 @@ public class StoreGUI extends SceneSettings {
         submitPurchase = new Button("Submit");
 
         StackPane.setMargin(submitPurchase, new Insets(500,0,0,590));
-
         StackPane.setMargin(yesButton, new Insets(300,0,600,100));
         StackPane.setMargin(noButton, new Insets(300,0,600,220));
         StackPane.setMargin(okButton, new Insets(500,0,0,700));

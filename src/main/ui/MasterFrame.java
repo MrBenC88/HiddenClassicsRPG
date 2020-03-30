@@ -15,12 +15,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GamePanel;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.*;
 import java.io.*;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
@@ -28,7 +28,14 @@ import java.util.Stack;
 import static persistence.Reader.readData;
 
 /**
- * The main class to represent the GUI. This is where the game GUI occurs using Java FX
+ * The main class to represent the main welcome screen GUI. This is where the game GUI occurs using Java FX
+ * The class represents the frame and entry point to program where three options are available.
+ *  - New Game
+ *  - Load Game
+ *  - Quit
+ *
+ *  The class consists of all GUI components such as buttons, event listeners, screen
+ *  It also initializes components which are important to the program such as music
  */
 public class MasterFrame extends Application {
     Stage mainWindow;
@@ -36,18 +43,21 @@ public class MasterFrame extends Application {
     Button loadGameButton;
     Button quitButton;
     public static AudioClip mainMenumusic; // AudioClip only supports .wav, .au, .mid and .aiffs Pavilion
-    public GamePanel game;
-    CharacterSetUpGUI characterSetUpGUI;
+    GamePanel game;
+
     private static final String GAME_FILE = "./data/game_data.json";
     InGameMenu inGameMenu;
+    CharacterSetUpGUI characterSetUpGUI;
+    LoadGameAssetManager loadGameAssetManager;
 
     //MODIFIES: mainMenumusic
-    //EFFECTS: sets up the music and loops it
+    //EFFECTS: sets up the music and loops it as well as the loadGameAssetManager
     @Override
     public void init() throws Exception {
         //useful for loading assets / whatnot before app launches //gamemusic.mid
         mainMenumusic = Applet.newAudioClip(getClass().getResource("./asset/music/gracefully.wav"));
         mainMenumusic.loop();
+        loadGameAssetManager = new LoadGameAssetManager(GAME_FILE);
     }
 
     //MODIFIES: this
@@ -85,6 +95,12 @@ public class MasterFrame extends Application {
         mainWindow.show();
 
         //Button Listeners
+        setUpButtonListeners();
+    }
+
+    //MODIFIES: stage
+    //EFFECTS: sets up the button listeners
+    public void setUpButtonListeners() {
         newGameButton.setOnAction(e -> createNewGame());
         loadGameButton.setOnAction(e -> loadGame());
         quitButton.setOnAction(e -> System.exit(0));
@@ -129,62 +145,20 @@ public class MasterFrame extends Application {
     //EFFECTS: constructs a new GamePanel and creates a character Setup Screen
     public void createNewGame() {
         game = new GamePanel();
-        System.out.println("CREATING NEW GAME");
-        addAssetsToGame(game);
+        //System.out.println("CREATING NEW GAME");
+        loadGameAssetManager.addAssetsToGame(game);
         characterSetUpGUI = new CharacterSetUpGUI(game, mainWindow);
-
     }
-
-    //MODIFIES: GamePanel
-    //EFFECTS: adds game items to game Panel
-    public void addAssetsToGame(GamePanel game) {
-        game.addUnclaimedItems();
-        game.addUnclaimedTexts();
-        game.addNpcs();
-        //Hardcoded this for testing purposes
-        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(0));
-        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(1));
-        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(2));
-        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(3));
-        game.textCollection.addTextItem(game.gameObjects.getUnClaimedTextItem(4));
-
-        //Added Some Inventory Items to Inventory
-        game.inventory.addInventoryItem(game.gameObjects.getUnClaimedGameItem(0),2);
-        game.inventory.addInventoryItem(game.gameObjects.getUnClaimedGameItem(2),3);
-        game.inventory.addInventoryItem(game.gameObjects.getUnClaimedGameItem(1),1);
-
-
-    }
-
 
     //MODIFIES: this
     //EFFECTS: loads game data from GAME_FILE, if the file exists
     // otherwise initializes new GAME with default values
     public void loadGame() {
         try {
-            FileReader reader = new FileReader(GAME_FILE);
-            JSONObject jsonObj = readData(reader);
-            game = new GamePanel((String) jsonObj.get("char_name"), (double) jsonObj.get("char_balance"),
-                    (HashMap<String, Long>)jsonObj.get("char_attributes"),(String)jsonObj.get("char_class"),
-                    (ArrayList<String>) jsonObj.get("inv_item_names"),(ArrayList<Double>) jsonObj.get("inv_item_price"),
-                    (ArrayList<ArrayList<Long>>) jsonObj.get("inv_item_stats"),
-                    (ArrayList<String>) jsonObj.get("inv_item_des"),(ArrayList<String>) jsonObj.get("uncl_i_name"),
-                    (ArrayList<Double>) jsonObj.get("uncl_i_pri"),(ArrayList<ArrayList<Long>>) jsonObj.get("uncl_i_s"),
-                    (ArrayList<String>) jsonObj.get("uncl_i_desc"),
-                    (ArrayList<ArrayList<String>>)jsonObj.get("npclines"),
-                    (ArrayList<String>) jsonObj.get("npctitles"),(ArrayList<String>) jsonObj.get("npcdirs"),
-                    (ArrayList<String>)jsonObj.get("npctypes"), (ArrayList<String>)jsonObj.get("npcnames"),
-                    (ArrayList<HashMap<String, Long>>) jsonObj.get("npcstat"),
-                    (ArrayList<String>)jsonObj.get("uncl_ti_name"), (ArrayList<String>)jsonObj.get("uncl_ti_content"),
-                    (ArrayList<String>)jsonObj.get("uncl_ti_bookId"),
-                    (ArrayList<String>)jsonObj.get("text_item_name"),(ArrayList<String>)jsonObj.get("text_item_cont"),
-                    (ArrayList<String>)jsonObj.get("text_item_bookId"));
-
+            game = loadGameAssetManager.loadGameData();
             inGameMenu = new InGameMenu(game, mainWindow);
-
-        } catch (IOException | org.json.simple.parser.ParseException e) {
+        } catch (IOException | ParseException e) {
             createNewGame();
         }
     }
-
 }

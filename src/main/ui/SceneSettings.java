@@ -6,6 +6,6 @@ package ui;
  */
 public abstract class SceneSettings {
 
-    //EFFECTS: an abstract function that has no yet been implemented
+    //EFFECTS: an abstract function that has not yet been implemented
     abstract void setCurrentScene();
 }

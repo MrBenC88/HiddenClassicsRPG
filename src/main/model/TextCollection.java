@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class TextCollection {
     private ArrayList<TextItem> textItems;
     private int totalTextItems;
-    private boolean fullTextInventory;
     private int maxTextSlots = 5;
 
     //EFFECTS: Constructs the empty Text Collection with 0 text items
@@ -32,6 +31,7 @@ public class TextCollection {
     //MODIFIES: TextItem, this
     //EFFECTS: adds a text item to the text collection if the text inventory is not full
     public void addTextItem(TextItem item) {
+        boolean fullTextInventory;
         if (textItems.size() < maxTextSlots) {
             fullTextInventory = false;
         } else {

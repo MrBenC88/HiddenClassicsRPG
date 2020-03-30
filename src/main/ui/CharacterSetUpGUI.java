@@ -16,7 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 /**
- *  This class represents the CharacterSetUpGUI. A gui targetted towards the initial creation of the character
+ *  This class represents the CharacterSetUpGUI. A gui targeted towards the initial creation of the character
  *  It allows the user to input a username and select a class. This class also displays all the GUI components
  */
 
@@ -105,7 +105,7 @@ public class CharacterSetUpGUI  {
     // character fields
     public void setUpCharacter(String characterName, String classSelection) {
         game.createCharacter(characterName);
-        System.out.println("Your character name has been set to: " + game.getCharacterName());
+        //System.out.println("Your character name has been set to: " + game.getCharacterName());
         int choice;
         if (classSelection.equals("Knight")) {
             choice  = 1;

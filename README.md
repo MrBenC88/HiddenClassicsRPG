@@ -54,6 +54,7 @@ This project was chosen because of the interest in creating a functional RPG usi
 - Added NPC Battle Event by walking up to futuristic experiment building and pressing enter or clicking button [completed]
 
 
+
 **References for Sources Utilized in Phase 3**
 - MainMenu Background Image Asset: https://www.pinterest.ca/pin/10555380362736490/
 - Character Stat Page Image Asset: https://imgur.com/t/fate_grand_order/j0I7o
@@ -129,12 +130,37 @@ You can reload the state of my application by...
 - Click Refresh to see the character updated attributes
 - Troubleshooting Note: If at any point a component is not updating, be sure to click the "Refresh" button
 
-
+---------------------------------------------- 
 **Phase 4**:*Design*
 
 Phase 4: Task 2 - Map Interface: 
 
-Make appropriate use of the Map interface somewhere in your code.  The HashMap is used in the UserCharacter class within the field: HashMap<String, Integer> characterAttributes. Utilized in the constructor and in method which adjust the character attributes.  [completed] 
+[Make appropriate use of the Map interface somewhere in your code]  
+The HashMap is used in the UserCharacter class within the field: HashMap<String, Integer> characterAttributes. Utilized in the constructor and in method which adjust the character attributes.  [completed] 
 
-Phase 4: Task 3 - Changelog / Refactoring
-- entry1
+Phase 4: Task 3 - Changelog / Refactoring 
+
+[Improving Cohesion #1] 
+Within the GameGUI class, it did not follow the 1 class, 1 responsibility principle. 
+The GameGUI class previously handled the entire GameGUI scene, the event handlers, all the buttons, the logic behind the camera, the sprites, and the game loop.
+It is apparent that the class had too many responsibilities. Thus, to make the class have better cohesion, we improve the design by creating a new class.
+
+[Solution #1] A new GameTools class was created which contains the following:
+All methods related to the camera.
+All related sprite methods.
+All methods related to the player's location relative to the map.
+The actual game loop. 
+This narrows down the GameGUI class responsibilities a it now only handles the GUI elements (ie. buttons/ event handlers / text that displays on screen , mainLayout of the GUI).
+
+[Improving Cohesion #2] 
+Within the MasterFrame class, poor cohesion can be observed. This poor cohesion is because the MasterFrame fails to follow the 1 class, 1 responsibility principle.
+The MasterFrame previously was responsible for all of the components of the MasterFrame GUI such as buttons / event listeners / as well as saving + loading data.
+The MasterFrame had too much responsibility as the tasks of loading in new Game Assets or loading previously existing Game Assets shouldn't be handled by the MasterFrame class.
+Thus, to make this class have better cohesion, a new class is created.
+
+[Solution #2] 
+A new LoadGameAssetManager class was created which contains the following:
+The Addition of Game Assets added to the game upon the creation of a new Game.
+The Loading of All Game Data upon the selection of "Load Game" based on previously existing game data.
+This allows the MasterFrame to focus solely on the UI elements. The actual logic behind loading and adding in new Game Data is dealt behind the scenes by the LoadGameAssetManager class.
+The cohesion of the MasterFrame can thus, be improved.
