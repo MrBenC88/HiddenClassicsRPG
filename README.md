@@ -2,6 +2,8 @@
 
 ## A text-based RPG (Role-playing Game)
 
+*Demo:* https://youtu.be/IRPFjHanaxQ
+
 **Project Overview:**
 *Hidden Classics Pavilion*, is a simple role-playing game with adventure elements. 
 The basic mechanics of the game involves the navigation of a player through a map with the goal of collecting a variety of remnant texts.
@@ -20,7 +22,6 @@ Once the user collects all the texts, the user learns the truth of the world.
 **Target User(s):**
 - Idle individuals
 - RPG enthusiasts 
-- The handsome TA marking this
 
 **Why this project:**
 This project was chosen because of the interest in creating a functional RPG using object oriented programming. The goal is to surpass a simple text-based project with more interesting and involved mechanics for the end user.
@@ -53,84 +54,6 @@ This project was chosen because of the interest in creating a functional RPG usi
 - Convert Text Based Game to Actual Game - Finish Game element portion [Completed]
 - Added NPC Battle Event by walking up to futuristic experiment building and pressing enter or clicking button [completed]
 
-
-
-**References for Sources Utilized in Phase 3**
-- MainMenu Background Image Asset: https://www.pinterest.ca/pin/10555380362736490/
-- Character Stat Page Image Asset: https://imgur.com/t/fate_grand_order/j0I7o
-- Inventory Page Image Asset: http://commons.nicovideo.jp/material/nc172745
-- Character Creation Page Image Asset: https://chatsticker.com/sticker/punipuni-animated-1
-- Main Menu Music: No. 51: Sword Art Online - Gracefully (wav file) 
-- InGame Music: Radio Route 101 - Pokémon HeartGold/SoulSilver (wav file)
-- InStore Music:  Goldenrod City - Pokémon HeartGold/SoulSilver (wav file)
-- In Game Menu Music: Nintendo Wii - Mii Channel Theme (wav file)
-- Character Sprites: https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/sheet/26778/
-- TileSheet: https://github.com/blackravendb/Project-Pokemon/blob/master/Project-Pokemon/res/world/tileset32x32.png
-
-## Instructions for Grader
-**On StartUp**:
-
-To start the game, run the Main.java file
-
-The main menu will immediately display an audio and visual component.
-Music can be heard loading directly onto the main menu.
-On the main menu, there are three options.
-
-1. New Game - Start a new game with completely new data
-2. Load Game - Load a previous existing data file containing old game data
-3. Quit - Quit the game.
-
-Instructions: Initial Setup:
-- Select New Game.
-- Enter Name by typing in the "Name" field.
-- Select the class "Wanderer" which will ensure you will have sufficient funds for testing.
-- Click Submit.
-
-Generating required events related to user story "Adding X to Y"
-- A player can add to their inventory by purchasing an item in the Store, then viewing it in their inventory.
-- The following steps will detail how to do so.
-- Click on Inventory.
-- There are four buttons each having an event meant to satisfy the two required events that are related to the required user story
-
-You can generate the first required event by...
-- Select an item with the mouse and press enter or the button "View Details" to see item details
-- Select an item and click the button "Use Item" to add item stats to your character stats.
-
-You can generate the second required event by...
-- Select an item and click the button "Discard" to earn 25 gold and discard the item
-- It is recommended to Discard the remaining items and start with an empty inventory. 
-- When finished, Click Done.
-
-Generating the required user story "add an X to a Y"
-- Click Store
-- Check that the Current Balance is >= 50.
-- Click the Button "Yes"
-- Select an item and press enter to view the item details.
-- Select an item and then press the button "Submit" which will show a prompt that the item has been added to your inventory
-- Select "Done" to go back to the in game menu
-- Click Inventory
-- Click the button "Refresh" to update the list and display the brand new item that you have added to your inventory.
-- To further confirm, click "Done" to go back to the in game menu.
-- Click on "Character Stats" 
-- Click "Refresh" to see the updated character attributes and items they have.
-
-You can locate my visual component by...
-- The main menu contains the audio component which plays upon starting the application
-- Each new screen has a background.
-
-You can save the state of my application by...
-- To save, navigate back to the in game menu.
-- Click on "Save".
-- Exit the application.
-
-You can reload the state of my application by...
-- Re-run the application from Main.java
-- Click on Load Game from the main menu which displays upon opening the application
-- Click Character Attributes
-- Click Refresh to see the character updated attributes
-- Troubleshooting Note: If at any point a component is not updating, be sure to click the "Refresh" button
-
----------------------------------------------- 
 **Phase 4**:*Design*
 
 Phase 4: Task 2 - Map Interface: 
@@ -164,3 +87,18 @@ The Addition of Game Assets added to the game upon the creation of a new Game.
 The Loading of All Game Data upon the selection of "Load Game" based on previously existing game data.
 This allows the MasterFrame to focus solely on the UI elements. The actual logic behind loading and adding in new Game Data is dealt behind the scenes by the LoadGameAssetManager class.
 The cohesion of the MasterFrame can thus, be improved.
+
+
+
+**References for Sources Utilized in Phase 3**
+- MainMenu Background Image Asset: https://www.pinterest.ca/pin/10555380362736490/
+- Character Stat Page Image Asset: https://imgur.com/t/fate_grand_order/j0I7o
+- Inventory Page Image Asset: http://commons.nicovideo.jp/material/nc172745
+- Character Creation Page Image Asset: https://chatsticker.com/sticker/punipuni-animated-1
+- Main Menu Music: No. 51: Sword Art Online - Gracefully (wav file) 
+- InGame Music: Radio Route 101 - Pokémon HeartGold/SoulSilver (wav file)
+- InStore Music:  Goldenrod City - Pokémon HeartGold/SoulSilver (wav file)
+- In Game Menu Music: Nintendo Wii - Mii Channel Theme (wav file)
+- Character Sprites: https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/sheet/26778/
+- TileSheet: https://github.com/blackravendb/Project-Pokemon/blob/master/Project-Pokemon/res/world/tileset32x32.png
+
