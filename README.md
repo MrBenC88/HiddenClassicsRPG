@@ -1,6 +1,6 @@
 # Hidden Classics Pavilion RPG
 
-## A text-based RPG (Role-playing Game)
+## A Java-based RPG (Role-playing Game)
 
 *Demo:* https://youtu.be/IRPFjHanaxQ
 
